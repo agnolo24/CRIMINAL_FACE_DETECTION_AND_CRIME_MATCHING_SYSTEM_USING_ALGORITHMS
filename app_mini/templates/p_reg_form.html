@@ -1,0 +1,15 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>p\Police Station Registeration Form</title>
+    </head>
+    <body>
+        <h1>Register</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ p_reg_form.as_p }}
+            {{ log.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
