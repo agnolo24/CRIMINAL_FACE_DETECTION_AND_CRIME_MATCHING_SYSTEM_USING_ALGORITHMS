@@ -64,10 +64,10 @@ def login_check(request):
                 user = get_object_or_404(login_table, email=email)
                 if user.password == password:
                     if user.user_type == 'station':
-                        request.session['id'] = user.id
+                        request.session['station_id'] = user.id
                         return redirect('station_home')
                     elif user.user_type == 'staff':
-                        request.session['id'] = user.id
+                        request.session['staff_id'] = user.id
                         return redirect('staff_home')
                 else:
                     messages.error(request, 'Invalid password')
@@ -90,3 +90,7 @@ def staff_details_table(request):
 
 def staff_home(request):
     return render(request, 'staff_home.html')
+
+def station_home(request):
+    return render(request, 'station_home.html')
+
