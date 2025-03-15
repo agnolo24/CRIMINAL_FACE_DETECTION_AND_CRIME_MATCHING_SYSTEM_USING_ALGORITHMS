@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import police_station_registration_form, login_form, staff_registration_form, Login_check_form
+from .forms import police_station_registration_form, login_form, staff_registration_form, Login_check_form, user_registration_form
 from.models import police_station_registration, staff, login as login_table
 
 # Create your views here.
@@ -44,13 +44,30 @@ def staff_reg_form(request):
             log_inst.save()
             inst=form.save(commit=False)
             inst.login_id=log_inst
-            form.save()
+            inst.save()
             return redirect('index')
     else:
         form = staff_registration_form()
         log = login_form()
     return render(request, 's_reg_form.html', {'s_reg_form': form, 'log': log})
 
+
+def user_reg(request):
+    if request.method == 'POST':
+        form = user_registration_form(request.POST)
+        log = login_form(request.POST)
+        if form.is_valid() and log.is_valid():
+            log_ins = log.save(commit=False)
+            log_ins.user_type = 'user'
+            log_ins.save()
+            form_ins = form.save(commit=False)
+            form_ins.login_id = log_ins
+            form_ins.save()
+            return redirect('index')
+    else:
+        form = user_registration_form()
+        log = login_form()
+    return render(request, 'user_registration_form.html', {'form' : form, 'log' : log})
 
 # this function is used for login
 def login_check(request):
@@ -69,6 +86,9 @@ def login_check(request):
                     elif user.user_type == 'staff':
                         request.session['staff_id'] = user.id
                         return redirect('staff_home')
+                    elif user.user_type == 'user':
+                        request.session['user_id'] = user.id
+                        return redirect('user_home')
                 else:
                     messages.error(request, 'Invalid password')
             except login_form.DoesNotExist:
@@ -93,4 +113,7 @@ def staff_home(request):
 
 def station_home(request):
     return render(request, 'station_home.html')
+
+def user_home(request):
+    return render(request, 'user_home.html')
 

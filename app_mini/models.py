@@ -29,3 +29,10 @@ class staff(models.Model):
     designation = models.CharField(max_length=50)
     gender = models.CharField(max_length=20)
     date_of_birth = models.CharField(max_length=20)
+
+
+# used for user(public) registration
+class user_registration(models.Model):
+    login_id = models.ForeignKey(login, on_delete=models.CASCADE, null=True, blank=True)
+    fullname = models.CharField(max_length=30)
+    contact = models.CharField(max_length=20)
