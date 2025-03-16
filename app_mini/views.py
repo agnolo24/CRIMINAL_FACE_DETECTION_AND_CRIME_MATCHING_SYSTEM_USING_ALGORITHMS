@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import police_station_registration_form, login_form, staff_registration_form, Login_check_form, user_registration_form
+from .forms import *
 from.models import police_station_registration, staff, login as login_table
 
 # Create your views here.
@@ -14,7 +14,7 @@ def admin(request):
     return render(request, 'admin.html')
 
 
-# this function is used for police_station_registration
+# This function is used for police_station_registration
 def police_station_reg_form(request):
     if request.method == 'POST':
         log = login_form(request.POST)
@@ -33,7 +33,7 @@ def police_station_reg_form(request):
     return render(request, 'p_reg_form.html', {'p_reg_form': form, 'log': log})
 
 
-# this function is used for staff_registration
+# This function is used for staff_registration
 def staff_reg_form(request):
     if request.method == 'POST':
         log = login_form(request.POST)
@@ -45,13 +45,14 @@ def staff_reg_form(request):
             inst=form.save(commit=False)
             inst.login_id=log_inst
             inst.save()
-            return redirect('index')
+            return redirect('login_form')
     else:
         form = staff_registration_form()
         log = login_form()
     return render(request, 's_reg_form.html', {'s_reg_form': form, 'log': log})
 
 
+# This function is used for user(public) registration
 def user_reg(request):
     if request.method == 'POST':
         form = user_registration_form(request.POST)
@@ -69,7 +70,7 @@ def user_reg(request):
         log = login_form()
     return render(request, 'user_registration_form.html', {'form' : form, 'log' : log})
 
-# this function is used for login
+# This function is used for login(using this function login can be done by all three users station, staff, user(public))
 def login_check(request):
     if request.method == 'POST':
         form = Login_check_form(request.POST)
@@ -99,15 +100,17 @@ def login_check(request):
     
 
 
-#this is the function for showing the details of the police station we registred
+# This is the function for showing the details of the police station we registred (used for admin)
 def police_station_details_table(request):
     police_station_data = police_station_registration.objects.all()
     return render(request, 'data.html',{'Datas':police_station_data})
 
+# This is the function for showing the details of the staff we registred (used for admin)
 def staff_details_table(request):
     staff_data = staff.objects.all()
     return render(request, 'data_staff.html',{'Datas':staff_data})
 
+# The following three functions are used for returning the three home pages
 def staff_home(request):
     return render(request, 'staff_home.html')
 
@@ -117,21 +120,24 @@ def station_home(request):
 def user_home(request):
     return render(request, 'user_home.html')
 
+# To view the staff profile after the login
 def staff_profile(request):
     staff_id = request.session.get('staff_id')
     log_staf = get_object_or_404(login_table, id = staff_id)    
     data = staff.objects.get(login_id = log_staf)
     return render(request, 'staff_profile.html', {'data' : data})
 
+# To edit the staff data after login
 def edit_staff_profile(request):
     staff_id = request.session.get('staff_id')
     log_staf = get_object_or_404(login_table, id = staff_id)
     data = staff.objects.get(login_id = log_staf)
     if request.method == 'POST':
-        form = staff_registration_form(request.POST, instance=data)
+        form = staff_edit_form(request.POST, instance=data)
         if form.is_valid():
             form.save()
             return redirect('staff_profile')
     else:
-        form = staff_registration_form(instance=data)
+        form = staff_edit_form(instance=data)
     return render(request, 'edit_staff.html', {'form' : form})
+c
