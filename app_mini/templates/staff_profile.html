@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e7e9;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-info {
+            margin-bottom: 15px;
+        }
+        .profile-info h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+            color: #777;
+        }
+        .profile-actions a {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .profile-actions a:hover {
+            background: #0056b3;
+        }
+        .edit-profile-container {
+            display: none;
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .edit-profile-container input, .edit-profile-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- <div class="profile-pic">
+            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+        </div> -->
+        <div class="profile-info">
+            <h2 id="profile-name">{{data.full_name}}</h2>
+            <p id="profile-email"><i class=""></i>{{data.designation}}</p>
+            <p id="profile-phone"><i class="fa fa-phone"></i>{{data.contact}}</p>
+            <p id="profile-address"><i class=""></i>{{data.address}}</p>
+        </div>
+        <div class="profile-actions">
+            <a href="{% url 'edit_staff_profile' %}" onclick="editProfile()">Edit Profile</a>
+        </div>
+    </div>
+
+    <!-- <form method="post">
+        {% csrf_token %}
+        <div class="edit-profile-container" id="edit-profile-container">
+            <h2>Edit Profile</h2>
+            <input type="text" name="full_name" id="edit-name" placeholder="Enter new name">
+            <input type="text" name="address" id="edit-address" placeholder="Enter new address">
+            <input type="tel" name="contact" id="edit-phone" placeholder="Enter new phone number">
+            <button onclick="saveProfile()">Save</button>
+            <button onclick="cancelEdit()">Cancel</button>
+        </div>
+    </form>
+    
+
+    <script>
+        function editProfile() {
+            // Display the edit profile form
+            document.getElementById('edit-profile-container').style.display = 'block';
+            document.getElementById('profile-container').style.display = 'none';
+            
+            // Pre-fill the form with existing profile data
+            document.getElementById('edit-name').value = document.getElementById('profile-name').innerText;
+            document.getElementById('edit-email').value = document.getElementById('profile-email').innerText;
+            document.getElementById('edit-phone').value = document.getElementById('profile-phone').innerText;
+        }
+
+        function saveProfile() {
+            // Get the updated values from the form
+            const updatedName = document.getElementById('edit-name').value;
+            const updatedEmail = document.getElementById('edit-email').value;
+            const updatedPhone = document.getElementById('edit-phone').value;
+            
+            // Update the profile info
+            document.getElementById('profile-name').innerText = updatedName;
+            document.getElementById('profile-email').innerText = updatedEmail;
+            document.getElementById('profile-phone').innerText = updatedPhone;
+            document.getElementById('profile-address').innerText = updatedPhone;
+
+            
+            // Hide the edit profile form and show the profile
+            document.getElementById('edit-profile-container').style.display = 'none';
+            document.getElementById('profile-container').style.display = 'block';
+        }
+
+        function cancelEdit() {
+            // Hide the edit profile form and show the profile
+            document.getElementById('edit-profile-container').style.display = 'none';
+            document.getElementById('profile-container').style.display = 'block';
+        }
+    </script> -->
+</body>
+</html>

@@ -117,3 +117,21 @@ def station_home(request):
 def user_home(request):
     return render(request, 'user_home.html')
 
+def staff_profile(request):
+    staff_id = request.session.get('staff_id')
+    log_staf = get_object_or_404(login_table, id = staff_id)    
+    data = staff.objects.get(login_id = log_staf)
+    return render(request, 'staff_profile.html', {'data' : data})
+
+def edit_staff_profile(request):
+    staff_id = request.session.get('staff_id')
+    log_staf = get_object_or_404(login_table, id = staff_id)
+    data = staff.objects.get(login_id = log_staf)
+    if request.method == 'POST':
+        form = staff_registration_form(request.POST, instance=data)
+        if form.is_valid():
+            form.save()
+            return redirect('staff_profile')
+    else:
+        form = staff_registration_form(instance=data)
+    return render(request, 'edit_staff.html', {'form' : form})

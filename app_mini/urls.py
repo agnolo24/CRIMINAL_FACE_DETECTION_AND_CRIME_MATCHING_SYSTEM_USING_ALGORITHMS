@@ -14,4 +14,6 @@ urlpatterns = [
     path('staff_home/', views.staff_home, name='staff_home'),
     path('station_home/', views.station_home, name='station_home'),
     path('user_home/', views.user_home, name='user_home'),
+    path('staff_profile/', views.staff_profile, name='staff_profile'),
+    path('edit_staff_profile/', views.edit_staff_profile, name='edit_staff_profile'),
 ]
