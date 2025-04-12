@@ -538,16 +538,16 @@
                 <tr>
                   <th>Station-ID</th>
                   <th>Address Line-1</th>
-                  <th>Address Line-1</th>
+                  <th>Address Line-2</th>
                   <th>District</th>
                   <th>City</th>
                   <th>Contact</th>
                   <th>Email</th>
-
+                  <th>Functions</th>
                 </tr>
                 </thead>
                 <tbody>
-                  {% for data in Datas %}
+                  {% for data in data1 %}
                   <tr>
                       <td>{{data.station_id}}</td>
                       <td>{{data.address_line_1}}</td>
@@ -555,7 +555,14 @@
                       <td>{{data.district}}</td>
                       <td>{{data.city}}</td>
                       <td>{{data.contact}}</td>
-                      <td>{{data.email}}</td>
+                      <td>{{data.login_id.email}}</td>
+                      <td>
+                        {% if data.login_id.varification_status != 'varified' %}
+                          <button><a href="../accept_s/{{data.login_id.id}}">Accept</a></button>             
+                        {% else %}
+                          <button><a href="../reject_s/{{data.login_id.id}}">Reject</a></button>
+                        {% endif %}
+                      </td>
                   </tr>
                   {% endfor %}
                 </tbody>

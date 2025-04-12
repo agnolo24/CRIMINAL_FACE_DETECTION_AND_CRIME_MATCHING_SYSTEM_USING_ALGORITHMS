@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+</head>
+<body>
+    <h1>Police Station Details</h1>
+    <table>
+        <tr>
+            <th>Station ID</th>
+            <td>{{ station.station_id }}</td>
+        </tr>
+        <tr>
+            <th>Address Line 1</th>
+            <td>{{ station.address_line_1 }}</td>
+        </tr>
+        <tr>
+            <th>Address Line 2</th>
+            <td>{{ station.address_line_2 }}</td>
+        </tr>
+        <tr>
+            <th>District</th>
+            <td>{{ station.district }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ station.city }}</td>
+        </tr>
+        <tr>
+            <th>Contact</th>
+            <td>{{ station.contact }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ station.login_id.email }}</td>
+        </tr>
+        <tr>
+            <th>Verification Status</th>
+            <td>{{ station.varification_status }}</td>
+        </tr>
+    </table>
+    <button type="submit"><a href="{% url 'enquiry_function' station.station_id %}">Enqiry</a></button>
+</body>
+</html>
