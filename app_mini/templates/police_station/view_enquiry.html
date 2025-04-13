@@ -31,6 +31,7 @@
                     </thead>
                     <tbody>
                         {% for enquiry in enquirys %}
+                            {% if enquiry.reply == NULL %}
                             <tr>
                                 <td>{{ enquiry.enquiry_data }}</td>
                                 <td>{{ enquiry.user_id.fullname }}</td>
@@ -38,6 +39,8 @@
                                 <td>{{ enquiry.date }}</td>
                                 <td><button><a href="{% url 'reply_to_public' enquiry.id %}">Reply To {{enquiry.user_id.fullname}}</a></button></td>
                             </tr>
+                            {% endif %}
+
                         {% endfor %}
                     </tbody>
                 </table>

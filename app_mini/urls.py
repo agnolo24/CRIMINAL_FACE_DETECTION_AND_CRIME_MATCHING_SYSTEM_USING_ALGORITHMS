@@ -2,7 +2,7 @@ from django.urls import path
 from.import views
 
 urlpatterns = [
-    #public
+    #guest
     path('', views.guest_page, name='guest_page'),
     path('login_form/', views.login_check, name='login_form'),
 
@@ -13,6 +13,9 @@ urlpatterns = [
     path('edit_station_profile/', views.edit_station_profile, name='edit_station_profile'),
     path('view_enquiry/', views.view_enquiry, name='view_enquiry'),
     path('reply_to_public/<int:id>', views.reply_to_public, name='reply_to_public'),
+    path('view_staff/', views.view_staff, name='view_staff'),
+    path('accept_staff/<int:id>', views.accept_staff, name='accept_staff'),
+    path('reject_staff/<int:id>', views.reject_staff, name='reject_staff'),
 
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
@@ -21,6 +24,9 @@ urlpatterns = [
     path('user_profile_edit/',views.user_profile_edit,name='user_profile_edit'),
     path('search_station/', views.search_station, name='search_station',),
     path('enquiry_function/<str:station_id>', views.enquiry_function, name='enquiry_function'),
+    path('view_replay/', views.view_replay, name='view_replay'),
+    path('petition/<str:id>', views.petition, name='petition'),
+
 
     #staff
     path('staff_reg/', views.staff_reg_form, name='staff_reg'),
@@ -29,8 +35,10 @@ urlpatterns = [
     path('edit_staff_profile/', views.edit_staff_profile, name='edit_staff_profile'),
 
     #admin
+    path('admin_home/',views.admin_home, name='admin_home'),
     path('p_data_table/',views.police_station_details_table, name='p_data_table'),
     path('s_data_table/',views.staff_details_table, name='s_data_table'),
     path('accept_s/<str:station_id>', views.accept_s, name='accept_s'),
     path('reject_s/<str:station_id>', views.reject_s, name='reject_s'),
+
 ]

@@ -127,14 +127,14 @@
 
 					   		<div class="right-widget float-right">
 					   			<ul>
-					   				<li class="social-icon">
+					   				<!-- <li class="social-icon">
 					   					<ul>
 											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 											<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
 											<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 										</ul>
-					   				</li>
+					   				</li> -->
 					   				<li class="cart-icon">
 					   					<a href="{% url 'station_profile' %}"><i class="fa fa-user"></i></a>
 					   				</li>
@@ -184,8 +184,8 @@
 									<div class="hover-content">
 										<div class="text clearfix">
 											<div class="float-left">
-												<h5><a href="{% url 'view_enquiry' %}">Business Meeting</a></h5>
-												<p>Explore strange new worlds</p>
+												<h5><a href="{% url 'view_enquiry' %}">View Enquiry</a></h5>
+												<p>View enquiry from the public</p>
 											</div>
 											<a href="{% url 'view_enquiry' %}" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 										</div> <!-- /.text -->
@@ -198,10 +198,10 @@
 									<div class="hover-content">
 										<div class="text clearfix">
 											<div class="float-left">
-												<h5><a href="{% static 'charles/project-details.html' %}">Business Meeting</a></h5>
-												<p>Explore strange new worlds</p>
+												<h5><a href="{% url 'view_staff' %}">View Staffs</a></h5>
+												<p>View the registred staffs data</p>
 											</div>
-											<a href="{% static 'charles/project-details.html' %}" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+											<a href="{% url 'view_staff' %}" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 										</div> <!-- /.text -->
 									</div> <!-- /.hover-content -->
 								</div> <!-- /.single-case-block -->

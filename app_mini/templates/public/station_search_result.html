@@ -41,6 +41,7 @@
             <td>{{ station.varification_status }}</td>
         </tr>
     </table>
-    <button type="submit"><a href="{% url 'enquiry_function' station.station_id %}">Enqiry</a></button>
+    <button type="submit"><a href="../enquiry_function/{{station.station_id}}">Enqiry</a></button>
+    <button type="submit"><a href="../petition/{{ station.station_id }}">petition</a></button>
 </body>
 </html>

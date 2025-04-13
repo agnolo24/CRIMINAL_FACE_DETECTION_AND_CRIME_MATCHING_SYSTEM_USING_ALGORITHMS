@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 
 # Create your models here.
@@ -16,6 +17,9 @@ class police_station_registration(models.Model):
     district = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     contact = models.CharField(max_length=50)
+
+    def __str__(self):
+        return (self.station_id)
 
 
 class user_registration(models.Model):
@@ -41,3 +45,11 @@ class staff(models.Model):
     designation = models.CharField(max_length=50)
     gender = models.CharField(max_length=20)
     date_of_birth = models.CharField(max_length=20)
+    station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
+
+
+class Petition(models.Model):
+    user = models.ForeignKey(user_registration, on_delete=models.SET_NULL, null=True)
+    station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
+    petition_text = models.TextField()
+    date = models.DateField(auto_now_add=True)

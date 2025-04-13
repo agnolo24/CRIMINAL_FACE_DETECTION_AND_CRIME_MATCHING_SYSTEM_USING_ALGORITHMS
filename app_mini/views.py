@@ -3,10 +3,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table
 
-# Create your views here.
 
+            # Create your views here.
 
-# starting of the guest model section
+            # starting of the guest model section
+
 
 def guest_page(request):
     return render(request, 'guest/guest_page.html')
@@ -28,11 +29,17 @@ def login_check(request):
                         else:
                             messages.error(request, 'Not Varified')
                     elif user.user_type == 'staff':
-                        request.session['staff_id'] = user.id
-                        return redirect('staff_home')
+                        if user.varification_status == 'varified':
+                            request.session['staff_id'] = user.id
+                            return redirect('staff_home')
+                        else:
+                            messages.error(request, 'Not Varified')
                     elif user.user_type == 'user':
                         request.session['user_id'] = user.id
                         return redirect('user_home')
+                    elif user.user_type == 'admin':
+                        request.session['admin_id'] = user.id
+                        return redirect('admin_home')
                 else:
                     messages.error(request, 'Invalid password')
             except login_form.DoesNotExist:
@@ -42,9 +49,10 @@ def login_check(request):
     return render(request, 'guest/login.html', {'login_form': form})
 
 
-# ending of guest model views 
+            # ending of guest model views 
 
-# starting of police model views
+            # starting of police station model views
+
 
 # This function is used for police_station_registration
 def police_station_reg_form(request):
@@ -106,9 +114,30 @@ def reply_to_public(request, id):
         form = Reply()
     return render(request, 'police_station/reply.html', {'form' : form})
 
-# ending of police model views
+def view_staff(request):
+    station_login_id = request.session.get('station_id')
+    login_ins = get_object_or_404(login_table, id = station_login_id)
+    station_ins = get_object_or_404(police_station_registration, login_id = login_ins)
+    staff_data = staff.objects.filter(station = station_ins)
+    return render(request, 'police_station/view_staff.html', {'staff_data' : staff_data})
 
-# starting of user(public) views
+def accept_staff(request, id):
+    login_data = get_object_or_404(login_table, id = id)
+    login_data.varification_status = 'varified'
+    login_data.save()
+    return redirect('view_staff')
+
+def reject_staff(request, id):
+    login_data = get_object_or_404(login_table, id = id)
+    login_data.varification_status = 'reject'
+    login_data.save()
+    return redirect('view_staff')
+
+
+            # ending of police station model views
+
+            # starting of user(public) views
+
 
 # This function is used for user(public) registration
 def user_reg(request):
@@ -185,9 +214,34 @@ def enquiry_function(request, station_id):
         form = EnquiryForm()
     return render(request, 'public/enquiry.html', {'form':form})
 
-# ending of user(public) model views
+def view_replay(request):
+    login_id = request.session.get('user_id')
+    login_info = get_object_or_404(login, id = login_id)
+    reg_info = get_object_or_404(user_registration, login_id = login_info)
+    enq = Enquiry.objects.filter(user_id = reg_info)
+    return render(request, 'public/view_replay.html', {'enq':enq})
 
-# starting of staff model views
+def petition(request, id):
+    if request.method == 'POST':
+        form = PetitionForm(request.POST)
+        if form.is_valid():
+            pet = form.save(commit=False)
+            user_id = request.session.get('user_id')
+            user = get_object_or_404(login, id = user_id)
+            user_data = get_object_or_404(user_registration, login_id = user)
+            pet.user = user_data
+            station = get_object_or_404(police_station_registration, station_id = id)
+            pet.station = station
+            pet.save()
+            return redirect('search_station')
+    else: 
+        form = PetitionForm()
+    return render(request, 'public/petition.html', {'form':form})
+    
+
+            # ending of user(public) model views
+
+            # starting of staff model views
 
 # This function is used for staff_registration
 def staff_reg_form(request):
@@ -197,7 +251,7 @@ def staff_reg_form(request):
         if form.is_valid() and log.is_valid():
             log_inst=log.save(commit=False)
             log_inst.user_type='staff'
-            log_inst.varification_status = 'varified'
+            log_inst.varification_status = 'pending'
             log_inst.save()
             inst=form.save(commit=False)
             inst.login_id=log_inst
@@ -232,9 +286,12 @@ def edit_staff_profile(request):
         form = staff_edit_form(instance=data)
     return render(request, 'staff/edit_staff.html', {'form' : form})
 
-# ending of staff model views
+            # ending of staff model views
 
-# starting of webadmin model views
+            # starting of webadmin model views
+
+def admin_home(request):
+    return render(request, 'web_admin/admin_home.html')
 
 # This is the function for showing the details of the police station we registred (used for admin)
 def police_station_details_table(request):
@@ -258,4 +315,5 @@ def reject_s(request, station_id):
     station.save()
     return redirect('p_data_table')
 
-# ending of webadmin model view
+            # ending of webadmin model view
+
