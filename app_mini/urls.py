@@ -16,7 +16,8 @@ urlpatterns = [
     path('view_staff/', views.view_staff, name='view_staff'),
     path('accept_staff/<int:id>', views.accept_staff, name='accept_staff'),
     path('reject_staff/<int:id>', views.reject_staff, name='reject_staff'),
-
+    path('view_petition/', views.view_petition, name='view_petition'),
+    path('reply_to_petition/<int:id>', views.reply_to_petition, name='reply_to_petition'),
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),
@@ -26,7 +27,7 @@ urlpatterns = [
     path('enquiry_function/<str:station_id>', views.enquiry_function, name='enquiry_function'),
     path('view_replay/', views.view_replay, name='view_replay'),
     path('petition/<str:id>', views.petition, name='petition'),
-
+    path('view_petition_reply/', views.view_petition_reply, name='view_petition_reply'),
 
     #staff
     path('staff_reg/', views.staff_reg_form, name='staff_reg'),

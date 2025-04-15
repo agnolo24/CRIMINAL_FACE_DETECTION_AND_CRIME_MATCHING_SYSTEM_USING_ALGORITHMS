@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petition Replies</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        h1 {
+            color: #28a745; /* Green color for positive feedback */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .reply-container {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #28a745;
+        }
+
+        .reply-item {
+            margin-bottom: 8px;
+        }
+
+        .reply-item strong {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .no-replies {
+            text-align: center;
+            color: #dc3545; /* Red color for negative/empty state */
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Petition Replies</h1>
+
+    {% if pet %}
+        {% for i in pet %}
+            <div class="reply-container">
+                <p class="reply-item"><strong>Station Id:</strong> {{i.station}}</p>
+                <p class="reply-item"><strong>Your Petition:</strong> {{i.petition_text}}</p>
+                <p class="reply-item"><strong>Reply:</strong> {{i.reply}}</p>
+                <p class="reply-item"><strong>Date of Submission:</strong> {{i.date}}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-replies">No replies available for your petitions yet.</p>
+    {% endif %}
+
+</body>
+</html>

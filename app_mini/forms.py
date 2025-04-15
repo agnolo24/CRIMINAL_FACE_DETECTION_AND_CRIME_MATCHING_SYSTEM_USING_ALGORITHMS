@@ -84,3 +84,6 @@ class PetitionForm(forms.ModelForm):
         model = Petition
         fields = ['petition_text']
     
+
+class Reply_petition(forms.Form):
+    reply = forms.CharField(widget=forms.Textarea)

@@ -133,6 +133,26 @@ def reject_staff(request, id):
     login_data.save()
     return redirect('view_staff')
 
+def view_petition(request):
+    login_id = request.session.get('station_id')
+    station = police_station_registration.objects.get(login_id = login_id)
+    station_id = station.station_id
+    petition = Petition.objects.filter(station_id = station_id)
+    return render(request, 'police_station/view_petition.html', {'petition':petition})
+
+def reply_to_petition(request, id):
+    petition = get_object_or_404(Petition, id = id)
+    if request.method == 'POST':
+        form = Reply_petition(request.POST)
+        if form.is_valid():
+            reply = form.cleaned_data['reply']
+            petition.reply = reply
+            petition.save()
+            return redirect('view_petition')
+    else:
+        form = Reply_petition()
+    return render(request, 'police_station/reply_to_petition.html', {'form' : form})
+
 
             # ending of police station model views
 
@@ -237,6 +257,13 @@ def petition(request, id):
     else: 
         form = PetitionForm()
     return render(request, 'public/petition.html', {'form':form})
+
+def view_petition_reply(request):
+    login_id = request.session.get('user_id')
+    login_info = get_object_or_404(login, id = login_id)
+    reg_info = get_object_or_404(user_registration, login_id = login_info)
+    pet = Petition.objects.filter(user_id = reg_info)
+    return render(request, 'public/view_petition_reply.html', {'pet' : pet})
     
 
             # ending of user(public) model views

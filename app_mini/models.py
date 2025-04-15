@@ -53,3 +53,4 @@ class Petition(models.Model):
     station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
     petition_text = models.TextField()
     date = models.DateField(auto_now_add=True)
+    reply = models.TextField(null = True)

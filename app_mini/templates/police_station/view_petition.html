@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view petation</title>
+</head>
+<body>
+    <h1>Petitions</h1>
+    {% if petition|length > 0 %}
+        {% for pet in petition %}
+        {% if pet.reply == NULL %}
+            from : {{pet.user.fullname}}
+            <br>
+            contact details : {{pet.user.contact}}
+            <br>
+            petition : {{pet.petition_text}}
+            <br>
+            <button><a href="{% url 'reply_to_petition' pet.id %}">replay</a></button>
+            <hr>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>No petitions available at the moment.</p>
+    {% endif %}
+</body>
+</html>
