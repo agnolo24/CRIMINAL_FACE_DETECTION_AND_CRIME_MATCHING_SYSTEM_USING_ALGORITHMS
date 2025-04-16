@@ -32,12 +32,15 @@ urlpatterns = [
     path('view_replay/', views.view_replay, name='view_replay'),
     path('petition/<str:id>', views.petition, name='petition'),
     path('view_petition_reply/', views.view_petition_reply, name='view_petition_reply'),
+    path('view_most_wanted_criminals_public/', views.view_most_wanted_criminals_public, name='view_most_wanted_criminals_public'),
 
     #staff
     path('staff_reg/', views.staff_reg_form, name='staff_reg'),
     path('staff_home/', views.staff_home, name='staff_home'),
     path('staff_profile/', views.staff_profile, name='staff_profile'),
     path('edit_staff_profile/', views.edit_staff_profile, name='edit_staff_profile'),
+    path('view_most_wanted_criminals_staff/', views.view_most_wanted_criminals_staff, name='view_most_wanted_criminals_staff'),
+
 
     #admin
     path('admin_home/',views.admin_home, name='admin_home'),
@@ -45,5 +48,6 @@ urlpatterns = [
     path('s_data_table/',views.staff_details_table, name='s_data_table'),
     path('accept_s/<str:station_id>', views.accept_s, name='accept_s'),
     path('reject_s/<str:station_id>', views.reject_s, name='reject_s'),
+    
 
 ]

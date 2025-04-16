@@ -169,11 +169,11 @@ def criminal_registration(request):
     return render(request, 'police_station/criminal_registration.html', {'form' : form})
 
 def view_criminals(request):
-    station_login_id = request.session.get('station_id')
-    station_login_ins = get_object_or_404(login_table, id = station_login_id)
-    station_reg_ins = get_object_or_404(police_station_registration, login_id = station_login_ins)
+    # station_login_id = request.session.get('station_id')
+    # station_login_ins = get_object_or_404(login_table, id = station_login_id)
+    # station_reg_ins = get_object_or_404(police_station_registration, login_id = station_login_ins)
     try:
-        criminal_data = CriminalRegistration.objects.filter(station = station_reg_ins)
+        criminal_data = CriminalRegistration.objects.all()
         return render(request, 'police_station/view_criminals.html', {'criminal_data' : criminal_data})
     except CriminalRegistration.DoesNotExist:
         messages.error(request, 'No Criminal Registred')
@@ -307,6 +307,14 @@ def view_petition_reply(request):
     reg_info = get_object_or_404(user_registration, login_id = login_info)
     pet = Petition.objects.filter(user_id = reg_info)
     return render(request, 'public/view_petition_reply.html', {'pet' : pet})
+
+def view_most_wanted_criminals_public(request):
+    try:
+        criminal_data = CriminalRegistration.objects.all()
+        return render(request, 'public/view_most_wanted_criminals_public.html', {'criminal_data' : criminal_data})
+    except CriminalRegistration.DoesNotExist:
+        messages.error(request, 'No Criminal Registred')
+        return redirect('user_home')
     
 
             # ending of user(public) model views
@@ -356,6 +364,14 @@ def edit_staff_profile(request):
         form = staff_edit_form(instance=data)
     return render(request, 'staff/edit_staff.html', {'form' : form})
 
+def view_most_wanted_criminals_staff(request):
+    try:
+        criminal_data = CriminalRegistration.objects.all()
+        return render(request, 'staff/view_most_wanted_criminals_staff.html', {'criminal_data' : criminal_data})
+    except CriminalRegistration.DoesNotExist:
+        messages.error(request, 'No Criminal Registred')
+        return redirect('staff_home')
+
             # ending of staff model views
 
             # starting of webadmin model views
@@ -386,4 +402,3 @@ def reject_s(request, station_id):
     return redirect('p_data_table')
 
             # ending of webadmin model view
-
