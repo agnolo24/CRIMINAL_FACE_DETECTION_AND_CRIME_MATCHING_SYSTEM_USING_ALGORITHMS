@@ -95,3 +95,11 @@ class CriminalRegistrationForm(forms.ModelForm):
         fields = ['full_name', 'dob', 'case', 'height', 'weight', 'gender', 'photo']
 
 
+class FirRegForm(forms.ModelForm):
+    class Meta:
+        model = FIR
+        fields = [
+            'fir_number', 'complainant_name', 'complainant_address',
+            'complainant_contact', 'accused_name', 'accused_address', 'incident_date', 'incident_location',
+            'description_of_incident', 'evidence', 'status', 
+        ]

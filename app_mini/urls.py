@@ -22,6 +22,9 @@ urlpatterns = [
     path('view_criminals/', views.view_criminals, name='view_criminals'),
     path('edit_criminal_data/<int:id>/', views.edit_criminal_data, name='edit_criminal_data'),
     path('delete_criminal_data/<int:id>', views.delete_criminal_data, name='delete_criminal_data'),
+    path('fir_registration/<int:id>', views.fir_registration, name='fir_registration'),
+    path('view_fir/', views.view_fir, name='view_fir'),
+    path('update_fir/<int:id>', views.update_fir, name='update_fir'),
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),

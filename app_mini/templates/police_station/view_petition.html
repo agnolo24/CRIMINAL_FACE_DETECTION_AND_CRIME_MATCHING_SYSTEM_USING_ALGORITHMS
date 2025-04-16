@@ -7,17 +7,39 @@
 </head>
 <body>
     <h1>Petitions</h1>
+    <hr><hr>
     {% if petition|length > 0 %}
+<h2>Penting Replay</h2>
         {% for pet in petition %}
-        {% if pet.reply == NULL %}
-            from : {{pet.user.fullname}}
-            <br>
-            contact details : {{pet.user.contact}}
-            <br>
-            petition : {{pet.petition_text}}
-            <br>
-            <button><a href="{% url 'reply_to_petition' pet.id %}">replay</a></button>
-            <hr>
+                {% if pet.reply == NULL %}
+                from : {{pet.user.fullname}}
+                <br>
+                contact details : {{pet.user.contact}}
+                <br>
+                petition : {{pet.petition_text}}
+                <br>
+                <button><a href="{% url 'reply_to_petition' pet.id %}">replay</a></button>
+                {% if pet.fir_number == NULL %}
+                <button><a href="{% url 'fir_registration' pet.id %}">Register FIR</a></button>
+                {% endif %}
+                <hr>
+                {% endif %}
+        {% endfor %}
+        <hr>
+<h2>Replayed </h2>
+        {% for pet in petition %}
+            {% if pet.reply %}
+                from : {{pet.user.fullname}}
+                <br>
+                contact details : {{pet.user.contact}}
+                <br>
+                petition : {{pet.petition_text}}
+                <br>
+                <button><a href="{% url 'reply_to_petition' pet.id %}">Sent Another Message</a></button>
+                {% if pet.fir_number == NULL %}
+                <button><a href="{% url 'fir_registration' pet.id %}">Register FIR</a></button>
+                {% endif %}
+                <hr>
             {% endif %}
         {% endfor %}
     {% else %}

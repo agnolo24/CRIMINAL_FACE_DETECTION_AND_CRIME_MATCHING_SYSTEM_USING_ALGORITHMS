@@ -51,6 +51,7 @@ class staff(models.Model):
 class Petition(models.Model):
     user = models.ForeignKey(user_registration, on_delete=models.SET_NULL, null=True)
     station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
+    fir_number = models.CharField(max_length=20, null=True)
     petition_text = models.TextField()
     date = models.DateField(auto_now_add=True)
     reply = models.TextField(null = True)
@@ -71,3 +72,33 @@ class CriminalRegistration(models.Model):
     photo = models.ImageField(upload_to='criminal_photo/', null=True)
     station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
     date = models.DateField(auto_now_add=True)
+
+
+class FIR(models.Model):
+    fir_number = models.CharField(max_length=20, unique=True)
+    police_station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
+    petitionInfo = models.ForeignKey(Petition, on_delete=models.SET_NULL, null=True)
+    complainant_name = models.CharField(max_length=100)
+    complainant_address = models.TextField()
+    complainant_contact = models.CharField(max_length=15)
+    accused_name = models.CharField(max_length=100, blank=True, null=True)
+    accused_address = models.TextField(blank=True, null=True)
+    incident_date = models.DateTimeField()
+    incident_location = models.TextField()
+    description_of_incident = models.TextField()
+    evidence = models.FileField(upload_to='fir_evidence/', blank=True, null=True)
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('filed', 'Filed'),
+            ('investigating', 'Investigating'),
+            ('charge_sheeted', 'Charge Sheeted'),
+            ('closed', 'Closed'),
+        ],
+        default='filed'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return(self.fir_number)

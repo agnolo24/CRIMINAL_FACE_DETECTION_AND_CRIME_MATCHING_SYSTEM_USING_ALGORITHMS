@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table
+from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR 
 
 
             # Create your views here.
@@ -194,6 +194,43 @@ def delete_criminal_data(request, id):
     data = get_object_or_404(CriminalRegistration, id = id)
     data.delete()
     return redirect('view_criminals')
+
+def fir_registration(request, id):
+    if request.method == 'POST':
+        form = FirRegForm(request.POST, request.FILES)
+        if form.is_valid():
+            ins = form.save(commit=False)
+            station_login_id = request.session.get('station_id')
+            station_login_ins = get_object_or_404(login_table, id = station_login_id)
+            station = get_object_or_404(police_station_registration, login_id = station_login_ins)
+            ins.police_station = station
+            pet_ins = get_object_or_404(Petition, id = id)
+            ins.petitionInfo = pet_ins
+            pet_ins.fir_number = ins.fir_number
+            pet_ins.save()
+            ins.save()
+            return redirect('view_petition')
+    else:
+        form = FirRegForm()
+    return render(request, 'police_station/fir_registration.html', {'form':form})
+
+def view_fir(request):
+    station_login_id = request.session.get('station_id')
+    station_login_ins = get_object_or_404(login_table, id = station_login_id)
+    station = get_object_or_404(police_station_registration, login_id = station_login_ins)
+    fir = FIR.objects.filter(police_station = station) 
+    return render(request, 'police_station/view_fir.html', {'fir':fir})
+
+def update_fir(request, id):
+    data = get_object_or_404(FIR, id = id)
+    if request.method == 'POST':
+        form = FirRegForm(request.POST, request.FILES, instance=data)
+        if form.is_valid():
+            form.save()
+            return redirect('view_fir')
+    else:
+        form = FirRegForm(instance=data)
+    return render(request, 'police_station/update_fir.html', {'form':form})
     
 
 
