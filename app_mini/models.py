@@ -54,3 +54,20 @@ class Petition(models.Model):
     petition_text = models.TextField()
     date = models.DateField(auto_now_add=True)
     reply = models.TextField(null = True)
+
+
+class CriminalRegistration(models.Model):
+    GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other')
+    ]
+    full_name = models.CharField(max_length=30)
+    dob = models.DateField()
+    case = models.TextField()
+    height = models.IntegerField(null=True)
+    weight = models.IntegerField(null = True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    photo = models.ImageField(upload_to='criminal_photo/', null=True)
+    station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
+    date = models.DateField(auto_now_add=True)

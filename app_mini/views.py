@@ -153,6 +153,49 @@ def reply_to_petition(request, id):
         form = Reply_petition()
     return render(request, 'police_station/reply_to_petition.html', {'form' : form})
 
+def criminal_registration(request):
+    if request.method == 'POST':
+        form = CriminalRegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            ins = form.save(commit=False)
+            station_login_id = request.session.get('station_id')
+            station_login_ins = get_object_or_404(login_table, id = station_login_id)
+            station_reg_ins = get_object_or_404(police_station_registration, login_id = station_login_ins)
+            ins.station = station_reg_ins
+            ins.save()
+            return redirect('station_home')
+    else:
+        form = CriminalRegistrationForm()
+    return render(request, 'police_station/criminal_registration.html', {'form' : form})
+
+def view_criminals(request):
+    station_login_id = request.session.get('station_id')
+    station_login_ins = get_object_or_404(login_table, id = station_login_id)
+    station_reg_ins = get_object_or_404(police_station_registration, login_id = station_login_ins)
+    try:
+        criminal_data = CriminalRegistration.objects.filter(station = station_reg_ins)
+        return render(request, 'police_station/view_criminals.html', {'criminal_data' : criminal_data})
+    except CriminalRegistration.DoesNotExist:
+        messages.error(request, 'No Criminal Registred')
+        return redirect('police_station/station_home')
+    
+def edit_criminal_data(request, id):
+    data = get_object_or_404(CriminalRegistration, id = id)
+    if request.method == 'POST':
+        form = CriminalRegistrationForm(request.POST, request.FILES, instance=data)
+        if form.is_valid():
+            form.save()
+            return redirect('view_criminals')
+    else:
+        form = CriminalRegistrationForm(instance=data)
+    return render(request, 'police_station/edit_criminal_data.html', {'form' : form})
+
+def delete_criminal_data(request, id):
+    data = get_object_or_404(CriminalRegistration, id = id)
+    data.delete()
+    return redirect('view_criminals')
+    
+
 
             # ending of police station model views
 

@@ -87,3 +87,11 @@ class PetitionForm(forms.ModelForm):
 
 class Reply_petition(forms.Form):
     reply = forms.CharField(widget=forms.Textarea)
+
+
+class CriminalRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = CriminalRegistration
+        fields = ['full_name', 'dob', 'case', 'height', 'weight', 'gender', 'photo']
+
+

@@ -18,6 +18,10 @@ urlpatterns = [
     path('reject_staff/<int:id>', views.reject_staff, name='reject_staff'),
     path('view_petition/', views.view_petition, name='view_petition'),
     path('reply_to_petition/<int:id>', views.reply_to_petition, name='reply_to_petition'),
+    path('criminal_registration/', views.criminal_registration, name='criminal_registration'),
+    path('view_criminals/', views.view_criminals, name='view_criminals'),
+    path('edit_criminal_data/<int:id>/', views.edit_criminal_data, name='edit_criminal_data'),
+    path('delete_criminal_data/<int:id>', views.delete_criminal_data, name='delete_criminal_data'),
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),
