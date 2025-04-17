@@ -102,3 +102,13 @@ class FIR(models.Model):
 
     def __str__(self):
         return(self.fir_number)
+    
+
+class SheduleDuty(models.Model):
+    info = models.TextField()
+    date = models.DateField(auto_now_add=True)
+    station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
+    staff_info = models.ForeignKey(staff, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return(self.staff_info)

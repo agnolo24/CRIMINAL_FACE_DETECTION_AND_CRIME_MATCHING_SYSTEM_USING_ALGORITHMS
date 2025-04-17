@@ -25,6 +25,8 @@ urlpatterns = [
     path('fir_registration/<int:id>', views.fir_registration, name='fir_registration'),
     path('view_fir/', views.view_fir, name='view_fir'),
     path('update_fir/<int:id>', views.update_fir, name='update_fir'),
+    path('shedule_duty/<str:staff_id>', views.shedule_duty, name='shedule_duty'),
+    path('view_duty/<str:staff_id>/', views.view_duty, name='view_duty'),
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),
@@ -36,7 +38,7 @@ urlpatterns = [
     path('petition/<str:id>', views.petition, name='petition'),
     path('view_petition_reply/', views.view_petition_reply, name='view_petition_reply'),
     path('view_most_wanted_criminals_public/', views.view_most_wanted_criminals_public, name='view_most_wanted_criminals_public'),
-
+    path('view_fir_public/', views.view_fir_public, name='view_fir_public'),
     #staff
     path('staff_reg/', views.staff_reg_form, name='staff_reg'),
     path('staff_home/', views.staff_home, name='staff_home'),

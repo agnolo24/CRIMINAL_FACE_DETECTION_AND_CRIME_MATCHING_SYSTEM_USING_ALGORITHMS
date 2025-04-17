@@ -103,3 +103,9 @@ class FirRegForm(forms.ModelForm):
             'complainant_contact', 'accused_name', 'accused_address', 'incident_date', 'incident_location',
             'description_of_incident', 'evidence', 'status', 
         ]
+
+
+class SheduleDutyForm(forms.ModelForm):
+    class Meta:
+        model = SheduleDuty
+        fields = ['info']

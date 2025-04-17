@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR 
+from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR, SheduleDuty
 
 
             # Create your views here.
@@ -231,6 +231,28 @@ def update_fir(request, id):
     else:
         form = FirRegForm(instance=data)
     return render(request, 'police_station/update_fir.html', {'form':form})
+
+def shedule_duty(request, staff_id):
+    if request.method == 'POST':
+        form = SheduleDutyForm(request.POST)
+        if form.is_valid():
+            ins = form.save(commit=False)
+            station_login_id = request.session.get('station_id')
+            station_login_ins = get_object_or_404(login_table, id = station_login_id)
+            station = get_object_or_404(police_station_registration, login_id = station_login_ins)
+            staff_ins = staff.objects.get(staff_id = staff_id)
+            ins.station = station
+            ins.staff_info = staff_ins
+            ins.save()
+            return redirect('view_staff')
+    else:
+        form = SheduleDutyForm()
+    return render(request, 'police_station/shedule_duty.html', {'form':form})
+
+def view_duty(request, staff_id):
+    staff_ins = staff.objects.get(staff_id = staff_id)
+    duty_info = SheduleDuty.objects.filter(staff_info = staff_ins)
+    return render(request, 'police_station/view_duty.html', {'duty_info' : duty_info})
     
 
 
@@ -352,6 +374,13 @@ def view_most_wanted_criminals_public(request):
     except CriminalRegistration.DoesNotExist:
         messages.error(request, 'No Criminal Registred')
         return redirect('user_home')
+    
+def view_fir_public(request):
+    user_login_id = request.session.get('user_id')
+    user = get_object_or_404(login, id = user_login_id)
+    user_data = get_object_or_404(user_registration, login_id = user)
+    fir = FIR.objects.filter(petitionInfo__user =  user_data)
+    return render(request, 'public/view_fir_public.html', {'fir':fir})
     
 
             # ending of user(public) model views

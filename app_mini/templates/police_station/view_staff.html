@@ -14,7 +14,7 @@
         }
 
         .staff-container {
-            max-width: 800px;
+            max-width: 900px; /* Increased max-width for table */
             margin: 0 auto;
             background-color: #ffffff; /* Tailwind's white */
             padding: 30px;
@@ -39,44 +39,61 @@
             font-size: 1rem;
         }
 
-
-        .staff-list {
+        .staff-table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 20px;
-        }
-
-        .staff-card {
-             background-color: #f7fafc; /* Tailwind's gray-50 */
-            border-radius: 0.5rem; /* Tailwind's rounded-md */
-            padding: 20px;
-            margin-bottom: 20px;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); /* Tailwind's shadow-sm */
-            border: 1px solid #e5e7eb; /* Tailwind's border-gray-200 */
+            border-radius: 0.5rem; /* Tailwind's rounded-md */
+            overflow: hidden; /* To contain the border-radius */
         }
 
-        .staff-card h2 {
-            font-size: 1.5rem; /* Tailwind's text-2xl */
-            color: #1e293b; /* Tailwind's gray-900 */
-            margin-bottom: 10px;
+        .staff-table th, .staff-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb; /* Tailwind's border-gray-200 */
         }
 
-        .staff-details {
-            margin-top: 15px;
-        }
-
-        .staff-details p {
-            font-size: 1rem;
-            color: #374151; /* Tailwind's gray-700 */
-            line-height: 1.75rem; /* Tailwind's leading-relaxed */
-        }
-
-        .staff-details p strong {
+        .staff-table th {
+            background-color: #f7fafc; /* Tailwind's gray-50 */
             font-weight: 600; /* Tailwind's font-semibold */
-            color: #1e293b;  /* Tailwind's gray-900 */
+            color: #4b5563; /* Tailwind's gray-600 */
+        }
+
+        .staff-table tr:nth-child(even) {
+            background-color: #f9fafb; /* Tailwind's gray-100 */
+        }
+
+        .staff-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .staff-table button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 0.375rem; /* Tailwind's rounded-md */
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .staff-table button.reject {
+            background-color: #f44336; /* Red */
+        }
+
+        .staff-table button a {
+            color: white;
+            text-decoration: none;
         }
 
         .no-staff-message {
             background-color: #fef08a;  /* Tailwind's bg-yellow-100 */
-            color: #1e293b;        /* Tailwind's text-gray-900 */
+            color: #1e293b;    /* Tailwind's text-gray-900 */
             padding: 1rem;
             border-radius: 0.375rem;  /* Tailwind's rounded-md */
             text-align: center;
@@ -94,24 +111,44 @@
         <main>
             <div class="staff-list">
                 {% if staff_data %}
-                    {% for staff in staff_data %}
-                        <div class="staff-card">
-                            <h2>{{ staff.full_name }}</h2>
-                            <div class="staff-details">
-                                <p><strong>Designation:</strong> {{ staff.designation }}</p>
-                                <p><strong>Staff ID:</strong> {{ staff.staff_id }}</p>
-                                <p><strong>Address:</strong> {{ staff.address }}</p>
-                                <p><strong>Contact:</strong> {{ staff.contact }}</p>
+                <table class="staff-table">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Designation</th>
+                            <th>Staff ID</th>
+                            <th>Address</th>
+                            <th>Contact</th>
+                            <th>Actions</th>
+                            <th>Duty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for staff in staff_data %}
+                        <tr>
+                            <td>{{ staff.full_name }}</td>
+                            <td>{{ staff.designation }}</td>
+                            <td>{{ staff.staff_id }}</td>
+                            <td>{{ staff.address }}</td>
+                            <td>{{ staff.contact }}</td>
+                            <td>
                                 {% if staff.login_id.varification_status != "varified" %}
                                     <button><a href="../accept_staff/{{ staff.login_id.id }}">Accept</a></button>
                                 {% else %}
-                                <button><a href="../reject_staff/{{staff.login_id.id}}">reject</a></button>
+                                    <button class="reject"><a href="../reject_staff/{{staff.login_id.id}}">Reject</a></button>
                                 {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
+                            </td>
+                            <td>
+                                <button><a href="{% url 'shedule_duty' staff.staff_id %}">Shedule Duty</a></button>
+                                <hr>
+                            <button><a href="../view_duty/{{ staff.staff_id }}">View Duty's</a></button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
                 {% else %}
-                    <p class="no-staff-message">There Aren't Any Staff's</p>
+                <p class="no-staff-message">There Aren't Any Staff's</p>
                 {% endif %}
             </div>
         </main>
