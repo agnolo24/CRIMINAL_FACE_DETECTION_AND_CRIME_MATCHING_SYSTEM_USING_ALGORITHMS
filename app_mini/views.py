@@ -253,6 +253,22 @@ def view_duty(request, staff_id):
     staff_ins = staff.objects.get(staff_id = staff_id)
     duty_info = SheduleDuty.objects.filter(staff_info = staff_ins)
     return render(request, 'police_station/view_duty.html', {'duty_info' : duty_info})
+
+def edit_duty(request, id):
+    duty = get_object_or_404(SheduleDuty, id=id)
+    if request.method == 'POST':
+        form = SheduleDutyForm(request.POST, instance=duty)
+        if form.is_valid():
+            form.save()
+            return redirect('view_duty', duty.staff_info.staff_id)
+    else:
+        form = SheduleDutyForm(instance=duty)
+    return render(request, 'police_station/edit_duty.html', {'form':form})
+
+def delete_duty_info(request, id):
+    data = get_object_or_404(SheduleDuty, id = id)
+    data.delete()
+    return redirect('view_duty', data.staff_info.staff_id)
     
 
 
@@ -437,6 +453,13 @@ def view_most_wanted_criminals_staff(request):
     except CriminalRegistration.DoesNotExist:
         messages.error(request, 'No Criminal Registred')
         return redirect('staff_home')
+    
+def view_staff_duty(request):
+    staff_id = request.session.get('staff_id')
+    log_staf = get_object_or_404(login_table, id = staff_id)
+    staff_data = staff.objects.get(login_id = log_staf)
+    duty = SheduleDuty.objects.filter(staff_info = staff_data)
+    return render(request, 'staff/view_staff_duty.html', {'duty':duty})
 
             # ending of staff model views
 

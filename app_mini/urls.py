@@ -27,6 +27,8 @@ urlpatterns = [
     path('update_fir/<int:id>', views.update_fir, name='update_fir'),
     path('shedule_duty/<str:staff_id>', views.shedule_duty, name='shedule_duty'),
     path('view_duty/<str:staff_id>/', views.view_duty, name='view_duty'),
+    path('edit_duty/<int:id>', views.edit_duty, name='edit_duty'),
+    path('delete_duty_info/<int:id>', views.delete_duty_info, name='delete_duty_info'),
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),
@@ -45,6 +47,7 @@ urlpatterns = [
     path('staff_profile/', views.staff_profile, name='staff_profile'),
     path('edit_staff_profile/', views.edit_staff_profile, name='edit_staff_profile'),
     path('view_most_wanted_criminals_staff/', views.view_most_wanted_criminals_staff, name='view_most_wanted_criminals_staff'),
+    path('view_staff_duty/', views.view_staff_duty, name='view_staff_duty'),
 
 
     #admin

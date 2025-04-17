@@ -57,13 +57,11 @@
 <body>
     <div class="container">
         <h1>Duty Schedule</h1>
-        {% if duty_info %}
-            {% for i in duty_info %}
+        {% if duty %}
+            {% for i in duty %}
             <div class="duty-item">
                 <p class="duty-info">Duty: {{ i.info }}</p>
                 <p class="duty-date">Scheduled: {{ i.date }}</p>
-                <button><a href="{% url 'edit_duty' i.id %}">Edit</a></button>
-                <button><a href="{% url 'delete_duty_info' i.id %}">Delete</a></button>
             </div>
             {% endfor %}
         {% else %}
