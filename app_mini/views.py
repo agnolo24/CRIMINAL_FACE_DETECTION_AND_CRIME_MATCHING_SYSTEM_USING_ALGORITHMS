@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR, SheduleDuty
-
+from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR, SheduleDuty, Attendance
+import datetime
 
             # Create your views here.
 
@@ -269,13 +269,80 @@ def delete_duty_info(request, id):
     data = get_object_or_404(SheduleDuty, id = id)
     data.delete()
     return redirect('view_duty', data.staff_info.staff_id)
+
+# def mark_attendance(request):
+#     date = datetime.date.today()
+#     station_login_id = request.session.get('station_id')
+#     station_login_ins = get_object_or_404(login_table, id = station_login_id)
+#     station = get_object_or_404(police_station_registration, login_id = station_login_ins)
+#     staff_data = staff.objects.filter(station = station)
+#     att_ins = Attendance.objects.filter(date = date, station = station)
+#     return render(request, 'police_station/mark_attendance.html', {'staff_data':staff_data, 'att_ins':att_ins})
+def mark_attendance(request):
+    date = datetime.date.today()
+    station_login_id = request.session.get('station_id')
+    station_login_ins = get_object_or_404(login_table, id=station_login_id)
+    station = get_object_or_404(police_station_registration, login_id=station_login_ins)
     
+    staff_data = staff.objects.filter(station=station)
+    att_ins = Attendance.objects.filter(date=date, station=station)
+
+    attendance_dict = {att.staff.staff_id: True for att in att_ins}
+
+    return render(request, 'police_station/mark_attendance.html', {
+        'staff_data': staff_data,
+        'attendance_dict': attendance_dict,
+    })
+
+def present(request, staff_id):
+    atte = Attendance()
+    station_login_id = request.session.get('station_id')
+    station_login_ins = get_object_or_404(login_table, id = station_login_id)
+    station = get_object_or_404(police_station_registration, login_id = station_login_ins)
+    atte.station = station
+    staff_ins = staff.objects.get(staff_id = staff_id)
+    atte.staff = staff_ins
+    atte.att = "present"
+    atte.save()
+    return redirect(mark_attendance) 
+
+def absent(request, staff_id):
+    atte = Attendance()
+    station_login_id = request.session.get('station_id')
+    station_login_ins = get_object_or_404(login_table, id = station_login_id)
+    station = get_object_or_404(police_station_registration, login_id = station_login_ins)
+    atte.station = station
+    staff_ins = staff.objects.get(staff_id = staff_id)
+    atte.staff = staff_ins
+    atte.att = "absent"
+    atte.save()
+    return redirect(mark_attendance)
+
+def view_attendance(request):
+    station_login_id = request.session.get('station_id')
+    station_login_ins = get_object_or_404(login_table, id = station_login_id)
+    station = get_object_or_404(police_station_registration, login_id = station_login_ins)
+    att_ins = Attendance.objects.filter(station = station)
+    return render(request, 'police_station/view_attendance.html', {'staff_data':att_ins})
+
+def present_edit(request, staff_id):
+    date = datetime.date.today()
+    staff_ins = staff.objects.get(staff_id = staff_id)
+    atte = Attendance.objects.get(staff = staff_ins, date = date)
+    atte.att = 'present'
+    atte.save()
+    return redirect(mark_attendance)
+
+def absent_edit(request, staff_id):
+    date = datetime.date.today()
+    staff_ins = staff.objects.get(staff_id = staff_id)
+    atte = Attendance.objects.get(staff = staff_ins, date = date)
+    atte.att = 'absent'
+    atte.save()
+    return redirect(mark_attendance)
 
 
-            # ending of police station model views
-
-            # starting of user(public) views
-
+# ending of police station module
 
 # This function is used for user(public) registration
 def user_reg(request):

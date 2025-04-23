@@ -112,3 +112,10 @@ class SheduleDuty(models.Model):
 
     def __str__(self):
         return(self.staff_info)
+    
+
+class Attendance(models.Model):
+    att = models.CharField(max_length=10)
+    date = models.DateField(auto_now_add=True)
+    staff = models.ForeignKey(staff, on_delete=models.SET_NULL, null=True)
+    station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)

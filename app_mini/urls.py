@@ -29,6 +29,12 @@ urlpatterns = [
     path('view_duty/<str:staff_id>/', views.view_duty, name='view_duty'),
     path('edit_duty/<int:id>', views.edit_duty, name='edit_duty'),
     path('delete_duty_info/<int:id>', views.delete_duty_info, name='delete_duty_info'),
+    path('mark_attendance/', views.mark_attendance, name='mark_attendance'),
+    path('present/<str:staff_id>', views.present, name='present'),
+    path('present_edit/<str:staff_id>', views.present_edit, name='present_edit'),
+    path('absent_edit/<str:staff_id>', views.absent_edit, name='absent_edit'),
+    path('absent/<str:staff_id>', views.absent, name='absent'),
+    path('view_attendance/', views.view_attendance, name='view_attendance'),
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),
