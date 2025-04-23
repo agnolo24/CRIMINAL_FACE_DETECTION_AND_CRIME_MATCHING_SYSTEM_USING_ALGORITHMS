@@ -35,6 +35,7 @@ urlpatterns = [
     path('absent_edit/<str:staff_id>', views.absent_edit, name='absent_edit'),
     path('absent/<str:staff_id>', views.absent, name='absent'),
     path('view_attendance/', views.view_attendance, name='view_attendance'),
+    path('view_attendance_of_a_staff/<str:staff_id>', views.view_attendance_of_a_staff, name='view_attendance_of_a_staff'),
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),

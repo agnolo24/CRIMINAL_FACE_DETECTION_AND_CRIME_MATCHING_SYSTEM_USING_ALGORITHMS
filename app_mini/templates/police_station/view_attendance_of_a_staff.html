@@ -105,54 +105,34 @@
 <body class="bg-gray-100 font-sans">
     <div class="staff-container">
         <header class="staff-header">
-            <h1>Staff Data</h1>
-            <p>Here is the information about our staff members.</p>
+            <h1>Name : {{staff_ins.full_name}}</h1>
+            <p>
+                Staff ID : {{staff_ins.staff_id}} <br>
+                Designation : {{staff_ins.designation}} <br>
+                Contact : {{staff_ins.contact}}
+            </p>
         </header>
         <main>
             <div class="staff-list">
-                {% if staff_data %}
+                {% if atte %}
                 <table class="staff-table">
                     <thead>
                         <tr>
-                            <th>Full Name</th>
-                            <th>Designation</th>
-                            <th>Staff ID</th>
-                            <th>Address</th>
-                            <th>Contact</th>
-                            <th>Actions</th>
-                            <th>Attendens</th>
-                            <th>Duty</th>
+                            <td>Date</td>
+                            <td>Attendens</td>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for staff in staff_data %}
+                        {% for i in atte %}
                         <tr>
-                            <td>{{ staff.full_name }}</td>
-                            <td>{{ staff.designation }}</td>
-                            <td>{{ staff.staff_id }}</td>
-                            <td>{{ staff.address }}</td>
-                            <td>{{ staff.contact }}</td>
-                            <td>
-                                {% if staff.login_id.varification_status != "varified" %}
-                                    <button><a href="../accept_staff/{{ staff.login_id.id }}">Accept</a></button>
-                                {% else %}
-                                    <button class="reject"><a href="../reject_staff/{{staff.login_id.id}}">Reject</a></button>
-                                {% endif %}
-                            </td>
-                            <td>
-                                <button><a href="{% url 'view_attendance_of_a_staff' staff.staff_id %}">View Attendans</a></button>
-                            </td>
-                            <td>
-                                <button><a href="{% url 'shedule_duty' staff.staff_id %}">Shedule Duty</a></button>
-                                <hr>
-                            <button><a href="../view_duty/{{ staff.staff_id }}">View Duty's</a></button>
-                            </td>
+                            <td>{{i.date}}</td>
+                            <td>{{i.att}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
                 {% else %}
-                <p class="no-staff-message">There Aren't Any Staff's</p>
+                <p class="no-staff-message">There Aren't Any Attendens</p>
                 {% endif %}
             </div>
         </main>

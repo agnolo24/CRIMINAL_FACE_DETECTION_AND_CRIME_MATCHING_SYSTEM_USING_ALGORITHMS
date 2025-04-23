@@ -270,14 +270,7 @@ def delete_duty_info(request, id):
     data.delete()
     return redirect('view_duty', data.staff_info.staff_id)
 
-# def mark_attendance(request):
-#     date = datetime.date.today()
-#     station_login_id = request.session.get('station_id')
-#     station_login_ins = get_object_or_404(login_table, id = station_login_id)
-#     station = get_object_or_404(police_station_registration, login_id = station_login_ins)
-#     staff_data = staff.objects.filter(station = station)
-#     att_ins = Attendance.objects.filter(date = date, station = station)
-#     return render(request, 'police_station/mark_attendance.html', {'staff_data':staff_data, 'att_ins':att_ins})
+
 def mark_attendance(request):
     date = datetime.date.today()
     station_login_id = request.session.get('station_id')
@@ -341,8 +334,17 @@ def absent_edit(request, staff_id):
     atte.save()
     return redirect(mark_attendance)
 
+def view_attendance_of_a_staff(request, staff_id):
+    staff_ins = staff.objects.get(staff_id = staff_id)
+    atte = Attendance.objects.filter(staff = staff_ins)
+    return render(request, 'police_station/view_attendance_of_a_staff.html', {'atte':atte, 'staff_ins':staff_ins})
 
-# ending of police station module
+
+                # ending of police station module
+
+                # starting of user(public) model views
+
+
 
 # This function is used for user(public) registration
 def user_reg(request):
