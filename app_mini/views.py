@@ -353,6 +353,20 @@ def view_attendance_of_a_staff(request, staff_id):
     return render(request, 'police_station/view_attendance_of_a_staff.html', {'atte':atte, 'staff_ins':staff_ins})
 
 
+def promotion(request, staff_id):
+    staff_ins = staff.objects.get(staff_id = staff_id)
+    if request.method == 'POST':
+        form = PromotionForm(request.POST, instance=staff_ins)
+        if form.is_valid():
+            dec = form.cleaned_data['designation']
+            staff_ins.designation = dec
+            staff_ins.save()
+            return redirect('view_staff')
+    else:
+        form = PromotionForm(instance=staff_ins)
+    return render(request, 'police_station/promotion.html', {'staff_ins':staff_ins, 'form':form})
+
+
                 # ending of police station module
 
                 # starting of user(public) model views

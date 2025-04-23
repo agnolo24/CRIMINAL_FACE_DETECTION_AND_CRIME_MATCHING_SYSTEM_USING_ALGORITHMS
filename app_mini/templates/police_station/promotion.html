@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotion</title>
+</head>
+<body>
+    <h1>Staff Details</h1>
+    <h3>Name : {{staff_ins.full_name}}</h3>
+    <h4>
+        Current Designation : {{staff_ins.designation}} <br><br>
+        Staff ID : {{staff_ins.staff_id}} <br><br>
+        Contact : {{staff_ins.contact}} <br><br>
+        Email : {{staff_ins.login_id.email}} <br><br>
+        Address : {{staff_ins.address}} <br><br>
+        Station : {{staff_ins.station}} <br><br>
+    </h4>
+
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Promote</button>
+    </form>
+</body>
+</html>

@@ -38,6 +38,7 @@ urlpatterns = [
     path('view_attendance_of_a_staff/<str:staff_id>', views.view_attendance_of_a_staff, name='view_attendance_of_a_staff'),
     path('search_all_att/<str:date>', views.search_all_att, name='search_all_att'),
     path('search_attendance/<str:staff_id>/<str:date>/', views.search_attendance, name='search_attendance'),
+    path('promotion/<str:staff_id>', views.promotion, name='promotion'),
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),

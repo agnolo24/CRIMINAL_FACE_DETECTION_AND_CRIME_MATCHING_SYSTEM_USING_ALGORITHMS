@@ -14,7 +14,7 @@
         }
 
         .staff-container {
-            max-width: 900px; /* Increased max-width for table */
+            max-width: 1300px; /* Increased max-width for table */
             margin: 0 auto;
             background-color: #ffffff; /* Tailwind's white */
             padding: 30px;
@@ -121,6 +121,7 @@
                             <th>Contact</th>
                             <th>Actions</th>
                             <th>Attendens</th>
+                            <th>Promotion</th>
                             <th>Duty</th>
                         </tr>
                     </thead>
@@ -143,9 +144,12 @@
                                 <button><a href="{% url 'view_attendance_of_a_staff' staff.staff_id %}">View Attendans</a></button>
                             </td>
                             <td>
+                                <button><a href="{% url 'promotion' staff.staff_id %}">Promotion</a></button>
+                            </td>
+                            <td>
                                 <button><a href="{% url 'shedule_duty' staff.staff_id %}">Shedule Duty</a></button>
                                 <hr>
-                            <button><a href="../view_duty/{{ staff.staff_id }}">View Duty's</a></button>
+                                <button><a href="../view_duty/{{ staff.staff_id }}">View Duty's</a></button>
                             </td>
                         </tr>
                         {% endfor %}

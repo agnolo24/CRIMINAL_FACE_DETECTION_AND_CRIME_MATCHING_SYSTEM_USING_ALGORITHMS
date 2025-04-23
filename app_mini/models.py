@@ -37,12 +37,23 @@ class Enquiry(models.Model):
 
 
 class staff(models.Model):
+    DESIGNATION_CHOICE = [
+        ('DGP', 'Director General of Police'),
+        ('IGP', 'Inspector General of Police'),
+        ('SP', 'Superintendent of Police'),
+        ('DSP', 'Deputy Superintendent of Police'),
+        ('CI', 'Circle Inspector'),
+        ('SI', 'Sub Inspector'),
+        ('ASI', 'Assistant Sub Inspector'),
+        ('HC', 'Head Constable'),
+        ('PC', 'Police Constable')
+    ]
     staff_id = models.CharField(max_length=50, primary_key=True)
     login_id = models.ForeignKey(login, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     contact = models.CharField(max_length=50)
-    designation = models.CharField(max_length=50)
+    designation = models.CharField(max_length=50, choices=DESIGNATION_CHOICE)
     gender = models.CharField(max_length=20)
     date_of_birth = models.CharField(max_length=20)
     station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
