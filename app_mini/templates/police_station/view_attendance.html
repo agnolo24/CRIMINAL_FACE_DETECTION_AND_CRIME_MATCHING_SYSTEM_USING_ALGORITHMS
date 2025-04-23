@@ -103,6 +103,26 @@
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
+
+    <div id="search">
+        Search : <input type="date" id="search_att">
+        <button onclick="search_atte()">Search</button>
+
+        <script>
+            function search_atte(){
+                let date = document.getElementById("search_att").value
+
+                if(date){
+                    url = `/search_all_att/${date}`
+                    window.location.href = url
+                }
+                else{
+                    alert("Enter the date")
+                }
+            }
+        </script>
+    </div>
+
     <div class="staff-container">
         <header class="staff-header">
             <h1>Staff Data</h1>

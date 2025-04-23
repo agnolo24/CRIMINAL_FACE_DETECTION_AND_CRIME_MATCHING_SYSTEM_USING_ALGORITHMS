@@ -103,6 +103,23 @@
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
+    <div id="search">
+        Search: <input id="dte" type="date" placeholder="yyyy-mm-dd">
+        <button onclick="searchAttendance()">Search</button>
+        <script>
+            function searchAttendance(){
+                let date = document.getElementById("dte").value
+                if(date){
+                    let staffId = "{{staff_ins.staff_id}}"
+                    let url = `/search_attendance/${staffId}/${date}`
+                    window.location.href = url
+                }
+                else{
+                    alert('Plese enter the Date')
+                }
+            }
+        </script>
+    </div>
     <div class="staff-container">
         <header class="staff-header">
             <h1>Name : {{staff_ins.full_name}}</h1>

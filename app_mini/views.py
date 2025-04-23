@@ -318,6 +318,13 @@ def view_attendance(request):
     att_ins = Attendance.objects.filter(station = station)
     return render(request, 'police_station/view_attendance.html', {'staff_data':att_ins})
 
+def search_all_att(request, date):
+    station_login_id = request.session.get('station_id')
+    station_login_ins = get_object_or_404(login_table, id = station_login_id)
+    station = get_object_or_404(police_station_registration, login_id = station_login_ins)
+    att_ins = Attendance.objects.filter(station = station, date = date)
+    return render(request, 'police_station/view_attendance.html', {'staff_data':att_ins})
+
 def present_edit(request, staff_id):
     date = datetime.date.today()
     staff_ins = staff.objects.get(staff_id = staff_id)
@@ -333,6 +340,12 @@ def absent_edit(request, staff_id):
     atte.att = 'absent'
     atte.save()
     return redirect(mark_attendance)
+
+def search_attendance(request, staff_id, date):
+    staff_ins = staff.objects.get(staff_id=staff_id)
+    atte = Attendance.objects.filter(staff=staff_ins, date=date)
+    return render(request, 'police_station/view_attendance_of_a_staff.html', {'atte': atte, 'staff_ins': staff_ins})
+                 
 
 def view_attendance_of_a_staff(request, staff_id):
     staff_ins = staff.objects.get(staff_id = staff_id)
