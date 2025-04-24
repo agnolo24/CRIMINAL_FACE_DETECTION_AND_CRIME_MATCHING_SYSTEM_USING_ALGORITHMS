@@ -107,3 +107,15 @@ class PromotionForm(forms.ModelForm):
     class Meta:
         model = staff
         fields = ['designation']
+
+
+# class SalaryForm(forms.ModelForm):
+#     class Meta:
+#         model = Salary
+#         fields = ['designation', 'bs', 'da', 'hr', 'pf']
+    
+
+class EditSalaryForm(forms.ModelForm):
+    class Meta:
+        model = Salary
+        fields = ['bs', 'da', 'hr', 'pf']

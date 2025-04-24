@@ -130,3 +130,23 @@ class Attendance(models.Model):
     date = models.DateField(auto_now_add=True)
     staff = models.ForeignKey(staff, on_delete=models.SET_NULL, null=True)
     station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
+
+
+class Salary(models.Model):
+    DESIGNATION_CHOICE = [
+        ('DGP', 'Director General of Police'),
+        ('IGP', 'Inspector General of Police'),
+        ('SP', 'Superintendent of Police'),
+        ('DSP', 'Deputy Superintendent of Police'),
+        ('CI', 'Circle Inspector'),
+        ('SI', 'Sub Inspector'),
+        ('ASI', 'Assistant Sub Inspector'),
+        ('HC', 'Head Constable'),
+        ('PC', 'Police Constable')
+    ]
+    designation = models.CharField(max_length=50, choices=DESIGNATION_CHOICE, unique=True)
+    bs = models.IntegerField()
+    da = models.IntegerField()
+    hr = models.IntegerField()
+    pf = models.IntegerField()
+    total_salaty = models.IntegerField(null=True, blank=True)

@@ -8,18 +8,19 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Tailwind's gray-100 */
+            background-color: #f3f4f6; 
             margin: 0;
             padding: 20px;
         }
 
         .staff-container {
-            max-width: 1300px; /* Increased max-width for table */
+            max-width: 100%;
             margin: 0 auto;
-            background-color: #ffffff; /* Tailwind's white */
+            background-color: #ffffff;
             padding: 30px;
-            border-radius: 0.5rem; /* Tailwind's rounded-md */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Tailwind's shadow-md */
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
         }
 
         .staff-header {
@@ -40,6 +41,7 @@
         }
 
         .staff-table {
+            min-width: 1000px;
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;

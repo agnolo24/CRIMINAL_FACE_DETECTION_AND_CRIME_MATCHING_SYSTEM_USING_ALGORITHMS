@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR, SheduleDuty, Attendance
+from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR, SheduleDuty, Attendance, Salary
 import datetime
 
             # Create your views here.
@@ -585,5 +585,37 @@ def reject_s(request, station_id):
     station.varification_status = 'reject'
     station.save()
     return redirect('p_data_table')
+
+# def manage_salary(request):
+#     if request.method == 'POST':
+#         form = SalaryForm(request.POST)
+#         if form.is_valid():
+#             salary_ins = form.save(commit=False)
+#             salary_ins.total_salaty = (salary_ins.bs + salary_ins.da + salary_ins.hr)-salary_ins.pf
+#             salary_ins.save()
+#             return redirect('manage_salary')
+#     else:
+#         form = SalaryForm()
+#     return render(request, 'web_admin/manage_salary.html', {'form':form})
+
+
+
+def manage_salary(request):
+    salary_ins = Salary.objects.all()
+    return render(request, 'web_admin/manage_salary.html', {'salary_ins':salary_ins})
+
+
+def edit_salary(request, id):
+    fetch_data = get_object_or_404(Salary, id=id)
+    if request.method == 'POST':
+        form = EditSalaryForm(request.POST, instance=fetch_data)
+        if form.is_valid():
+            salary_ins = form.save(commit=False)
+            salary_ins.total_salaty = (salary_ins.bs + salary_ins.da + salary_ins.hr) - salary_ins.pf
+            salary_ins.save()
+            return redirect('manage_salary')
+    else:
+        form = EditSalaryForm(instance=fetch_data)
+    return render(request, 'web_admin/edit_salary.html', {'form': form})
 
             # ending of webadmin model view

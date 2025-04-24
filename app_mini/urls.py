@@ -39,6 +39,7 @@ urlpatterns = [
     path('search_all_att/<str:date>', views.search_all_att, name='search_all_att'),
     path('search_attendance/<str:staff_id>/<str:date>/', views.search_attendance, name='search_attendance'),
     path('promotion/<str:staff_id>', views.promotion, name='promotion'),
+
     #user
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),
@@ -51,6 +52,7 @@ urlpatterns = [
     path('view_petition_reply/', views.view_petition_reply, name='view_petition_reply'),
     path('view_most_wanted_criminals_public/', views.view_most_wanted_criminals_public, name='view_most_wanted_criminals_public'),
     path('view_fir_public/', views.view_fir_public, name='view_fir_public'),
+
     #staff
     path('staff_reg/', views.staff_reg_form, name='staff_reg'),
     path('staff_home/', views.staff_home, name='staff_home'),
@@ -59,13 +61,12 @@ urlpatterns = [
     path('view_most_wanted_criminals_staff/', views.view_most_wanted_criminals_staff, name='view_most_wanted_criminals_staff'),
     path('view_staff_duty/', views.view_staff_duty, name='view_staff_duty'),
 
-
     #admin
     path('admin_home/',views.admin_home, name='admin_home'),
     path('p_data_table/',views.police_station_details_table, name='p_data_table'),
     path('s_data_table/',views.staff_details_table, name='s_data_table'),
     path('accept_s/<str:station_id>', views.accept_s, name='accept_s'),
     path('reject_s/<str:station_id>', views.reject_s, name='reject_s'),
-    
-
+    path('manage_salary/', views.manage_salary, name='manage_salary'),
+    path('edit_salary/<int:id>', views.edit_salary, name='edit_salary'),
 ]
