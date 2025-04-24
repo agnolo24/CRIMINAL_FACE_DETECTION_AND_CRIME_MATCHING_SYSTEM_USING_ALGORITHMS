@@ -60,6 +60,7 @@ urlpatterns = [
     path('edit_staff_profile/', views.edit_staff_profile, name='edit_staff_profile'),
     path('view_most_wanted_criminals_staff/', views.view_most_wanted_criminals_staff, name='view_most_wanted_criminals_staff'),
     path('view_staff_duty/', views.view_staff_duty, name='view_staff_duty'),
+    path('view_salary_details/', views.view_salary_details, name='view_salary_details'),
 
     #admin
     path('admin_home/',views.admin_home, name='admin_home'),

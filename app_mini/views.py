@@ -557,6 +557,13 @@ def view_staff_duty(request):
     duty = SheduleDuty.objects.filter(staff_info = staff_data)
     return render(request, 'staff/view_staff_duty.html', {'duty':duty})
 
+def view_salary_details(request):
+    staff_id = request.session.get('staff_id')
+    log_staf = get_object_or_404(login_table, id = staff_id)
+    staff_data = staff.objects.get(login_id = log_staf)
+    salary_details = Salary.objects.get(designation = staff_data.designation)
+    return render(request, 'staff/view_salary_details.html', {'salary_details':salary_details})
+
             # ending of staff model views
 
             # starting of webadmin model views
