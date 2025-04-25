@@ -71,4 +71,5 @@ urlpatterns = [
     path('reject_s/<str:station_id>', views.reject_s, name='reject_s'),
     path('manage_salary/', views.manage_salary, name='manage_salary'),
     path('edit_salary/<int:id>', views.edit_salary, name='edit_salary'),
+    path('view_complaints_from_user/', views.view_complaints_from_user, name='view_complaints_from_user'),
 ]

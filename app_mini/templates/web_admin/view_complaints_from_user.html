@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>complaints</title>
+</head>
+<body>
+    <div id="cointainer">
+        {% for i in comp %}
+            <div>
+                <h3>Send From</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>From : </td>
+                            <td>{{i.user.fullname}}</td>
+                        </tr>
+                        <tr>
+                            <td>Contact details : </td>
+                            <td>{{i.user.contact}}</td>
+                        </tr>
+                        <td>
+                            <tr>
+                                <td>Email : </td>
+                                <td>{{i.user.login_id.email}}</td>
+                            </tr>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3>Petition Details</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Submited On :</td>
+                            <td>{{i.pet.date}}</td>
+                        </tr>
+                        <tr>
+                            <td>Submited To :</td>
+                            <td>{{i.pet.station}}</td>
+                        </tr>
+                        <tr>
+                            <td>FIR Status : </td>
+                            <td>
+                                {% if i.pet.fir_number %}
+                                    <h4>FIR Registres</h4>
+                                {% else %}
+                                    <h4>FIR Not Registres</h4>
+                                {% endif %}
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td>Petition Details : </td>
+                            <td>{{i.pet.petition_text}}</td>
+                        </tr>
+                        <tr>
+                            <td>Station Replay on Petition : </td>
+                            <td>{{i.pet.reply}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+</body>
+</html>

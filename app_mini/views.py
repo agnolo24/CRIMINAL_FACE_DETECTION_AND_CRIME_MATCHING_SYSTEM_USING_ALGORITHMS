@@ -645,4 +645,10 @@ def edit_salary(request, id):
         form = EditSalaryForm(instance=fetch_data)
     return render(request, 'web_admin/edit_salary.html', {'form': form})
 
+
+def view_complaints_from_user(request):
+    comp = Complaint.objects.all()
+    return render(request, 'web_admin/view_complaints_from_user.html', {'comp':comp})
+
+
             # ending of webadmin model view
