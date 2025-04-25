@@ -52,6 +52,7 @@ urlpatterns = [
     path('view_petition_reply/', views.view_petition_reply, name='view_petition_reply'),
     path('view_most_wanted_criminals_public/', views.view_most_wanted_criminals_public, name='view_most_wanted_criminals_public'),
     path('view_fir_public/', views.view_fir_public, name='view_fir_public'),
+    path('register_complaint_to_admin/<int:id>', views.register_complaint_to_admin, name='register_complaint_to_admin'),
 
     #staff
     path('staff_reg/', views.staff_reg_form, name='staff_reg'),

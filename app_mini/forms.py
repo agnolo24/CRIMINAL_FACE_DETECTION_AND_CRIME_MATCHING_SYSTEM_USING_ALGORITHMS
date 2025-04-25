@@ -119,3 +119,9 @@ class EditSalaryForm(forms.ModelForm):
     class Meta:
         model = Salary
         fields = ['bs', 'da', 'hr', 'pf']
+
+
+class ComplaintForm(forms.ModelForm):
+    class Meta:
+        model = Complaint
+        fields = ['msg']

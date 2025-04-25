@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR, SheduleDuty, Attendance, Salary
+from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR, SheduleDuty, Attendance, Salary, Complaint
 import datetime
 
             # Create your views here.
@@ -477,7 +477,10 @@ def view_petition_reply(request):
     login_info = get_object_or_404(login, id = login_id)
     reg_info = get_object_or_404(user_registration, login_id = login_info)
     pet = Petition.objects.filter(user_id = reg_info)
-    return render(request, 'public/view_petition_reply.html', {'pet' : pet})
+    comp = Complaint.objects.filter(user = reg_info)
+    pet_dic = {p.pet.id : True for p in comp}
+    print(pet_dic)
+    return render(request, 'public/view_petition_reply.html', {'pet' : pet, 'pet_dic':pet_dic})
 
 def view_most_wanted_criminals_public(request):
     try:
@@ -494,6 +497,23 @@ def view_fir_public(request):
     fir = FIR.objects.filter(petitionInfo__user =  user_data)
     return render(request, 'public/view_fir_public.html', {'fir':fir})
     
+def register_complaint_to_admin(request, id):
+    if request.method == 'POST':
+        form = ComplaintForm(request.POST)
+        if form.is_valid():
+            form_ins = form.save(commit=False)
+            user_login_id = request.session.get('user_id')
+            user = get_object_or_404(login, id = user_login_id)
+            user_data = get_object_or_404(user_registration, login_id = user)
+            form_ins.user = user_data
+            petition_ins = get_object_or_404(Petition, id = id)
+            form_ins.pet = petition_ins
+            form_ins.save()
+            return redirect('view_petition_reply')
+    else:
+        form = ComplaintForm()
+    return render(request, 'public/register_complaint_to_admin.html', {'form':form})
+
 
             # ending of user(public) model views
 

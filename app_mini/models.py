@@ -150,3 +150,13 @@ class Salary(models.Model):
     hr = models.IntegerField()
     pf = models.IntegerField()
     total_salaty = models.IntegerField(null=True, blank=True)
+
+
+class Complaint(models.Model):
+    pet = models.ForeignKey(Petition, on_delete=models.CASCADE)
+    user = models.ForeignKey(user_registration, on_delete=models.SET_NULL, null=True)
+    msg = models.TextField()
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.pet
