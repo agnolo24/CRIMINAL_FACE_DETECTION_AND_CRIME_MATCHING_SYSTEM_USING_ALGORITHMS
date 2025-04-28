@@ -92,10 +92,10 @@
 					   			<nav id="mega-menu-holder" class="clearfix">
 								   <ul class="clearfix">
 									    <li class="active"><a href="#">Home</a>
-									    	<ul class="dropdown">
+									    	<!-- <ul class="dropdown">
 									        	<li><a href="index.html">Home version one</a></li>
 									        	<li><a href="index-2.html">Home version two</a></li>
-									      </ul>
+									      </ul> -->
 									    </li>
 									    <!-- <li><a href="#">PAGES</a>
 									    	<ul class="dropdown">
@@ -113,11 +113,11 @@
 									    		</li>
 									       </ul>
 									    </li> -->
-									    <li><a href="#">Service</a>
+									    <li><a href="#">Register</a>
 									    	<ul class="dropdown">
-									        	<li><a href="service.html">Service Version one</a></li>
-									        	<li><a href="service-v2.html">Service version two</a></li>
-									        	<li><a href="service-details.html">Service Details</a></li>
+									        	<li><a href="../user_reg/">User Registration</a></li>
+												<li><a href="../staff_reg/">Staff Registration</a></li>
+												<li><a href="../police_station_reg_form/">Station Registration</a></li>
 									       </ul>
 									    </li>
 									    <!-- <li><a href="#">Portfolio</a>
@@ -173,7 +173,7 @@
 			============================================== 
 			-->
 			<div id="theme-main-banner" class="banner-one">
-				<div data-src="{% static 'charles/images/home/slide-1.jpg' %}">
+				<div data-src="{% static 'charles/images/home/neeti_davatha.jpg' %}">
 					<div class="camera_caption">
 						<div class="container">
 							<p class="wow fadeInUp animated">Ensuring the Safety and Security of Kerala.</p>
@@ -182,20 +182,20 @@
 						</div> <!-- /.container -->
 					</div> <!-- /.camera_caption -->
 				</div>
-				<div data-src="{% static 'charles/images/home/slide-2.jpg' %}">
+				<div data-src="{% static 'charles/images/home/hand_cufs.png' %}">
 					<div class="camera_caption">
 						<div class="container">
-							<p class="wow fadeInUp animated">Serving and Protecting the People of Kerala.</p>
-							<h1 class="wow fadeInUp animated" data-wow-delay="0.2s">We IMPROVE YOUR <br>SALES EFFICIENCY</h1>
+							<p class="wow fadeInUp animated" style="color: #e9e9e9;">Serving and Protecting the People of Kerala.</p>
+							<h1 class="wow fadeInUp animated" data-wow-delay="0.2s" style="color: white;">Eyes on Kerala, <br>Guardians of Peace.</h1>
 							<a href="contact.html" class="theme-button-one wow fadeInUp animated" data-wow-delay="0.39s">CONTACT US</a>
 						</div> <!-- /.container -->
 					</div> <!-- /.camera_caption -->
 				</div>
-				<div data-src="{% static 'charles/images/home/slide-3.jpg' %}">
+				<div data-src="{% static 'charles/images/home/face_d.png' %}">
 					<div class="camera_caption">
 						<div class="container">
-							<p class="wow fadeInUp animated">The government they survive artical of fortune</p>
-							<h1 class="wow fadeInUp animated" data-wow-delay="0.2s">We IMPROVE YOUR <br>SALES EFFICIENCY</h1>
+							<p class="wow fadeInUp animated" style="color: white;">The government they survive artical of fortune</p>
+							<h1 class="wow fadeInUp animated" data-wow-delay="0.2s" style="color: white;">Your Trust, <br>Our Duty.</h1>
 							<a href="contact.html" class="theme-button-one wow fadeInUp animated" data-wow-delay="0.39s">CONTACT US</a>
 						</div> <!-- /.container -->
 					</div> <!-- /.camera_caption -->
@@ -212,30 +212,30 @@
 				<div class="top-features-slide">
 					<div class="item">
 						<div class="main-content" style="background:#fafafa;">
-							<img src="images/icon/1.png" alt="">
-							<h4><a href="#">Consumer Insights</a></h4>
-							<p>The east side to a deluxe apartment in move on up to the east side</p>
+							<img src="../static/images/icon/1.png" alt="">
+							<h4><a href="https://keralapolice.gov.in/page/emergency-response-support-system">Emergency Response</a></h4>
+							<p>Informations needed if you are in an Emergency situation</p>
 						</div> <!-- /.main-content -->
 					</div> <!-- /.item -->
 					<div class="item">
 						<div class="main-content" style="background:#f6f6f6;">
-							<img src="images/icon/2.png" alt="">
-							<h4><a href="#">Emerging Ideas</a></h4>
-							<p>The east side to a deluxe apartment in move on up to the east side</p>
+							<img src="../static/images/icon/2.png" alt="">
+							<h4><a href="https://thuna.keralapolice.gov.in/">Support</a></h4>
+							<p>We give you the hand you need for assistance</p>
 						</div> <!-- /.main-content -->
 					</div> <!-- /.item -->
 					<div class="item">
 						<div class="main-content" style="background:#efefef;">
-							<img src="images/icon/3.png" alt="">
-							<h4><a href="#">Thought Leadership</a></h4>
-							<p>The east side to a deluxe apartment in move on up to the east side</p>
+							<img src="{% static 'images/icon/3.png' %}" alt="">
+							<h4><a href="https://echallan.parivahan.gov.in/index/accused-challan">E-challan</a></h4>
+							<p>Digital traffic/Transport enforcement solution</p>
 						</div> <!-- /.main-content -->
 					</div> <!-- /.item -->
 					<div class="item">
 						<div class="main-content" style="background:#e9e9e9;">
-							<img src="images/icon/4.png" alt="">
-							<h4><a href="#">Marketing Goals</a></h4>
-							<p>The east side to a deluxe apartment in move on up to the east side</p>
+							<img src="../static/images/icon/4.png" alt="">
+							<h4><a href="https://keralapolice.gov.in/page/cims">CIMS</a></h4>
+							<p>Central Intrusion <br> Monitoring System</p>
 						</div> <!-- /.main-content -->
 					</div> <!-- /.item -->
 				</div> <!-- /.top-features-slide -->
@@ -250,13 +250,13 @@
 			<div class="about-compnay section-spacing">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-6 col-12"><img src="images/home/1.jpg" alt=""></div>
+						<div class="col-lg-6 col-12"><img src="https://www.careeryojana.in/wp-content/uploads/2021/04/Kerala-Police.png?is-pending-load=1" alt="img"></div>
 						<div class="col-lg-6 col-12">
 							<div class="text">
 								<div class="theme-title-one">
-									<h2>About Our Company</h2>
-									<p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today still wanted by the government they survive as soldiers of fortune to a deluxe apartment in the sky moving on up to the east side a family.</p>
-									<p>The government they survive as soldiers of fortune baby if you've ever wondered the east side to a deluxe apartment.</p>
+									<h2>About Our SERVICES</h2>
+									<p>We provide a cutting-edge Criminal Face Detection and Crime Matching System, specifically designed to empower the Kerala Police Department in their mission to maintain law and order. </p>
+									<p>Our comprehensive platform streamlines critical police operations, enhances inter-departmental collaboration, and leverages advanced technology to accelerate crime solving.</p>
 								</div> <!-- /.theme-title-one -->
 								<ul class="mission-goal clearfix">
 									<li>
@@ -299,12 +299,12 @@
 				Service Style One
 			============================================== 
 			-->
-			<div class="service-style-one section-spacing">
+			<!-- <div class="service-style-one section-spacing">
 				<div class="container">
 					<div class="theme-title-one">
 						<h2>Our SERVICES</h2>
 						<p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today stillers</p>
-					</div> <!-- /.theme-title-one -->
+					</div> 
 					<div class="wrapper">
 						<div class="row">
 							<div class="col-xl-4 col-md-6 col-12">
@@ -314,9 +314,9 @@
 										<h5><a href="service-details.html">Business Services</a></h5>
 										<p>The tiny ship today stiller</p>
 										<a href="service-details.html" class="read-more">READ MORE <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-									</div> <!-- /.text -->
-								</div> <!-- /.single-service -->
-							</div> <!-- /.col- -->
+									</div> 
+								</div> 
+							</div>
 							<div class="col-xl-4 col-md-6 col-12">
 								<div class="single-service">
 									<div class="img-box"><img src="images/home/4.jpg" alt=""></div>
@@ -324,9 +324,9 @@
 										<h5><a href="service-details.html">Consumer Product</a></h5>
 										<p>The tiny ship today stiller</p>
 										<a href="service-details.html" class="read-more">READ MORE <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-									</div> <!-- /.text -->
-								</div> <!-- /.single-service -->
-							</div> <!-- /.col- -->
+									</div> 
+								</div> 
+							</div>
 							<div class="col-xl-4 col-md-6 col-12">
 								<div class="single-service">
 									<div class="img-box"><img src="images/home/5.jpg" alt=""></div>
@@ -334,9 +334,9 @@
 										<h5><a href="service-details.html">Financial Services</a></h5>
 										<p>The tiny ship today stiller</p>
 										<a href="service-details.html" class="read-more">READ MORE <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-									</div> <!-- /.text -->
-								</div> <!-- /.single-service -->
-							</div> <!-- /.col- -->
+									</div>
+								</div>
+							</div> 
 							<div class="col-xl-4 col-md-6 col-12">
 								<div class="single-service">
 									<div class="img-box"><img src="images/home/6.jpg" alt=""></div>
@@ -344,9 +344,9 @@
 										<h5><a href="service-details.html">Travel and Aviation</a></h5>
 										<p>The tiny ship today stiller</p>
 										<a href="service-details.html" class="read-more">READ MORE <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-									</div> <!-- /.text -->
-								</div> <!-- /.single-service -->
-							</div> <!-- /.col- -->
+									</div> 
+								</div> 
+							</div> 
 							<div class="col-xl-4 col-md-6 col-12">
 								<div class="single-service">
 									<div class="img-box"><img src="images/home/7.jpg" alt=""></div>
@@ -354,9 +354,9 @@
 										<h5><a href="service-details.html">Software Research</a></h5>
 										<p>The tiny ship today stiller</p>
 										<a href="service-details.html" class="read-more">READ MORE <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-									</div> <!-- /.text -->
-								</div> <!-- /.single-service -->
-							</div> <!-- /.col- -->
+									</div> 
+								</div> 
+							</div>
 							<div class="col-xl-4 col-md-6 col-12">
 								<div class="single-service">
 									<div class="img-box"><img src="images/home/8.jpg" alt=""></div>
@@ -364,17 +364,17 @@
 										<h5><a href="service-details.html">Quality Resourcing</a></h5>
 										<p>The tiny ship today stiller</p>
 										<a href="service-details.html" class="read-more">READ MORE <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-									</div> <!-- /.text -->
-								</div> <!-- /.single-service -->
-							</div> <!-- /.col- -->
-						</div> <!-- /.row -->
-					</div> <!-- /.wrapper -->
+									</div>
+								</div> 
+							</div> 
+						</div>
+					</div> 
 					<div class="contact-text">
 						<h4>You can also send us an email and we’ll get in touch shortly, or Call us</h4>
 						<h5><a href="#">info@support.com</a>  (or)  <a href="#">+1 234 6780 900</a></h5>
 					</div>
-				</div> <!-- /.container -->
-			</div> <!-- /.service-style-one -->
+				</div>
+			</div>-->
 
 
 			<!--
@@ -382,6 +382,196 @@
 				Testimonial Slider
 			=====================================================
 			-->
+
+			<!-- 
+			=============================================
+				CallOut Banner 
+			============================================== 
+			-->
+
+			<div id="about" style="text-align: center; margin-bottom: 50px;">
+				<h1>ABOUT US</h1>
+			</div>
+
+			<!-- <div class="callout-banner no-bg">
+				<div class="container clearfix">
+					<h3 class="title">High-Quality <br> Market Experinces</h3>
+					<p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today still wanted by the government they survive as soldiers of fortune to ever wondered the east side to a deluxe apartment.</p>
+					<a href="#" class="theme-button-one">CONTACT US</a>
+				</div>
+			</div> -->
+			
+			
+			
+			<!-- 
+			=============================================
+				About Company Stye Two
+			============================================== 
+			-->
+			<div class="about-compnay-two no-bg section-spacing">
+				<div class="overlay">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-6 col-12 text order-lg-last">
+								<!-- <div class="theme-title-one">
+									<h2>SHORT HISTORY</h2>
+								</div>  -->
+								<p>The Kerala Police, with its roots tracing back to the Travancore State Police of 1936, officially came into being on November 1, 1956, with Shri. N. Chandrasekharan Nair IPS as its first Inspector General. Guided by the Sanskrit motto "Mridhu Bhave Dhrida Kruthye" – "Soft in Temperament, Firm in Action" – the force is dedicated to protecting life and property with honesty and impartiality, striving for high citizen satisfaction and upholding the rule of law under the leadership of the State Police Chief, currently Shaikh Darvesh Sahib, IPS. Operating under the Home Department of the Kerala Government and organized into South and North Zones, Ranges, Districts, and Commissionerates, the Kerala Police has a distinguished history, including the establishment of India's first women's police station in 1973 and the elevation of its head to DGP in 1981. Renowned for effective law enforcement and innovative community policing initiatives like "Janamaithri," the Kerala Police has also been at the forefront of technological advancements with projects like Cyberdome and online safety initiatives such as "Aparajitha is Online" and "KIDGLOVE," demonstrating a commitment to both traditional policing values and modern challenges while actively engaging in social welfare programs for the community.</p>
+							</div> <!-- /.col- -->
+							<div class="col-lg-6 col-12 order-lg-first">
+								<img src="../static/charles/images/home/about_us_img.png" alt="img11" class="left-img">
+							</div>
+						</div> <!-- /.row -->
+					</div> <!-- /.container -->
+				</div> <!-- /.overlay -->
+			</div> <!-- /.about-compnay-two -->
+
+
+			<!--
+			=====================================================
+				Why We Best
+			=====================================================
+			-->
+			<!-- <div class="why-we-best">
+				<div class="overlay">
+					<div class="container">
+						<div class="theme-title-one">
+							<h2>WE ARE ALWAYS BEST</h2>
+							<p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today stillers</p>
+						</div> 
+
+						<div class="wrapper row no-gutters">
+							<div class="col-lg-6 col-12 order-lg-last"><div class="img-box"></div></div>
+							<div class="col-lg-6 col-12 order-lg-first">
+								<ul class="best-list-item">
+									<li>
+										<i class="icon flaticon-puzzle"></i>
+										<h5><a href="#">Best Strategy</a></h5>
+										<p>The Love Boat soon will be making another run plore strange tools enter new worlds.</p>
+									</li>
+									<li>
+										<i class="icon flaticon-presentation"></i>
+										<h5><a href="#">High-Quality Services</a></h5>
+										<p>The Love Boat soon will be making another run plore strange tools enter new worlds.</p>
+									</li>
+									<li>
+										<i class="icon flaticon-people"></i>
+										<h5><a href="#">Friendly Support</a></h5>
+										<p>The Love Boat soon will be making another run plore strange tools enter new worlds.</p>
+									</li>
+								</ul> 
+							</div> 
+						</div>
+					</div> 
+				</div> 
+			</div> -->
+
+
+			<!--
+			=====================================================
+				Theme Counter
+			=====================================================
+			-->
+			<!-- <div class="theme-counter-two section-spacing">
+				<div class="container">
+					<div class="clearfix">
+						<div class="cunter-wrapper">
+							<div class="row">
+								<div class="col-md-3 col-6">
+									<div class="single-counter-box">
+				        				<div class="number"><span class="timer" data-from="0" data-to="30" data-speed="1200" data-refresh-interval="5">0</span>+</div>
+				        				<p>Years of Excellence</p>
+				        			</div> 
+								</div>  
+								<div class="col-md-3 col-6">
+									<div class="single-counter-box">
+				        				<div class="number"><span class="timer" data-from="0" data-to="100" data-speed="1200" data-refresh-interval="5">0</span>%</div>
+				        				<p>Client Satisfaction</p>
+				        			</div> 
+								</div> 
+								<div class="col-md-3 col-6">
+									<div class="single-counter-box">
+				        				<div class="number"><span class="timer" data-from="0" data-to="53" data-speed="1200" data-refresh-interval="5">0</span>k</div>
+				        				<p>Cases Completed</p>
+				        			</div> 
+								</div> 
+								<div class="col-md-3 col-6">
+									<div class="single-counter-box">
+				        				<div class="number"><span class="timer" data-from="0" data-to="24" data-speed="1200" data-refresh-interval="5">0</span></div>
+				        				<p>Consultants</p> 
+				        			</div> 
+								</div> 
+							</div> 
+						</div>
+					</div> 
+				</div> 
+			</div>  -->
+
+
+			<!-- 
+			=============================================
+				Core Values
+			============================================== 
+			-->
+			<!-- <div class="core-values">
+				<div class="container">
+					<div class="theme-title-one">
+						<h2>CORE VALUES</h2>
+					</div> 
+					<div class="wrapper">
+						<div class="core-value-slider">
+							<div class="item">
+								<div class="single-value-block">
+									<div class="image-box">
+										<img src="images/home/17.jpg" alt="img1">
+										<div class="overlay"><a href="#" class="theme-button-one">READ MORE</a></div>
+									</div>
+									<div class="text">
+										<h5><a href="#">Challenging Staff</a></h5>
+										<p>The Love Boat soon will be making other run plore strange tools.</p>
+									</div>
+								</div> 
+							</div>
+							<div class="item">
+								<div class="single-value-block">
+									<div class="image-box">
+										<img src="images/home/18.jpg" alt="img2">
+										<div class="overlay"><a href="#" class="theme-button-one">READ MORE</a></div>
+									</div>
+									<div class="text">
+										<h5><a href="#">Integrity Properties</a></h5>
+										<p>The Love Boat soon will be making other run plore strange tools.</p>
+									</div>
+								</div> 
+							</div> 
+							<div class="item">
+								<div class="single-value-block">
+									<div class="image-box">
+										<img src="images/home/19.jpg" alt="img3">
+										<div class="overlay"><a href="#" class="theme-button-one">READ MORE</a></div>
+									</div> 
+									<div class="text">
+										<h5><a href="#">Innovation Solutions</a></h5>
+										<p>The Love Boat soon will be making other run plore strange tools.</p> 
+									</div> 
+								</div> 
+							</div> 
+						</div> 
+					</div>
+				</div>
+			</div> -->
+
+
+
+			<!--
+			=====================================================
+				Partner Slider
+			=====================================================
+			-->
+		
+
+
+
 			<div class="testimonial-section section-spacing">
 				<div class="overlay">
 					<div class="container">
@@ -389,26 +579,14 @@
 							<div class="bg">
 								<div class="testimonial-slider">
 									<div class="item">
-										<p>“ A tale of a fateful trip that started from this tropic port aboard this tiny ship today still wanted by the government they survive as soldiers of fortune to a deluxe apartment in the sky moving on up to the east side a family. ”</p>
-										<div class="name">
-											<h6>Shawn Michael</h6>
-											<span>Founder, Mnc Inc.</span>
-										</div> <!-- /.name -->
+										<p>“The "Excellence in Cyber Security: Cyberdome Initiative" achievement highlights the Kerala Police's significant strides in tackling the growing threat of cybercrime through its technological research and development center, Cyberdome. This initiative has garnered national recognition, exemplified by the FICCI SMART Policing Award in 2018 for Cyber Security, underscoring Cyberdome's effective public-private partnerships and proactive measures. Its successes include establishing a Social Media Lab to address online challenges, hosting the international COCON conference for knowledge sharing, conducting crucial security assessments for government websites, providing vital cyber security training, actively monitoring the darknet, and developing innovative tools like the Piracy Tracker. Furthermore, Cyberdome's expansion with new wings and its development of child safety programs like "KIDGLOVE" and advanced tracking software demonstrate its commitment to a comprehensive and evolving approach to cyber security, making it a notable achievement for the Kerala Police. ”</p>
+										
 									</div> <!-- /.item -->
 									<div class="item">
-										<p>“ A tale of a fateful trip that started from this tropic port aboard this tiny ship today still wanted by the government they survive as soldiers of fortune to a deluxe apartment in the sky moving on up to the east side a family. ”</p>
-										<div class="name">
-											<h6>Rashed Ka.</h6>
-											<span>Founder, Mnc Inc.</span>
-										</div> <!-- /.name -->
+										<p>“ The Kerala Police's commendable achievement in disaster response is significantly bolstered by their well-established and effective coordination mechanisms with various crucial entities. This involves seamless collaboration with other government agencies, ensuring clear communication channels for rapid information exchange and joint planning through pre-disaster training exercises that define distinct roles and responsibilities. Furthermore, their integration into centralized command and control structures during crises allows for strategic decision-making and efficient resource allocation alongside the National Disaster Response Force (NDRF). Recognizing the vital role of community participation, the Kerala Police also actively collaborates with volunteer groups, integrating their efforts into the overall response strategy. This cohesive and collaborative approach ensures a unified and impactful response during natural calamities, maximizing their ability to save lives and provide aid effectively. ”</p>
+										
 									</div> <!-- /.item -->
-									<div class="item">
-										<p>“ A tale of a fateful trip that started from this tropic port aboard this tiny ship today still wanted by the government they survive as soldiers of fortune to a deluxe apartment in the sky moving on up to the east side a family. ”</p>
-										<div class="name">
-											<h6>Mahfuz Riad</h6>
-											<span>Founder, Mnc Inc.</span>
-										</div> <!-- /.name -->
-									</div> <!-- /.item -->
+								
 								</div> <!-- /.testimonial-slider -->
 							</div> <!-- /.bg -->
 						</div> <!-- /.wrapper -->
@@ -421,214 +599,29 @@
 			=====================================================
 				Our Team
 			=====================================================
-			-->
-			<div class="our-team section-spacing">
-				<div class="container">
-					<div class="theme-title-one">
-						<h2>Our TEAM</h2>
-						<p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today stillers</p>
-					</div> <!-- /.theme-title-one -->
-					<div class="wrapper">
-						<div class="row">
-							<div class="col-lg-3 col-sm-6 col-12">
-								<div class="team-member">
-									<div class="image-box">
-										<img src="images/team/1.jpg" alt="">
-										<div class="overlay">
-											<div class="hover-content">
-												<ul>
-													<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-													<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-													<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-												</ul>
-												<p>The government they survive as soldiers of fortune.</p>
-											</div> <!-- /.hover-content -->
-										</div> <!-- /.overlay -->
-									</div> <!-- /.image-box -->
-									<div class="text">
-										<h6>Richards Mills</h6>
-										<span>Sales Consultant</span>
-									</div> <!-- /.text -->
-								</div> <!-- /.team-member -->
-							</div> <!-- /.col- -->
-							<div class="col-lg-3 col-sm-6 col-12">
-								<div class="team-member">
-									<div class="image-box">
-										<img src="images/team/2.jpg" alt="">
-										<div class="overlay">
-											<div class="hover-content">
-												<ul>
-													<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-													<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-													<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-												</ul>
-												<p>The government they survive as soldiers of fortune.</p>
-											</div> <!-- /.hover-content -->
-										</div> <!-- /.overlay -->
-									</div> <!-- /.image-box -->
-									<div class="text">
-										<h6>Mike Hussey</h6>
-										<span>Founder, CEO</span>
-									</div> <!-- /.text -->
-								</div> <!-- /.team-member -->
-							</div> <!-- /.col- -->
-							<div class="col-lg-3 col-sm-6 col-12">
-								<div class="team-member">
-									<div class="image-box">
-										<img src="images/team/3.jpg" alt="">
-										<div class="overlay">
-											<div class="hover-content">
-												<ul>
-													<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-													<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-													<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-												</ul>
-												<p>The government they survive as soldiers of fortune.</p>
-											</div> <!-- /.hover-content -->
-										</div> <!-- /.overlay -->
-									</div> <!-- /.image-box -->
-									<div class="text">
-										<h6>Jenilia D’sosa</h6>
-										<span>Marketing Lead</span>
-									</div> <!-- /.text -->
-								</div> <!-- /.team-member -->
-							</div> <!-- /.col- -->
-							<div class="col-lg-3 col-sm-6 col-12">
-								<div class="team-member">
-									<div class="image-box">
-										<img src="images/team/4.jpg" alt="">
-										<div class="overlay">
-											<div class="hover-content">
-												<ul>
-													<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-													<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-													<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-												</ul>
-												<p>The government they survive as soldiers of fortune.</p>
-											</div> <!-- /.hover-content -->
-										</div> <!-- /.overlay -->
-									</div> <!-- /.image-box -->
-									<div class="text">
-										<h6>David Warner</h6>
-										<span>SEO Analyst</span>
-									</div> <!-- /.text -->
-								</div> <!-- /.team-member -->
-							</div> <!-- /.col- -->
-						</div> <!-- /.row -->
-					</div> <!-- /.wrapper -->
-				</div> <!-- /.container -->
-			</div> <!-- /.our-team -->
 
-
-			<!--
-			=====================================================
-				Theme Counter
-			=====================================================
-			-->
-			<div class="theme-counter section-spacing">
-				<div class="container">
-					<div class="bg">
-						<h6>Company Success</h6>
-						<h2>Some fun facts about our consulting</h2>
-
-						<div class="cunter-wrapper">
-							<div class="row">
-								<div class="col-md-3 col-6">
-									<div class="single-counter-box">
-				        				<div class="number"><span class="timer" data-from="0" data-to="30" data-speed="1200" data-refresh-interval="5">0</span>+</div>
-				        				<p>Years of Excellence</p>
-				        			</div> <!-- /.single-counter-box -->
-								</div>  <!-- /.col- -->
-								<div class="col-md-3 col-6">
-									<div class="single-counter-box">
-				        				<div class="number"><span class="timer" data-from="0" data-to="100" data-speed="1200" data-refresh-interval="5">0</span>%</div>
-				        				<p>Client Satisfaction</p>
-				        			</div> <!-- /.single-counter-box -->
-								</div>  <!-- /.col- -->
-								<div class="col-md-3 col-6">
-									<div class="single-counter-box">
-				        				<div class="number"><span class="timer" data-from="0" data-to="53" data-speed="1200" data-refresh-interval="5">0</span>k</div>
-				        				<p>Cases Completed</p>
-				        			</div> <!-- /.single-counter-box -->
-								</div>  <!-- /.col- -->
-								<div class="col-md-3 col-6">
-									<div class="single-counter-box">
-				        				<div class="number"><span class="timer" data-from="0" data-to="24" data-speed="1200" data-refresh-interval="5">0</span></div>
-				        				<p>Consultants</p>
-				        			</div> <!-- /.single-counter-box -->
-								</div>  <!-- /.col- -->
-							</div> <!-- /.row -->
-						</div> <!-- /.cunter-wrapper -->
-						<a href="#" class="theme-button-one">VIEW CASE STUDIES</a>
-					</div> <!-- /.bg -->
-				</div> <!-- /.container -->
-			</div> <!-- /.theme-counter -->
-
-
-			<!--
-			=====================================================
-				Free Consultation
-			=====================================================
-			-->
-			<div class="consultation-form section-spacing">
-				<div class="container">
-					<div class="theme-title-one">
-						<h2>FREE CONSULTATION</h2>
-						<p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today stillers</p>
-					</div> <!-- /.theme-title-one -->
-					<div class="clearfix main-content no-gutters row">
-						<div class="col-xl-6 col-lg-5 col-12"><div class="img-box"></div></div>
-						<div class="col-xl-6 col-lg-7 col-12">
-							<div class="form-wrapper">
-								<form action="#" class="theme-form-one">
-									<div class="row">
-										<div class="col-md-6"><input type="text" placeholder="Name *"></div>
-										<div class="col-md-6"><input type="text" placeholder="Phone *"></div>
-										<div class="col-md-6"><input type="email" placeholder="Email *"></div>
-										<div class="col-md-6">
-											<select class="form-control" id="exampleSelect1">
-										      <option>Service you’re looking for?</option>
-										      <option>Business Services</option>
-										      <option>Consumer Product</option>
-										      <option>Financial Services</option>
-										      <option>Software Research</option>
-										    </select>
-										</div>
-										<div class="col-12"><textarea placeholder="Message"></textarea></div>
-									</div> <!-- /.row -->
-									<button class="theme-button-one">GET A QUOTES</button>
-								</form>
-							</div> <!-- /.form-wrapper -->
-						</div> <!-- /.col- -->
-					</div> <!-- /.main-content -->
-				</div> <!-- /.container -->
-			</div> <!-- /.consultation-form -->
-
-
-
-			<!--
 			=====================================================
 				Partner Slider
 			=====================================================
 			-->
-			<div class="partner-section bg-color">
+			<!-- <div class="partner-section bg-color">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-3 col-sm-4 col-12">
-							<h6>OUR <br>PARTNERS</h6>
+							<h6>Our <br>Achievement</h6>
 						</div>
 						<div class="col-md-9 col-sm-8 col-12">
 							<div class="partner-slider">
-								<div class="item"><img src="images/logo/p-1.png" alt=""></div>
-								<div class="item"><img src="images/logo/p-2.png" alt=""></div>
-								<div class="item"><img src="images/logo/p-3.png" alt=""></div>
-								<div class="item"><img src="images/logo/p-4.png" alt=""></div>
-								<div class="item"><img src="images/logo/p-5.png" alt=""></div>
+								<div class="item"><img src="../static/charles/images/home/ac1.png" alt="img20"></div>
+								<div class="item"><img src="..static/charles/images/logo/p-2.png" alt="img21"></div>
+								<div class="item"><img src="images/logo/p-3.png" alt="img22"></div>
+								<div class="item"><img src="images/logo/p-4.png" alt="img23"></div>
+								<div class="item"><img src="images/logo/p-5.png" alt="img24"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div> <!-- /.partner-section -->
+			</div> /.partner-section -->
 
 
 			<!--
@@ -641,30 +634,34 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xl-3 col-lg-4 col-sm-6 about-widget">
-								<h6 class="title">About OUR Consulting</h6>
-								<p>That started from this tropic port aboard this tiny ship today still want by theam government they survive on up to thetre east side to a deluxe as soldiers of artics fortune.</p>
-								<div class="queries"><i class="flaticon-phone-call"></i> Any Queries : <a href="#">(+1) 234 567 900</a></div>
+								<h6 class="title">About Kerala Police</h6>
+                    			<p>Kerala Police is committed to serving and protecting the citizens with honesty, integrity and dedication. Our motto "Mridhu Bhave Dhrida Kruthye" guides our actions in maintaining law and order.</p>
+                    			<div class="queries"><i class="flaticon-phone-call"></i> Emergency : <a href="#">112</a></div>
 							</div> <!-- /.about-widget -->
-							<div class="col-xl-4 col-lg-3 col-sm-6 footer-recent-post">
-								<h6 class="title">RECENT POSTS</h6>
+							<div class="col-xl-4 col-lg-3 col-sm-6 footer-recent-post" style="float: left;">
+								<h6 class="title">QUICK LINKS</h6>
 								<ul>
-									<li class="clearfix">
-										<img src="images/blog/1.jpg" alt="" class="float-left">
-										<div class="post float-left">
-											<a href="blog-details.html">Till wanted by theam govern they survive as soldiers.</a>
-											<div class="date"><i class="fa fa-calendar-o" aria-hidden="true"></i> Feb 06, 2018</div>
-										</div>
-									</li>
-									<li class="clearfix">
-										<img src="images/blog/2.jpg" alt="" class="float-left">
-										<div class="post float-left">
-											<a href="blog-details.html">World don't move to beat of just one drum.</a>
-											<div class="date"><i class="fa fa-calendar-o" aria-hidden="true"></i> Mar 20, 2018</div>
-										</div>
-									</li>
+									<li><a href="https://keralapolice.gov.in/" style="color: white;">Official Website</a></li>
+                    			    <li><a href="https://thuna.keralapolice.gov.in/" style="color: white;">Thuna - Police Support</a></li>
+                    			    <li><a href="https://www.cyberdome.kerala.gov.in/ " style="color: white;">Cyberdome</a></li>
+                    			    <li><a href="https://www.keralapolice.gov.in/page/traffic" style="color: white;">Traffic</a></li>
 								</ul>
 							</div> <!-- /.footer-recent-post -->
-							<div class="col-xl-2 col-lg-3 col-sm-6 footer-list">
+							<!-- <div class="bottom-footer" style=" width: 30%; float: right;">
+								<div class="container">
+									<div class="row">
+									
+										<div class="col-md-6 col-12">
+											<ul>
+												<li><a href="about.html" style="padding-bottom: 10px;">About</a></li>
+												<li><a href="service.html" style="padding-bottom: 10px;">Solutions</a></li>
+												<li><a href="contact.html">Contact</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>  -->
+							<!-- <div class="col-xl-2 col-lg-3 col-sm-6 footer-list">
 								<h6 class="title">SOLUTIONS</h6>
 								<ul>
 									<li><a href="#">Travel and Aviation</a></li>
@@ -674,33 +671,19 @@
 									<li><a href="#">Software Research</a></li>
 									<li><a href="#">Quality Resourcing</a></li>
 								</ul>
-							</div> <!-- /.footer-list -->
-							<div class="col-xl-3 col-lg-2 col-sm-6 footer-newsletter">
+							</div> /.footer-list -->
+							<!-- <div class="col-xl-3 col-lg-2 col-sm-6 footer-newsletter">
 								<h6 class="title">NEWSLETTER</h6>
 								<form action="#">
 									<input type="text" placeholder="Name *">
 									<input type="email" placeholder="Email *">
 									<button class="theme-button-one">SUBSCRIBE</button>
 								</form>
-							</div>
+							</div> -->
 						</div> <!-- /.row -->
 					</div> <!-- /.container -->
 				</div> <!-- /.top-footer -->
-				<div class="bottom-footer">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6 col-12"><p>&copy; Copyrights 2018. All Rights Reserved.</p></div>
-							<div class="col-md-6 col-12">
-								<ul>
-									<li><a href="about.html">About</a></li>
-									<li><a href="service.html">Solutions</a></li>
-									<li><a href="#">FAQ’s</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div> <!-- /.bottom-footer -->
+				
 			</footer> <!-- /.theme-footer -->
 			
 
