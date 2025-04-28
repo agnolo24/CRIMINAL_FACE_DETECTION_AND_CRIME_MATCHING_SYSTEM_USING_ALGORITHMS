@@ -12,6 +12,9 @@ import datetime
 def guest_page(request):
     return render(request, 'guest/guest_page.html')
 
+def contact_us(request):
+    return render(request, 'guest/contact.html')
+
 # This function is used for login(using this function login can be done by all three users station, staff, user(public))
 def login_check(request):
     if request.method == 'POST':

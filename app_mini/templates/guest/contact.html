@@ -1,7 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	
-<!-- Mirrored from html.creativegigstf.com/charles/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Dec 2024 09:53:33 GMT -->
+<!-- Mirrored from html.creativegigstf.com/charles/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Dec 2024 09:53:11 GMT -->
 <head>
 		<meta charset="UTF-8">
 		<!-- For IE -->
@@ -17,11 +18,16 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="#061948">
 		<title>Charles-Business-Consulting HTML Template</title>
 		<!-- Favicon -->
-		<link rel="icon" type="image/png" sizes="56x56" href="images/fav-icon/icon.png">
+		<link rel="icon" type="image/png" sizes="56x56" href="{% static 'charles/images/fav-icon/pc_logo.png' %}">
 		<!-- Main style sheet -->
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'charles/css/style.css' %}">
 		<!-- responsive style sheet -->
-		<link rel="stylesheet" type="text/css" href="css/responsive.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'charles/css/responsive.css' %}">
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Bootstrap JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 		<!-- Fix Internet Explorer ______________________________________-->
 		<!--[if lt IE 9]>
@@ -39,7 +45,7 @@
 			==================================================== -->
 			<div id="loader-wrapper">
 				<div id="loader"></div>
-			</div>
+			</div> 
 
 			
 
@@ -51,20 +57,28 @@
 			<header class="header-one">
 				<div class="top-header">
 					<div class="container clearfix">
-						<div class="logo float-left"><a href="index.html"><img src="images/logo/logo.png" alt=""></a></div>
+						<div class="logo float-left"><a href="../"><img style="height: 130px; width: auto;" src="{% static 'charles/images/fav-icon/pc_logo.png' %}" alt="logo"></a></div>
 						<div class="address-wrapper float-right">
 							<ul>
 								<li class="address">
 									<i class="icon flaticon-placeholder"></i>
 									<h6>Address:</h6>
-									<p>2A0, Queenstown St, USA.</p>
+									<p>Vellayambalam, Thiruvananthapuram, kerala 695010.</p>
 								</li>
 								<li class="address">
 									<i class="icon flaticon-multimedia"></i>
 									<h6>Mail us:</h6>
-									<p>supporthere@mail.com</p>
+									<p>cyberops-sec.pol@kerala.gov.in</p>
 								</li>
-								<li class="quotes"><a href="#">GET A QUOTES</a></li>
+								<li class="quotes"><a href="../login_form/">Sign In</a></li>
+								<!-- <li class="quotes dropdown">
+									<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sign Up</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="../user_reg/">User Registration</a></li>
+										<li><a class="dropdown-item" href="../staff_reg/">Staff Registration</a></li>
+										<li><a class="dropdown-item" href="../police_station_reg_form/">Station Registration</a></li>
+									</ul>
+								</li> -->
 							</ul>
 						</div> <!-- /.address-wrapper -->
 					</div> <!-- /.container -->
@@ -77,13 +91,13 @@
 					   		<div class="menu-wrapper float-left">
 					   			<nav id="mega-menu-holder" class="clearfix">
 								   <ul class="clearfix">
-									    <li><a href="#">Home</a>
-									    	<ul class="dropdown">
+									    <li class="active"><a href="../">Home</a>
+									    	<!-- <ul class="dropdown">
 									        	<li><a href="index.html">Home version one</a></li>
 									        	<li><a href="index-2.html">Home version two</a></li>
-									      </ul>
+									      </ul> -->
 									    </li>
-									    <li><a href="#">PAGES</a>
+									    <!-- <li><a href="#">PAGES</a>
 									    	<ul class="dropdown">
 									    		<li><a href="about.html">About us</a></li>
 									    		<li><a href="team.html">Our team</a></li>
@@ -98,15 +112,15 @@
 									    			</ul>
 									    		</li>
 									       </ul>
-									    </li>
-									    <li><a href="#">Service</a>
+									    </li> -->
+									    <li><a href="#">Register</a>
 									    	<ul class="dropdown">
-									        	<li><a href="service.html">Service Version one</a></li>
-									        	<li><a href="service-v2.html">Service version two</a></li>
-									        	<li><a href="service-details.html">Service Details</a></li>
+									        	<li><a href="../user_reg/">User Registration</a></li>
+												<li><a href="../staff_reg/">Staff Registration</a></li>
+												<li><a href="../police_station_reg_form/">Station Registration</a></li>
 									       </ul>
 									    </li>
-									    <li><a href="#">Portfolio</a>
+									    <!-- <li><a href="#">Portfolio</a>
 									    	<ul class="dropdown">
 									        	<li><a href="project.html">project</a></li>
 									        	<li><a href="project-details.html">Project details</a></li>
@@ -118,8 +132,8 @@
 									        	<li><a href="blog-grid.html">Blog Grid</a></li>
 									        	<li><a href="blog-details.html">Blog details</a></li>
 									       </ul>
-									    </li>
-									    <li class="active"><a href="contact.html">contact</a></li>
+									    </li> -->
+									    <li><a href="../contact_us">contact</a></li>
 								   </ul>
 								</nav> <!-- /#mega-menu-holder -->
 					   		</div> <!-- /.menu-wrapper -->
@@ -128,81 +142,94 @@
 					   			<ul>
 					   				<li class="social-icon">
 					   					<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+											<li><a href="https://www.facebook.com/keralapolice/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li><a href="https://x.com/thekeralapolice"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+											<li><a href="https://www.instagram.com/kerala_police/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 										</ul>
 					   				</li>
 					   				<li class="cart-icon">
-					   					<a href="#"><i class="flaticon-tool"></i> <span>2</span></a>
+					   					<!-- <a href="#"><i class="flaticon-tool"></i> <span>2</span></a> -->
 					   				</li>
-					   				<li class="search-option">
-					   					<div class="dropdown">
+					   				<!--<li class="search-option">
+					   					 <div class="dropdown">
 					   						<button type="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search" aria-hidden="true"></i></button>
 											<form action="#" class="dropdown-menu">
 												<input type="text" Placeholder="Enter Your Search">
 												<button><i class="fa fa-search"></i></button>
 											</form>
 					   					</div>
-					   				</li>
+					   				</li> -->
 					   			</ul>
 					   		</div> <!-- /.right-widget -->
 						</div> <!-- /.bg-wrapper -->
 					</div> <!-- /.container -->
 				</div> <!-- /.theme-menu-wrapper -->
 			</header> <!-- /.header-one -->
-
-			
-			<!--
-			=====================================================
-				Google Map
-			=====================================================
-			-->
-			<!-- Google Map -->
-			<div class="google-map-two section-spacing"><div class="map-canvas"></div></div>
-
-
-			<!-- 
-			=============================================
-				Conatct us Section
-			============================================== 
-			-->
+		
 			<div class="contact-us-section section-spacing">
 				<div class="container">
 					<div class="theme-title-one">
+						<br><br><br>
+
 						<h2>GET IN TOUCH</h2>
-						<p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today stillers</p>
+				
 					</div> <!-- /.theme-title-one -->
 					<div class="clearfix main-content no-gutters row">
 						<div class="col-lg-5 col-12"><div class="img-box"></div></div>
 						<div class="col-lg-7 col-12">
-							<div class="form-wrapper">
-								<form action="https://html.creativegigstf.com/charles/inc/sendemail.php" class="theme-form-one form-validation" autocomplete="off">
-									<div class="row">
-										<div class="col-sm-6 col-12"><input type="text" placeholder="Name *" name="name"></div>
-										<div class="col-sm-6 col-12"><input type="text" placeholder="Phone *" name="phone"></div>
-										<div class="col-sm-6 col-12"><input type="email" placeholder="Email *" name="email"></div>
-										<div class="col-sm-6 col-12"><input type="text" placeholder="Website *" name="web"></div>
-										<div class="col-12"><textarea placeholder="Message" name="message"></textarea></div>
-									</div> <!-- /.row -->
-									<button class="theme-button-one">SEND MESSAGE</button>
-								</form>
-							</div> <!-- /.form-wrapper -->
+							
+								
+										<div class="row">
+											<div class="col-md-6 mb-4">
+												<div class="contact-card p-4 bg-light rounded shadow-sm">
+													<h4 class="mb-3"><i class="fa fa-map-marker text-primary"></i> Headquarters</h4>
+													<p>Kerala Police Headquarters<br>
+													Vellayambalam, Thiruvananthapuram<br>
+													Kerala - 695010</p>
+												</div>
+											</div>
+											<div class="col-md-6 mb-4">
+												<div class="contact-card p-4 bg-light rounded shadow-sm">
+													<h4 class="mb-3"><i class="fa fa-phone text-primary"></i> Emergency Contacts</h4>
+													<p>Police Control Room: 112<br>
+													Women Helpline: 1091<br>
+													Child Helpline: 1098</p>
+												</div>
+											</div>
+											<div class="col-md-6 mb-4">
+												<div class="contact-card p-4 bg-light rounded shadow-sm">
+													<h4 class="mb-3"><i class="fa fa-envelope text-primary"></i> Email</h4>
+													<p>General Enquiries:<br>
+													statepolicechief.pol@kerala.gov.in<br>
+													Cybercrime:<br>
+													cyberps.pol@kerala.gov.in</p>
+												</div>
+											</div>
+											<div class="col-md-6 mb-4">
+												<div class="contact-card p-4 bg-light rounded shadow-sm">
+													<h4 class="mb-3"><i class="fa fa-clock-o text-primary"></i> Working Hours</h4>
+													<p>Control Room: 24/7<br>
+													Administrative Office:<br>
+													Monday - Saturday<br>
+													10:00 AM - 5:00 PM</p>
+												</div>
+											</div>
+										</div>
+							
 						</div> <!-- /.col- -->
 					</div> <!-- /.main-content -->
 				</div> <!-- /.container -->
 
 				<!--Contact Form Validation Markup -->
 				<!-- Contact alert -->
-				<div class="alert-wrapper" id="alert-success">
+				<!-- <div class="alert-wrapper" id="alert-success">
 					<div id="success">
 						<button class="closeAlert"><i class="fa fa-times" aria-hidden="true"></i></button>
 						<div class="wrapper">
 			               	<p>Your message was sent successfully.</p>
 			             </div>
 			        </div>
-			    </div> <!-- End of .alert_wrapper -->
+			    </div> 
 			    <div class="alert-wrapper" id="alert-error">
 			        <div id="error">
 			           	<button class="closeAlert"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -210,8 +237,8 @@
 			               	<p>Sorry!Something Went Wrong.</p>
 			            </div>
 			        </div>
-			    </div> <!-- End of .alert_wrapper -->
-			</div> <!-- /.contact-us-section -->
+			    </div> 
+			</div>-->
 
 
 
@@ -220,7 +247,7 @@
 				Compnay Branch Address
 			============================================== 
 			-->
-			<div class="branch-address">
+			<!-- <div class="branch-address">
 				<div class="container">
 					<div class="row">
 						<div class="address-slider">
@@ -228,30 +255,29 @@
 								<div class="wrapper">
 									<h6>United States Office</h6>
 									<p><i class="fa fa-address-book-o" aria-hidden="true"></i> 23A, Queenstown St, Log Vegas, United States.</p>
-								</div> <!-- /.wrapper -->
+								</div> 
 							</div>
 							<div class="item">
 								<div class="wrapper">
 									<h6>Australia Office</h6>
 									<p><i class="fa fa-address-book-o" aria-hidden="true"></i> consult floor, melbourne, Australia.</p>
-								</div> <!-- /.wrapper -->
+								</div> 
 							</div>
 							<div class="item">
 								<div class="wrapper">
 									<h6>Germany Office</h6>
-									<p><i class="fa fa-address-book-o" aria-hidden="true"></i> no:108, shshi st, berlin, <br> Germany.</p>
-								</div> <!-- /.wrapper -->
+									<p>
 							</div>
 							<div class="item">
 								<div class="wrapper">
 									<h6>London Office</h6>
 									<p><i class="fa fa-address-book-o" aria-hidden="true"></i> cityhigh, clock bell floor, United Kingdom.</p>
-								</div> <!-- /.wrapper -->
+								</div> 
 							</div>
-						</div> <!-- /.address-slider -->
+						</div>
 					</div>
-				</div> <!-- /.container -->
-			</div> <!-- /.branch-address -->
+				</div> 
+			</div>  -->
 			
 			
 
@@ -266,30 +292,34 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xl-3 col-lg-4 col-sm-6 about-widget">
-								<h6 class="title">About OUR Consulting</h6>
-								<p>That started from this tropic port aboard this tiny ship today still want by theam government they survive on up to thetre east side to a deluxe as soldiers of artics fortune.</p>
-								<div class="queries"><i class="flaticon-phone-call"></i> Any Queries : <a href="#">(+1) 234 567 900</a></div>
+								<h6 class="title">About Kerala Police</h6>
+                    			<p>Kerala Police is committed to serving and protecting the citizens with honesty, integrity and dedication. Our motto "Mridhu Bhave Dhrida Kruthye" guides our actions in maintaining law and order.</p>
+                    			<div class="queries"><i class="flaticon-phone-call"></i> Emergency : <a href="#">112</a></div>
 							</div> <!-- /.about-widget -->
-							<div class="col-xl-4 col-lg-3 col-sm-6 footer-recent-post">
-								<h6 class="title">RECENT POSTS</h6>
+							<div class="col-xl-4 col-lg-3 col-sm-6 footer-recent-post" style="float: left;">
+								<h6 class="title">QUICK LINKS</h6>
 								<ul>
-									<li class="clearfix">
-										<img src="images/blog/1.jpg" alt="" class="float-left">
-										<div class="post float-left">
-											<a href="blog-details.html">Till wanted by theam govern they survive as soldiers.</a>
-											<div class="date"><i class="fa fa-calendar-o" aria-hidden="true"></i> Feb 06, 2018</div>
-										</div>
-									</li>
-									<li class="clearfix">
-										<img src="images/blog/2.jpg" alt="" class="float-left">
-										<div class="post float-left">
-											<a href="blog-details.html">World don't move to beat of just one drum.</a>
-											<div class="date"><i class="fa fa-calendar-o" aria-hidden="true"></i> Mar 20, 2018</div>
-										</div>
-									</li>
+									<li><a href="https://keralapolice.gov.in/" style="color: white;">Official Website</a></li>
+                    			    <li><a href="https://thuna.keralapolice.gov.in/" style="color: white;">Thuna - Police Support</a></li>
+                    			    <li><a href="https://www.cyberdome.kerala.gov.in/ " style="color: white;">Cyberdome</a></li>
+                    			    <li><a href="https://www.keralapolice.gov.in/page/traffic" style="color: white;">Traffic</a></li>
 								</ul>
 							</div> <!-- /.footer-recent-post -->
-							<div class="col-xl-2 col-lg-3 col-sm-6 footer-list">
+							<!-- <div class="bottom-footer" style=" width: 30%; float: right;">
+								<div class="container">
+									<div class="row">
+									
+										<div class="col-md-6 col-12">
+											<ul>
+												<li><a href="about.html" style="padding-bottom: 10px;">About</a></li>
+												<li><a href="service.html" style="padding-bottom: 10px;">Solutions</a></li>
+												<li><a href="contact.html">Contact</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>  -->
+							<!-- <div class="col-xl-2 col-lg-3 col-sm-6 footer-list">
 								<h6 class="title">SOLUTIONS</h6>
 								<ul>
 									<li><a href="#">Travel and Aviation</a></li>
@@ -299,33 +329,19 @@
 									<li><a href="#">Software Research</a></li>
 									<li><a href="#">Quality Resourcing</a></li>
 								</ul>
-							</div> <!-- /.footer-list -->
-							<div class="col-xl-3 col-lg-2 col-sm-6 footer-newsletter">
+							</div> /.footer-list -->
+							<!-- <div class="col-xl-3 col-lg-2 col-sm-6 footer-newsletter">
 								<h6 class="title">NEWSLETTER</h6>
 								<form action="#">
 									<input type="text" placeholder="Name *">
 									<input type="email" placeholder="Email *">
 									<button class="theme-button-one">SUBSCRIBE</button>
 								</form>
-							</div>
+							</div> -->
 						</div> <!-- /.row -->
 					</div> <!-- /.container -->
 				</div> <!-- /.top-footer -->
-				<div class="bottom-footer">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6 col-12"><p>&copy; Copyrights 2018. All Rights Reserved.</p></div>
-							<div class="col-md-6 col-12">
-								<ul>
-									<li><a href="about.html">About</a></li>
-									<li><a href="service.html">Solutions</a></li>
-									<li><a href="#">FAQ’s</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div> <!-- /.bottom-footer -->
+				
 			</footer> <!-- /.theme-footer -->
 			
 
@@ -342,38 +358,31 @@
 
     	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
     	<!-- jQuery -->
-		<script src="vendor/jquery.2.2.3.min.js"></script>
+		<script src="{% static 'charles/vendor/jquery.2.2.3.min.js' %}"></script>
 		<!-- Popper js -->
-		<script src="vendor/popper.js/popper.min.js"></script>
+		<script src="{% static 'charles/vendor/popper.js/popper.min.js' %}"></script>
 		<!-- Bootstrap JS -->
-		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="{% static 'charles/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 		<!-- Camera Slider -->
-		<script src='vendor/Camera-master/scripts/jquery.mobile.customized.min.js'></script>
-	    <script src='vendor/Camera-master/scripts/jquery.easing.1.3.js'></script> 
-	    <script src='vendor/Camera-master/scripts/camera.min.js'></script>
+		<script src="{% static 'charles/vendor/Camera-master/scripts/jquery.mobile.customized.min.js' %}"></script>
+	    <script src="{% static 'charles/vendor/Camera-master/scripts/jquery.easing.1.3.js' %}"></script> 
+	    <script src="{% static 'charles/vendor/Camera-master/scripts/camera.min.js' %}"></script>
 	    <!-- menu  -->
-		<script src="vendor/menu/src/js/jquery.slimmenu.js"></script>
+		<script src="{% static 'charles/vendor/menu/src/js/jquery.slimmenu.js' %}"></script>
 		<!-- WOW js -->
-		<script src="vendor/WOW-master/dist/wow.min.js"></script>
+		<script src="{% static 'charles/vendor/WOW-master/dist/wow.min.js' %}"></script>
 		<!-- owl.carousel -->
-		<script src="vendor/owl-carousel/owl.carousel.min.js"></script>
+		<script src="{% static 'charles/vendor/owl-carousel/owl.carousel.min.js' %}"></script>
 		<!-- js count to -->
-		<script src="vendor/jquery.appear.js"></script>
-		<script src="vendor/jquery.countTo.js"></script>
+		<script src="{% static 'charles/vendor/jquery.appear.js' %}"></script>
+		<script src="{% static 'charles/vendor/jquery.countTo.js' %}"></script>
 		<!-- Fancybox -->
-		<script src="vendor/fancybox/dist/jquery.fancybox.min.js"></script>
-		<!-- Validation -->
-		<script type="text/javascript" src="vendor/contact-form/validate.js"></script>
-		<script type="text/javascript" src="vendor/contact-form/jquery.form.js"></script>
-		<!-- Google map js -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjQLCCbRKFhsr8BY78g2PQ0_bTyrm_YXU"></script>
-		<script src="vendor/sanzzy-map/dist/snazzy-info-window.min.js"></script>
+		<script src="{% static 'charles/vendor/fancybox/dist/jquery.fancybox.min.js' %}"></script>
 
 		<!-- Theme js -->
-		<script src="js/theme.js"></script>
-		<script src="js/map-script.js"></script>
+		<script src="{% static 'charles/js/theme.js' %}"></script>
 		</div> <!-- /.main-page-wrapper -->
 	</body>
 
-<!-- Mirrored from html.creativegigstf.com/charles/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Dec 2024 09:53:33 GMT -->
+<!-- Mirrored from html.creativegigstf.com/charles/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Dec 2024 09:53:11 GMT -->
 </html>
