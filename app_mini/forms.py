@@ -52,6 +52,13 @@ class staff_registration_form(forms.ModelForm):
     class Meta:
         model = staff
         fields = ['staff_id', 'full_name', 'address', 'contact', 'designation', 'gender', 'date_of_birth', 'station']
+        widgets = {
+            'address': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3,
+                'placeholder': 'Enter address here'
+            }),
+        }
         
 
 

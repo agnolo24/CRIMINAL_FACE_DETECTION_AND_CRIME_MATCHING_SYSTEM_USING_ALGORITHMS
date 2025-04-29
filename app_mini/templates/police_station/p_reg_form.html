@@ -1,16 +1,79 @@
 {% extends "guest/head_foot.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
-    
-    <div class="container">
-        <h1>Register</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{p_reg_form.as_p}}
-            {{log.as_p}}
-            <button type="submit">Submit</button>
-        </form>
+<br><br><br><br>
+<div class="container_1 py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0">Police Station Registration</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" class="needs-validation">
+                        {% csrf_token %}
+                        {% for field in p_reg_form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                {{ field|add_class:"form-control" }}
+                                {% if field.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ field.errors|join:", " }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        {% for field in log %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                {{ field|add_class:"form-control" }}
+                                {% if field.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ field.errors|join:", " }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Register Station</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-
+<style>
+    .container_1 {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: 15px;
+    }
+    .card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+        border: none;
+        background-color: #ffffff;
+    }
+    .card-header {
+        background-color: #061948 !important;
+        border-radius: 10px 10px 0 0 !important;
+    }
+    .form-control:focus {
+        border-color: #061948;
+        box-shadow: 0 0 0 0.2rem rgba(6, 25, 72, 0.25);
+    }
+    .btn-primary {
+        background-color: #061948;
+        border-color: #061948;
+    }
+    .btn-primary:hover {
+        background-color: #0a2666;
+        border-color: #0a2666;
+    }
+</style>
 {% endblock %}
