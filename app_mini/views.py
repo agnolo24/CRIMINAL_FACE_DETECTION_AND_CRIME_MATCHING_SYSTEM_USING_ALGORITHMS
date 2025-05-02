@@ -595,6 +595,14 @@ def view_salary_details(request):
     salary_details = Salary.objects.get(designation = staff_data.designation)
     return render(request, 'staff/view_salary_details.html', {'salary_details':salary_details})
 
+def view_fir_staff(request):
+    staff_id = request.session.get('staff_id')
+    log_staf = get_object_or_404(login_table, id = staff_id)
+    staff_data = staff.objects.get(login_id = log_staf)
+    station = staff_data.station
+    fir = FIR.objects.filter(police_station = station)
+    return render(request, 'staff/view_fir_staff.html', {'fir':fir})
+
             # ending of staff model views
 
             # starting of webadmin model views
