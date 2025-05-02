@@ -42,6 +42,7 @@ urlpatterns = [
     path('promotion/<str:staff_id>', views.promotion, name='promotion'),
 
     #user
+    path('return_contact/', views.return_contact, name='return_contact'),
     path('user_reg/', views.user_reg, name='user_reg'),
     path('user_home/', views.user_home, name='user_home'),
     path('user_profile/',views.user_profile,name='user_profile'),

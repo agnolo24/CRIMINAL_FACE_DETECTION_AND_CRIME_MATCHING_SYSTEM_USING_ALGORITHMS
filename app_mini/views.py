@@ -376,6 +376,9 @@ def promotion(request, staff_id):
 
 
 
+def return_contact(request):
+    return render(request, 'public/contact.html')
+
 # This function is used for user(public) registration
 def user_reg(request):
     if request.method == 'POST':
