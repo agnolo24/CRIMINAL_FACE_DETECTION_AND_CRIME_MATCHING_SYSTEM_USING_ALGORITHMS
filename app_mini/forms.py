@@ -51,7 +51,7 @@ class EnquiryForm(forms.ModelForm):
 class staff_registration_form(forms.ModelForm):
     class Meta:
         model = staff
-        fields = ['staff_id', 'full_name', 'address', 'contact', 'designation', 'gender', 'date_of_birth', 'station']
+        fields = ['profile_picture','staff_id', 'full_name', 'address', 'contact', 'designation', 'gender', 'date_of_birth', 'station']
         widgets = {
             'address': forms.Textarea(attrs={
                 'class': 'form-control',
@@ -65,7 +65,7 @@ class staff_registration_form(forms.ModelForm):
 class staff_edit_form(forms.ModelForm):
     class Meta:
         model = staff
-        fields = ['full_name', 'address', 'contact', 'designation', 'gender', 'date_of_birth']
+        fields = ['profile_picture','full_name', 'address', 'contact', 'designation', 'gender', 'date_of_birth']
         widgets = {
                    'full_name' : forms.TextInput(attrs={'class' : 'form-control'}),
                    'address' : forms.Textarea(attrs={'class' : 'form-control'}),

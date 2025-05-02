@@ -51,6 +51,7 @@ class staff(models.Model):
         ('HC', 'Head Constable'),
         ('PC', 'Police Constable')
     ]
+    profile_picture = models.ImageField(upload_to='profile_staff/', null=True)
     staff_id = models.CharField(max_length=50, primary_key=True)
     login_id = models.ForeignKey(login, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=100)

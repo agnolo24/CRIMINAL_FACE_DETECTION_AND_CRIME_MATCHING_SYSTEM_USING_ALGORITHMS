@@ -534,7 +534,7 @@ def return_contact_staff(request):
 def staff_reg_form(request):
     if request.method == 'POST':
         log = login_form(request.POST)
-        form = staff_registration_form(request.POST)
+        form = staff_registration_form(request.POST, request.FILES)
         if form.is_valid() and log.is_valid():
             log_inst=log.save(commit=False)
             log_inst.user_type='staff'
@@ -565,7 +565,7 @@ def edit_staff_profile(request):
     log_staf = get_object_or_404(login_table, id = staff_id)
     data = staff.objects.get(login_id = log_staf)
     if request.method == 'POST':
-        form = staff_edit_form(request.POST, instance=data)
+        form = staff_edit_form(request.POST,request.FILES,  instance=data)
         if form.is_valid():
             form.save()
             return redirect('staff_profile')
