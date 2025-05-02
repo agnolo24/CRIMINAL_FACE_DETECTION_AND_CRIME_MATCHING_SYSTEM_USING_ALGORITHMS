@@ -128,3 +128,17 @@ class ComplaintForm(forms.ModelForm):
     class Meta:
         model = Complaint
         fields = ['msg']
+        labels = {
+            'msg': 'Your Complaint'
+        }
+        widgets = {
+            'msg': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 4,
+                'placeholder': 'Please describe your complaint in detail...',
+                'style': 'resize: vertical;'
+            })
+        }
+        help_texts = {
+            'msg': 'Provide specific details about your complaint regarding the petition response'
+        }
