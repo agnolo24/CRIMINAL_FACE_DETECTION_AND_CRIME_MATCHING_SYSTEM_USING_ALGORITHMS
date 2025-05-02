@@ -1,15 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enquiry Form</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% extends 'public/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="enquiry-card" style="background: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); padding: 40px;">
+                    <div class="card-header text-center" style="margin-bottom: 30px;">
+                        <h2 style="color: #1e4e95; font-weight: 600;">Submit Enquiry</h2>
+                        <p style="color: #666;">Please provide your enquiry details below</p>
+                    </div>
+
+                    <form method="post" class="enquiry-form">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group" style="margin-bottom: 20px;">
+                                <label for="{{ field.id_for_label }}" style="color: #333; font-weight: 600; margin-bottom: 8px;">
+                                    {{ field.label }}
+                                </label>
+                                <div class="field-wrapper" style="margin-bottom: 5px;">
+                                    {{ field }}
+                                </div>
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <div class="error-message" style="color: #dc3545; font-size: 14px; margin-top: 5px;">
+                                            {{ error }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if field.help_text %}
+                                    <small class="help-text" style="color: #666; font-size: 12px;">{{ field.help_text }}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-actions" style="margin-top: 30px; text-align: center;">
+                            <button type="submit" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 12px 30px; border-radius: 5px; color: white; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <i class="fa fa-paper-plane"></i> Submit Enquiry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .enquiry-form input[type="text"],
+    .enquiry-form input[type="email"],
+    .enquiry-form textarea {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    .enquiry-form input:focus,
+    .enquiry-form textarea:focus {
+        border-color: #1e4e95;
+        box-shadow: 0 0 0 2px rgba(30,78,149,0.1);
+        outline: none;
+    }
+
+    .btn-primary:hover {
+        background: #163c75 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    }
+</style>
+{% endblock %}

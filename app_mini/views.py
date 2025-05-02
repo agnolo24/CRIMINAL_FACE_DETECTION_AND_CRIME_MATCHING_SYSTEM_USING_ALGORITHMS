@@ -435,8 +435,9 @@ def search_station(request):
             except police_station_registration.DoesNotExist:
                 messages.error(request, 'Police station does not exist')
     else:
+        station_data = police_station_registration.objects.all()
         form = search_station_form()
-    return render(request, 'public/search_station.html', {'form' : form})
+    return render(request, 'public/search_station.html', {'form' : form, 'station_data':station_data})
 
 def enquiry_function(request, station_id):
     if request.method == 'POST':

@@ -1,57 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Station</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .form-container {
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        .form-container button {
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div class="form-container">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
+{% extends 'public/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <!-- Search Form Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="search-card" style="background: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); padding: 40px;">
+                    <div class="card-header text-center" style="margin-bottom: 30px;">
+                        <h2 style="color: #1e4e95; font-weight: 600;">Search Police Station</h2>
+                        <p style="color: #666;">Enter station ID to find details</p>
+                    </div>
+
+                    <form method="post" class="search-form" style="margin-bottom: 30px;">
+                        {% csrf_token %}
+                        <div class="input-group" style="display: flex; justify-content: center;">
+                            <div style="width: 70%;">
+                                {{ form.as_p }}
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 10px 30px; border-radius: 5px; margin-left: 10px;">
+                                <i class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+                    </form>
+
+                    {% if messages %}
+                        <div class="alert alert-info" style="border-radius: 5px; margin-bottom: 20px;">
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        {% if station_data %}
+        <div class="row">
+            {% for station in station_data %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="station-card" style="background: #ffffff; border-radius: 15px; box-shadow: 0 0 15px rgba(0,0,0,0.1); height: 100%; overflow: hidden;">
+                    <!-- Station Header -->
+                    <div class="station-header" style="background: #1e4e95; color: white; padding: 15px; text-align: center;">
+                        <h4 style="margin: 0; font-weight: 600; color: white;">{{station.station_id}}</h4>
+                    </div>
+                    
+                    <!-- Station Details -->
+                    <div class="station-body" style="padding: 20px;">
+                        <!-- Contact Info -->
+                        <div class="info-box" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <i class="fa fa-phone" style="color: #1e4e95; margin-right: 10px;"></i>
+                                <p style="margin: 0; color: #444;">{{station.contact}}</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Address Info -->
+                        <div class="info-box" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="display: flex; align-items: flex-start;">
+                                <i class="fa fa-map-marker" style="color: #1e4e95; margin-right: 10px; margin-top: 3px;"></i>
+                                <div>
+                                    <p style="margin: 0; color: #444;">{{station.address_line_1}}</p>
+                                    <p style="margin: 0; color: #444;">{{station.address_line_2}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+<div class="action-buttons" style="display: flex; gap: 10px; margin-top: 15px;">
+    <a href="{% url 'enquiry_function' station.station_id %}" class="btn btn-primary" style="background: #1e4e95; border: none; flex: 1; padding: 12px; border-radius: 5px; color: white; text-decoration: none; display: inline-block; text-align: center; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <i class="fa fa-envelope"></i> Enquiry
+    </a>
+    <a href="{% url 'petition' station.station_id %}" class="btn btn-outline-primary" style="background: #1e4e95; border: 2px solid #1e4e95; flex: 1; padding: 12px; border-radius: 5px; color: #ffffff; text-decoration: none; display: inline-block; text-align: center; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <i class="fa fa-file-text"></i> Petition
+    </a>
+</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
         {% endif %}
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.querySelector('button').addEventListener('mouseover', function () {
-            this.style.backgroundColor = '#007bff';
-        });
-        document.querySelector('button').addEventListener('mouseout', function () {
-            this.style.backgroundColor = '';
-        });
-    </script>
-</body>
-</html>
+</div>
+{% endblock %}
