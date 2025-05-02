@@ -52,20 +52,28 @@
 			<header class="header-one">
 				<div class="top-header">
 					<div class="container clearfix">
-						<div class="logo float-left"><a href="{% static 'charles/index.html' %}"><img src="{% static 'charles/images/logo/logo.png' %}" alt=""></a></div>
+						<div class="logo float-left"><a href="../"><img style="height: 130px; width: auto;" src="{% static 'charles/images/fav-icon/pc_logo.png' %}" alt="logo"></a></div>
 						<div class="address-wrapper float-right">
 							<ul>
 								<li class="address">
 									<i class="icon flaticon-placeholder"></i>
 									<h6>Address:</h6>
-									<p>2A0, Queenstown St, USA.</p>
+									<p>Vellayambalam, Thiruvananthapuram, kerala 695010.</p>
 								</li>
 								<li class="address">
 									<i class="icon flaticon-multimedia"></i>
 									<h6>Mail us:</h6>
-									<p>supporthere@mail.com</p>
+									<p>cyberops-sec.pol@kerala.gov.in</p>
 								</li>
-								<li class="quotes"><a href="#">GET A QUOTES</a></li>
+								<li class="quotes"><a href="../">Log Out</a></li>
+								<!-- <li class="quotes dropdown">
+									<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sign Up</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="../user_reg/">User Registration</a></li>
+										<li><a class="dropdown-item" href="../staff_reg/">Staff Registration</a></li>
+										<li><a class="dropdown-item" href="../police_station_reg_form/">Station Registration</a></li>
+									</ul>
+								</li> -->
 							</ul>
 						</div> <!-- /.address-wrapper -->
 					</div> <!-- /.container -->
@@ -78,20 +86,20 @@
 					   		<div class="menu-wrapper float-left">
 					   			<nav id="mega-menu-holder" class="clearfix">
 								   <ul class="clearfix">
-									    <li><a href="#">Home</a>
-									    	<ul class="dropdown">
-									        	<li><a href="{% static 'charles/index.html' %}">Home version one</a></li>
-									        	<li><a href="{% static 'charles/index-2.html' %}">Home version two</a></li>
-									      </ul>
+									    <li class="active"><a href="../">Home</a>
+									    	<!-- <ul class="dropdown">
+									        	<li><a href="index.html">Home version one</a></li>
+									        	<li><a href="index-2.html">Home version two</a></li>
+									      </ul> -->
 									    </li>
-									    <li><a href="#">PAGES</a>
+									    <!-- <li><a href="#">PAGES</a>
 									    	<ul class="dropdown">
-									    		<li><a href="{% static 'charles/about.html' %}">About us</a></li>
-									    		<li><a href="{% static 'charles/team.html' %}">Our team</a></li>
-									    		<li><a href="{% static 'charles/faq.html' %}">Faq's</a></li>
-									    		<li><a href="{% static 'charles/404.html' %}">404</a></li>
-									    		<li><a href="{% static 'charles/shop.html' %}">Shop</a></li>
-									    		<li><a href="{% static 'charles/shop-details.html' %}">Shop details</a></li>
+									    		<li><a href="about.html">About us</a></li>
+									    		<li><a href="team.html">Our team</a></li>
+									    		<li><a href="faq.html">Faq's</a></li>
+									    		<li><a href="404.html">404</a></li>
+									    		<li><a href="shop.html">Shop</a></li>
+									    		<li><a href="shop-details.html">Shop details</a></li>
 									            <li><a href="#">Third Level menu</a>
 									    			<ul>
 									    				<li><a href="#">Demo one</a></li>
@@ -99,58 +107,50 @@
 									    			</ul>
 									    		</li>
 									       </ul>
-									    </li>
-									    <li><a href="#">Service</a>
+									    </li> -->
+									    <li><a href="#">Register</a>
 									    	<ul class="dropdown">
-									        	<li><a href="{% static 'charles/service.html' %}">Service Version one</a></li>
-									        	<li><a href="{% static 'charles/service-v2.html' %}">Service version two</a></li>
-									        	<li><a href="{% static 'charles/service-details.html' %}">Service Details</a></li>
+									        	<li><a href="../user_reg/">User Registration</a></li>
+												<li><a href="../staff_reg/">Staff Registration</a></li>
+												<li><a href="../police_station_reg_form/">Station Registration</a></li>
 									       </ul>
 									    </li>
-									    <li class="active"><a href="#">Portfolio</a>
+									    <!-- <li><a href="#">Portfolio</a>
 									    	<ul class="dropdown">
-									        	<li><a href="{% static 'charles/project.html' %}">project</a></li>
-									        	<li><a href="{% static 'charles/project-details.html' %}">Project details</a></li>
+									        	<li><a href="project.html">project</a></li>
+									        	<li><a href="project-details.html">Project details</a></li>
 									       </ul>
 									    </li>
 									    <li><a href="#">Blog</a>
 									    	<ul class="dropdown">
-									        	<li><a href="{% static 'charles/blog.html' %}">Blog List</a></li>
-									        	<li><a href="{% static 'charles/blog-grid.html' %}">Blog Grid</a></li>
-									        	<li><a href="{% static 'charles/blog-details.html' %}">Blog details</a></li>
+									        	<li><a href="blog.html">Blog List</a></li>
+									        	<li><a href="blog-grid.html">Blog Grid</a></li>
+									        	<li><a href="blog-details.html">Blog details</a></li>
 									       </ul>
-									    </li>
-									    <li><a href="{% static 'charles/contact.html' %}">contact</a></li>
+									    </li> -->
+									    <li><a href="../contact_us">contact</a></li>
 								   </ul>
 								</nav> <!-- /#mega-menu-holder -->
 					   		</div> <!-- /.menu-wrapper -->
-
-					   		<div class="right-widget float-right">
-					   			<ul>
-					   				<li class="social-icon">
-					   					<ul>
-											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+									   <div class="right-widget float-right">
+										<ul>
+											<li class="cart-icon">
+												<a href="{% url 'user_profile' %}"><i class="fa fa-user fa-2x"></i></a>
+											</li>
+											<li class="search-option">
+											 <a href="{% url 'search_station' %}"><i class="fa fa-search fa-2x"></i></a>
+												<!-- <div class="dropdown">
+													<button type="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search" aria-hidden="true"></i></button>
+												 <form method="post" class="dropdown-menu">
+													 {% csrf_token %}
+													 {{form.as_p}}
+													 <button type="submit">Search</button>
+												 </form>
+												</div> -->
+											</li>
 										</ul>
-					   				</li>
-					   				<li class="cart-icon">
-					   					<a href="{% url 'user_profile' %}"><i class="fa fa-user fa-2x"></i></a>
-					   				</li>
-					   				<li class="search-option">
-										<a href="{% url 'search_station' %}"><i class="fa fa-search fa-2x"></i></a>
-					   					<!-- <div class="dropdown">
-					   						<button type="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search" aria-hidden="true"></i></button>
-											<form method="post" class="dropdown-menu">
-												{% csrf_token %}
-												{{form.as_p}}
-												<button type="submit">Search</button>
-											</form>
-					   					</div> -->
-					   				</li>
-					   			</ul>
-					   		</div> <!-- /.right-widget -->
+									</div> <!-- /.right-widget -->
+					   				
 						</div> <!-- /.bg-wrapper -->
 					</div> <!-- /.container -->
 				</div> <!-- /.theme-menu-wrapper -->
@@ -162,13 +162,14 @@
 				Theme Inner Banner
 			============================================== 
 			-->
-			<div class="theme-inner-banner section-spacing">
-				<div class="overlay">
+			<div class="feature-banner section-spacing">
+				<div class="opacity">
 					<div class="container">
-						<h2>Projects</h2>
+						<h2>The most wanted criminals</h2>
+						<a href="{% url 'view_most_wanted_criminals_public' %}" class="theme-button-one">view</a>
 					</div> <!-- /.container -->
-				</div> <!-- /.overlay -->
-			</div> <!-- /.theme-inner-banner -->
+				</div> <!-- /.opacity -->
+			</div> <!-- /.feature-banner -->
 
 
 			<!-- 
@@ -182,7 +183,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-sm-6 col-12">
 								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/1.jpg' %}" alt="">
+									<img src="{% static 'charles/images/portfolio/enq_3.png' %}" alt="">
 									<div class="hover-content">
 										<div class="text clearfix">
 											<div class="float-left">
@@ -196,7 +197,7 @@
 							</div> <!-- /.col- -->
 							<div class="col-lg-4 col-sm-6 col-12">
 								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/2.jpg' %}" alt="">
+									<img src="{% static 'charles/images/portfolio/pet_2.png' %}" alt="">
 									<div class="hover-content">
 										<div class="text clearfix">
 											<div class="float-left">
@@ -208,23 +209,10 @@
 									</div> <!-- /.hover-content -->
 								</div> <!-- /.single-case-block -->
 							</div> <!-- /.col- -->
+							
 							<div class="col-lg-4 col-sm-6 col-12">
 								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/3.jpg' %}" alt="">
-									<div class="hover-content">
-										<div class="text clearfix">
-											<div class="float-left">
-												<h5><a href="{% url 'view_most_wanted_criminals_public' %}">Most Wanted Criminals</a></h5>
-												<p>View The Most Wanted Criminal</p>
-											</div>
-											<a href="{% url 'view_most_wanted_criminals_public' %}" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-										</div> <!-- /.text -->
-									</div> <!-- /.hover-content -->
-								</div> <!-- /.single-case-block -->
-							</div> <!-- /.col- -->
-							<div class="col-lg-4 col-sm-6 col-12">
-								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/4.jpg' %}" alt="">
+									<img src="{% static 'charles/images/portfolio/fir_1.png' %}" alt="">
 									<div class="hover-content">
 										<div class="text clearfix">
 											<div class="float-left">
@@ -236,85 +224,16 @@
 									</div> <!-- /.hover-content -->
 								</div> <!-- /.single-case-block -->
 							</div> <!-- /.col- -->
-							<div class="col-lg-4 col-sm-6 col-12">
-								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/5.jpg' %}" alt="">
-									<div class="hover-content">
-										<div class="text clearfix">
-											<div class="float-left">
-												<h5><a href="project-details.html">Business Meeting</a></h5>
-												<p>Explore strange new worlds</p>
-											</div>
-											<a href="project-details.html" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-										</div> <!-- /.text -->
-									</div> <!-- /.hover-content -->
-								</div> <!-- /.single-case-block -->
-							</div> <!-- /.col- -->
-							<div class="col-lg-4 col-sm-6 col-12">
-								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/6.jpg' %}" alt="">
-									<div class="hover-content">
-										<div class="text clearfix">
-											<div class="float-left">
-												<h5><a href="project-details.html">Business Meeting</a></h5>
-												<p>Explore strange new worlds</p>
-											</div>
-											<a href="project-details.html" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-										</div> <!-- /.text -->
-									</div> <!-- /.hover-content -->
-								</div> <!-- /.single-case-block -->
-							</div> <!-- /.col- -->
-							<div class="col-lg-4 col-sm-6 col-12">
-								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/13.jpg' %}" alt="">
-									<div class="hover-content">
-										<div class="text clearfix">
-											<div class="float-left">
-												<h5><a href="project-details.html">Business Meeting</a></h5>
-												<p>Explore strange new worlds</p>
-											</div>
-											<a href="project-details.html" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-										</div> <!-- /.text -->
-									</div> <!-- /.hover-content -->
-								</div> <!-- /.single-case-block -->
-							</div> <!-- /.col- -->
-							<div class="col-lg-4 col-sm-6 col-12">
-								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/14.jpg' %}" alt="">
-									<div class="hover-content">
-										<div class="text clearfix">
-											<div class="float-left">
-												<h5><a href="project-details.html">Business Meeting</a></h5>
-												<p>Explore strange new worlds</p>
-											</div>
-											<a href="project-details.html" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-										</div> <!-- /.text -->
-									</div> <!-- /.hover-content -->
-								</div> <!-- /.single-case-block -->
-							</div> <!-- /.col- -->
-							<div class="col-lg-4 col-sm-6 col-12">
-								<div class="single-case-block">
-									<img src="{% static 'charles/images/portfolio/15.jpg' %}" alt="">
-									<div class="hover-content">
-										<div class="text clearfix">
-											<div class="float-left">
-												<h5><a href="project-details.html">Business Meeting</a></h5>
-												<p>Explore strange new worlds</p>
-											</div>
-											<a href="project-details.html" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-										</div> <!-- /.text -->
-									</div> <!-- /.hover-content -->
-								</div> <!-- /.single-case-block -->
-							</div> <!-- /.col- -->
+							
 						</div> <!-- /.row -->
 					</div> <!-- /.wrapper -->
-					<div class="theme-pagination text-center">
+					<!-- <div class="theme-pagination text-center">
 						<ul>
 							<li><a href="#">1</a></li>
 							<li class="active"><a href="#">2</a></li>
 							<li><a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 						</ul>
-					</div>
+					</div> -->
 				</div> <!-- /.container -->
 			</div> <!-- /.our-case -->
 
@@ -331,30 +250,34 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xl-3 col-lg-4 col-sm-6 about-widget">
-								<h6 class="title">About OUR Consulting</h6>
-								<p>That started from this tropic port aboard this tiny ship today still want by theam government they survive on up to thetre east side to a deluxe as soldiers of artics fortune.</p>
-								<div class="queries"><i class="flaticon-phone-call"></i> Any Queries : <a href="#">(+1) 234 567 900</a></div>
+								<h6 class="title">About Kerala Police</h6>
+                    			<p>Kerala Police is committed to serving and protecting the citizens with honesty, integrity and dedication. Our motto "Mridhu Bhave Dhrida Kruthye" guides our actions in maintaining law and order.</p>
+                    			<div class="queries"><i class="flaticon-phone-call"></i> Emergency : <a href="#">112</a></div>
 							</div> <!-- /.about-widget -->
-							<div class="col-xl-4 col-lg-3 col-sm-6 footer-recent-post">
-								<h6 class="title">RECENT POSTS</h6>
+							<div class="col-xl-4 col-lg-3 col-sm-6 footer-recent-post" style="float: left;">
+								<h6 class="title">QUICK LINKS</h6>
 								<ul>
-									<li class="clearfix">
-										<img src="{% static 'charles/images/blog/1.jpg' %}" alt="" class="float-left">
-										<div class="post float-left">
-											<a href="blog-details.html">Till wanted by theam govern they survive as soldiers.</a>
-											<div class="date"><i class="fa fa-calendar-o" aria-hidden="true"></i> Feb 06, 2018</div>
-										</div>
-									</li>
-									<li class="clearfix">
-										<img src="{% static 'charles/images/blog/2.jpg' %}" alt="" class="float-left">
-										<div class="post float-left">
-											<a href="blog-details.html">World don't move to beat of just one drum.</a>
-											<div class="date"><i class="fa fa-calendar-o" aria-hidden="true"></i> Mar 20, 2018</div>
-										</div>
-									</li>
+									<li><a href="https://keralapolice.gov.in/" style="color: white;">Official Website</a></li>
+                    			    <li><a href="https://thuna.keralapolice.gov.in/" style="color: white;">Thuna - Police Support</a></li>
+                    			    <li><a href="https://www.cyberdome.kerala.gov.in/ " style="color: white;">Cyberdome</a></li>
+                    			    <li><a href="https://www.keralapolice.gov.in/page/traffic" style="color: white;">Traffic</a></li>
 								</ul>
 							</div> <!-- /.footer-recent-post -->
-							<div class="col-xl-2 col-lg-3 col-sm-6 footer-list">
+							<!-- <div class="bottom-footer" style=" width: 30%; float: right;">
+								<div class="container">
+									<div class="row">
+									
+										<div class="col-md-6 col-12">
+											<ul>
+												<li><a href="about.html" style="padding-bottom: 10px;">About</a></li>
+												<li><a href="service.html" style="padding-bottom: 10px;">Solutions</a></li>
+												<li><a href="contact.html">Contact</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>  -->
+							<!-- <div class="col-xl-2 col-lg-3 col-sm-6 footer-list">
 								<h6 class="title">SOLUTIONS</h6>
 								<ul>
 									<li><a href="#">Travel and Aviation</a></li>
@@ -364,33 +287,19 @@
 									<li><a href="#">Software Research</a></li>
 									<li><a href="#">Quality Resourcing</a></li>
 								</ul>
-							</div> <!-- /.footer-list -->
-							<div class="col-xl-3 col-lg-2 col-sm-6 footer-newsletter">
+							</div> /.footer-list -->
+							<!-- <div class="col-xl-3 col-lg-2 col-sm-6 footer-newsletter">
 								<h6 class="title">NEWSLETTER</h6>
 								<form action="#">
 									<input type="text" placeholder="Name *">
 									<input type="email" placeholder="Email *">
 									<button class="theme-button-one">SUBSCRIBE</button>
 								</form>
-							</div>
+							</div> -->
 						</div> <!-- /.row -->
 					</div> <!-- /.container -->
 				</div> <!-- /.top-footer -->
-				<div class="bottom-footer">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6 col-12"><p>&copy; Copyrights 2018. All Rights Reserved.</p></div>
-							<div class="col-md-6 col-12">
-								<ul>
-									<li><a href="about.html">About</a></li>
-									<li><a href="service.html">Solutions</a></li>
-									<li><a href="#">FAQ’s</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div> <!-- /.bottom-footer -->
+				
 			</footer> <!-- /.theme-footer -->
 			
 
@@ -413,9 +322,9 @@
 		<!-- Bootstrap JS -->
 		<script src="{% static 'charles/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 		<!-- Camera Slider -->
-		<script src='{% static "charles/vendor/Camera-master/scripts/jquery.mobile.customized.min.js" %}'></script>
-	    <script src='{% static "charles/vendor/Camera-master/scripts/jquery.easing.1.3.js" %}'></script> 
-	    <script src='vendor/Camera-master/scripts/camera.min.js'></script>
+		<script src="{% static 'charles/vendor/Camera-master/scripts/jquery.mobile.customized.min.js' %}"></script>
+	    <script src="{% static 'charles/vendor/Camera-master/scripts/jquery.easing.1.3.js' %}"></script> 
+	    <script src="{% static 'charles/vendor/Camera-master/scripts/camera.min.js' %}"></script>
 	    <!-- menu  -->
 		<script src="{% static 'charles/vendor/menu/src/js/jquery.slimmenu.js' %}"></script>
 		<!-- WOW js -->
@@ -433,5 +342,5 @@
 		</div> <!-- /.main-page-wrapper -->
 	</body>
 
-<!-- Mirrored from html.creativegigstf.com/charles/project.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Dec 2024 09:53:28 GMT -->
+<!-- Mirrored from html.creativegigstf.com/charles/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Dec 2024 09:53:11 GMT -->
 </html>
