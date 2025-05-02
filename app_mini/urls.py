@@ -57,6 +57,7 @@ urlpatterns = [
     path('register_complaint_to_admin/<int:id>', views.register_complaint_to_admin, name='register_complaint_to_admin'),
 
     #staff
+    path('return_contact_staff/', views.return_contact_staff, name='return_contact_staff'),
     path('staff_reg/', views.staff_reg_form, name='staff_reg'),
     path('staff_home/', views.staff_home, name='staff_home'),
     path('staff_profile/', views.staff_profile, name='staff_profile'),

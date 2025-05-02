@@ -526,6 +526,10 @@ def register_complaint_to_admin(request, id):
 
             # starting of staff model views
 
+
+def return_contact_staff(request):
+    return render(request, 'staff/contact.html')
+
 # This function is used for staff_registration
 def staff_reg_form(request):
     if request.method == 'POST':
