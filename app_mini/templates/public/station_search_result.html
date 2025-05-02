@@ -1,47 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Result</title>
-</head>
-<body>
-    <h1>Police Station Details</h1>
-    <table>
-        <tr>
-            <th>Station ID</th>
-            <td>{{ station.station_id }}</td>
-        </tr>
-        <tr>
-            <th>Address Line 1</th>
-            <td>{{ station.address_line_1 }}</td>
-        </tr>
-        <tr>
-            <th>Address Line 2</th>
-            <td>{{ station.address_line_2 }}</td>
-        </tr>
-        <tr>
-            <th>District</th>
-            <td>{{ station.district }}</td>
-        </tr>
-        <tr>
-            <th>City</th>
-            <td>{{ station.city }}</td>
-        </tr>
-        <tr>
-            <th>Contact</th>
-            <td>{{ station.contact }}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{ station.login_id.email }}</td>
-        </tr>
-        <tr>
-            <th>Verification Status</th>
-            <td>{{ station.varification_status }}</td>
-        </tr>
-    </table>
-    <button type="submit"><a href="../enquiry_function/{{station.station_id}}">Enqiry</a></button>
-    <button type="submit"><a href="../petition/{{ station.station_id }}">petition</a></button>
-</body>
-</html>
+{% extends 'public/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="station-details-card" style="background: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); padding: 40px;">
+                    <div class="card-header text-center" style="margin-bottom: 30px;">
+                        <h2 style="color: #1e4e95; font-weight: 600;">Police Station Details</h2>
+                        <p style="color: #666;">Station Information</p>
+                    </div>
+
+                    <div class="station-info" style="background: #f8f9fa; border-radius: 10px; padding: 25px;">
+                        <div class="info-grid" style="display: grid; gap: 20px;">
+                            <div class="info-item">
+                                <div style="display: flex; align-items: flex-start;">
+                                    <i class="fa fa-id-card" style="color: #1e4e95; margin-right: 15px; width: 20px; margin-top: 3px;"></i>
+                                    <div>
+                                        <h6 style="color: #333; margin: 0; font-weight: 600;">Station ID</h6>
+                                        <p style="color: #444; margin: 5px 0 0;">{{ station.station_id }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div style="display: flex; align-items: flex-start;">
+                                    <i class="fa fa-map-marker" style="color: #1e4e95; margin-right: 15px; width: 20px; margin-top: 3px;"></i>
+                                    <div>
+                                        <h6 style="color: #333; margin: 0; font-weight: 600;">Address</h6>
+                                        <p style="color: #444; margin: 5px 0 0;">
+                                            {{ station.address_line_1 }}<br>
+                                            {{ station.address_line_2 }}<br>
+                                            {{ station.district }}, {{ station.city }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div style="display: flex; align-items: flex-start;">
+                                    <i class="fa fa-phone" style="color: #1e4e95; margin-right: 15px; width: 20px; margin-top: 3px;"></i>
+                                    <div>
+                                        <h6 style="color: #333; margin: 0; font-weight: 600;">Contact</h6>
+                                        <p style="color: #444; margin: 5px 0 0;">{{ station.contact }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div style="display: flex; align-items: flex-start;">
+                                    <i class="fa fa-envelope" style="color: #1e4e95; margin-right: 15px; width: 20px; margin-top: 3px;"></i>
+                                    <div>
+                                        <h6 style="color: #333; margin: 0; font-weight: 600;">Email</h6>
+                                        <p style="color: #444; margin: 5px 0 0;">{{ station.login_id.email }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div style="display: flex; align-items: flex-start;">
+                                    <i class="fa fa-check-circle" style="color: #1e4e95; margin-right: 15px; width: 20px; margin-top: 3px;"></i>
+                                    <div>
+                                        <h6 style="color: #333; margin: 0; font-weight: 600;">Verification Status</h6>
+                                        <span class="badge" style="background-color: {% if station.varification_status == 'verified' %}#28a745{% else %}#ffc107{% endif %}; padding: 5px 10px; border-radius: 4px; color: white; margin-top: 5px; display: inline-block;">
+                                            {{ station.varification_status|title }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons" style="display: flex; gap: 10px; margin-top: 30px; justify-content: center;">
+                        <a href="../enquiry_function/{{station.station_id}}" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 12px 30px; border-radius: 5px; color: white; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <i class="fa fa-envelope"></i> Make Enquiry
+                        </a>
+                        <a href="../petition/{{ station.station_id }}" class="btn btn-outline-primary" style="background: transparent; border: 2px solid #1e4e95; padding: 12px 30px; border-radius: 5px; color: #1e4e95; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <i class="fa fa-file-text"></i> File Petition
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-primary:hover {
+        background: #163c75 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    }
+    
+    .btn-outline-primary:hover {
+        background: #1e4e95 !important;
+        color: white !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    }
+</style>
+{% endblock %}
