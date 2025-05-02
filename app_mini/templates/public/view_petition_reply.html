@@ -2,26 +2,52 @@
 {% load static %}
 
 {% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="theme-title-one">
+            <h2>Petition Replies</h2>
+            <p>View all responses to your petitions</p>
+        </div>
 
-
-    <h1>Petition Replies</h1>
-
-    {% if pet %}
-        {% for i in pet %}
-            <div class="reply-container">
-                <p class="reply-item"><strong>Station Id:</strong> {{i.station}}</p>
-                <p class="reply-item"><strong>Your Petition:</strong> {{i.petition_text}}</p>
-                <p class="reply-item"><strong>Reply:</strong> {{i.reply}}</p>
-                <p class="reply-item"><strong>Date of Submission:</strong> {{i.date}}</p>
-                {% if i.id in pet_dic %}
-                    <a class="btn btn-success">Complaint Registred</a>
-                {% else %}
-                    <a class="btn btn-primary" href="../register_complaint_to_admin/{{i.id}}">Registe a complaint if nessory <br> actions aren't taken</a>
-                {% endif %}
+        {% if pet %}
+            <div class="row">
+                {% for i in pet %}
+                    <div class="col-lg-6 col-12 mb-4">
+                        <div class="single-case-block" style="background: #f5f5f5; padding: 25px; border-radius: 8px; box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;">
+                            <div class="case-content">
+                                <div class="reply-header" style="border-bottom: 1px solid #e0e0e0; margin-bottom: 15px; padding-bottom: 10px;">
+                                    <h5 style="color: #1e4e95; margin-bottom: 5px;">Station ID: {{ i.station }}</h5>
+                                    <span style="color: #666; font-size: 14px;">Date: {{ i.date }}</span>
+                                </div>
+                                <div class="reply-body">
+                                    <div class="petition-section" style="margin-bottom: 15px;">
+                                        <h6 style="color: #333; font-weight: 600;">Your Petition:</h6>
+                                        <p style="color: #444; background: #ffffff; padding: 10px; border-radius: 5px;">{{ i.petition_text }}</p>
+                                    </div>
+                                    <div class="response-section" style="margin-bottom: 15px;">
+                                        <h6 style="color: #333; font-weight: 600;">Response:</h6>
+                                        <p style="color: #444; background: #ffffff; padding: 10px; border-radius: 5px;">{{ i.reply }}</p>
+                                    </div>
+                                    <div class="action-section" style="text-align: right; margin-top: 20px;">
+                                        {% if i.id in pet_dic %}
+                                            <a class="btn btn-success" style="border-radius: 5px; padding: 8px 15px; color: white;">Complaint Registered</a>
+                                        {% else %}
+                                        <p>Register Complaint If Necessary  action isn't taken :</p>
+                                            <a class="btn btn-primary" href="../register_complaint_to_admin/{{i.id}}" style="border-radius: 5px; padding: 8px 15px;">Register Complaint</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
-    {% else %}
-        <p class="no-replies">No replies available for your petitions yet.</p>
-    {% endif %}
-
+        {% else %}
+            <div class="empty-state text-center" style="padding: 50px 20px;">
+                <i class="fa fa-inbox fa-3x" style="color: #dc3545; margin-bottom: 20px;"></i>
+                <p style="color: #dc3545; font-size: 18px; font-style: italic;">No replies available for your petitions yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
