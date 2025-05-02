@@ -382,7 +382,7 @@ def return_contact(request):
 # This function is used for user(public) registration
 def user_reg(request):
     if request.method == 'POST':
-        form = user_registration_form(request.POST)
+        form = user_registration_form(request.POST, request.FILES)
         log = login_form(request.POST)
         if form.is_valid() and log.is_valid():
             log_ins = log.save(commit=False)

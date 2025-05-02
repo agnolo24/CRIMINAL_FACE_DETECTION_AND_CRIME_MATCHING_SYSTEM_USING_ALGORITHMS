@@ -35,7 +35,7 @@ class Reply(forms.Form):
 class user_registration_form(forms.ModelForm):
     class Meta:
         model = user_registration
-        fields = ['fullname', 'contact']
+        fields = ['profile_picture','fullname', 'contact', 'address']
 
 
 class search_station_form(forms.Form):

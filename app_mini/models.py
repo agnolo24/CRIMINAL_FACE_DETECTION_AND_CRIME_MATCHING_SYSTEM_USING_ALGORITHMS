@@ -23,9 +23,12 @@ class police_station_registration(models.Model):
 
 
 class user_registration(models.Model):
+    profile_picture = models.ImageField(upload_to='profile/', null=True)
     login_id = models.ForeignKey(login, on_delete=models.CASCADE, null=True, blank=True)
     fullname = models.CharField(max_length=30)
     contact = models.CharField(max_length=20)
+    address = models.TextField(null=True)
+
 
 
 class Enquiry(models.Model):
