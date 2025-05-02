@@ -65,7 +65,7 @@ class staff_registration_form(forms.ModelForm):
 class staff_edit_form(forms.ModelForm):
     class Meta:
         model = staff
-        fields = ['profile_picture','full_name', 'address', 'contact', 'designation', 'gender', 'date_of_birth']
+        fields = ['profile_picture','full_name', 'address', 'contact', 'gender', 'date_of_birth']
         widgets = {
                    'full_name' : forms.TextInput(attrs={'class' : 'form-control'}),
                    'address' : forms.Textarea(attrs={'class' : 'form-control'}),
