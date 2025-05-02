@@ -412,7 +412,7 @@ def user_profile_edit(request):
     log_user=get_object_or_404(login_table,id=user_id)
     data=user_registration.objects.get(login_id=log_user)
     if request.method=='POST':
-        form=user_registration_form(request.POST,instance=data)
+        form=user_registration_form(request.POST, request.FILES, instance=data)
         if form.is_valid():
             form.save()
             return redirect('user_profile')
