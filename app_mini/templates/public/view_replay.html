@@ -1,54 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Replay Details</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f8f8f8; /* Light gray background */
-            color: #333;
-        }
+{% extends 'public/header_footer.html' %}
+{% load static %}
 
-        h1 {
-            color: #007bff; /* Blue heading */
-            text-align: center;
-            margin-bottom: 20px;
-        }
+{% block content %}
 
-        .replay-item {
-            background-color: #fff;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #007bff; /* Blue left border */
-        }
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="theme-title-one">
+            <h2>Enquiry Replies</h2>
+            <p>View all responses to your enquiries</p>
+        </div>
 
-        .replay-item strong {
-            font-weight: bold;
-            color: #555;
-        }
-    </style>
-</head>
-<body>
-    <h1>Replay Details</h1>
-
-    {% if enq|length > 0 %}
-        {% for rep in enq %}
-            <div class="replay-item">
-                <p><strong>Station ID:</strong> {{ rep.station_id }}</p>
-                <p><strong>Your Enquiry:</strong> {{ rep.enquiry_data }}</p>
-                <p><strong>Message:</strong> {{ rep.reply }}</p>
-                <p><strong>Date of Enquiry:</strong> {{ rep.date }}</p>
+        {% if enq|length > 0 %}
+            <div class="row">
+                {% for rep in enq %}
+                    <div class="col-lg-6 col-12 mb-4">
+                        <div class="single-case-block" style="background: #f5f5f5; padding: 25px; border-radius: 8px; box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;">
+                            <div class="case-content">
+                                <div class="reply-header" style="border-bottom: 1px solid #e0e0e0; margin-bottom: 15px; padding-bottom: 10px;">
+                                    <h5 style="color: #1e4e95; margin-bottom: 5px;">Station ID: {{ rep.station_id }}</h5>
+                                    <span style="color: #666; font-size: 14px;">Date: {{ rep.date }}</span>
+                                </div>
+                                <div class="reply-body">
+                                    <div class="enquiry-section" style="margin-bottom: 15px;">
+                                        <h6 style="color: #333; font-weight: 600;">Your Enquiry:</h6>
+                                        <p style="color: #444; background: #ffffff; padding: 10px; border-radius: 5px;">{{ rep.enquiry_data }}</p>
+                                    </div>
+                                    <div class="response-section">
+                                        <h6 style="color: #333; font-weight: 600;">Response:</h6>
+                                        <p style="color: #444; background: #ffffff; padding: 10px; border-radius: 5px;">{{ rep.reply }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
-    {% else %}
-        <p style="text-align: center; color: #dc3545; font-style: italic;">No replay details available.</p>
-    {% endif %}
-
-</body>
-</html>
+        {% else %}
+            <div class="empty-state text-center" style="padding: 50px 20px;">
+                <i class="fa fa-inbox fa-3x" style="color: #dc3545; margin-bottom: 20px;"></i>
+                <p style="color: #dc3545; font-size: 18px; font-style: italic;">No replies available at the moment.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
