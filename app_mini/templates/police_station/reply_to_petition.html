@@ -1,15 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reply to petition</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Send</button>
-    </form>
-</body>
-</html>
+{% extends 'police_station/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="reply-card" style="background: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); padding: 40px;">
+                    <div class="card-header text-center" style="margin-bottom: 30px;">
+                        <h2 style="color: #1e4e95; font-weight: 600;">Reply to Petition</h2>
+                        <p style="color: #666;">Send your response to the petitioner</p>
+                    </div>
+
+                    <form method="post" class="reply-form">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group" style="margin-bottom: 20px;">
+                                <label for="{{ field.id_for_label }}" style="display: block; color: #333; font-weight: 500; margin-bottom: 8px;">
+                                    {{ field.label }}
+                                </label>
+                                <div class="field-wrapper" style="margin-bottom: 5px;">
+                                    {{ field }}
+                                </div>
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <div class="error-message" style="color: #dc3545; font-size: 0.875rem; margin-top: 5px;">
+                                            {{ error }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-actions" style="margin-top: 30px; text-align: center;">
+                            <button type="submit" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 12px 30px; border-radius: 5px; color: white; font-size: 1rem; transition: all 0.3s ease; margin-right: 10px;">
+                                <i class="fa fa-paper-plane"></i> Send Reply
+                            </button>
+                            <a href="{% url 'view_petition' %}" class="btn btn-secondary" style="background: #6c757d; border: none; padding: 12px 30px; border-radius: 5px; color: white; font-size: 1rem; text-decoration: none; transition: all 0.3s ease;">
+                                <i class="fa fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .reply-card {
+        transition: transform 0.3s ease;
+    }
+    .reply-card:hover {
+        transform: translateY(-5px);
+    }
+    .reply-form textarea,
+    .reply-form input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    .reply-form textarea:focus,
+    .reply-form input:focus {
+        border-color: #1e4e95;
+        box-shadow: 0 0 0 2px rgba(30,78,149,0.1);
+        outline: none;
+    }
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .btn-primary:hover {
+        background: #163c75 !important;
+    }
+    .btn-secondary:hover {
+        background: #5a6268 !important;
+    }
+</style>
+{% endblock %}

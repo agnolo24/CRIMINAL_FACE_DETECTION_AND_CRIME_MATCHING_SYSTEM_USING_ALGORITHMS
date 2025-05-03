@@ -1,49 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>view petation</title>
-</head>
-<body>
-    <h1>Petitions</h1>
-    <hr><hr>
-    {% if petition|length > 0 %}
-<h2>Penting Replay</h2>
-        {% for pet in petition %}
-                {% if pet.reply == NULL %}
-                from : {{pet.user.fullname}}
-                <br>
-                contact details : {{pet.user.contact}}
-                <br>
-                petition : {{pet.petition_text}}
-                <br>
-                <button><a href="{% url 'reply_to_petition' pet.id %}">replay</a></button>
-                {% if pet.fir_number == NULL %}
-                <button><a href="{% url 'fir_registration' pet.id %}">Register FIR</a></button>
-                {% endif %}
-                <hr>
-                {% endif %}
-        {% endfor %}
-        <hr>
-<h2>Replayed </h2>
-        {% for pet in petition %}
-            {% if pet.reply %}
-                from : {{pet.user.fullname}}
-                <br>
-                contact details : {{pet.user.contact}}
-                <br>
-                petition : {{pet.petition_text}}
-                <br>
-                <button><a href="{% url 'reply_to_petition' pet.id %}">Sent Another Message</a></button>
-                {% if pet.fir_number == NULL %}
-                <button><a href="{% url 'fir_registration' pet.id %}">Register FIR</a></button>
-                {% endif %}
-                <hr>
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        <p>No petitions available at the moment.</p>
-    {% endif %}
-</body>
-</html>
+{% extends 'police_station/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 40px;">
+            <h2 style="color: #1e4e95; font-weight: 600;">Petitions</h2>
+            <p style="color: #666;">Manage and respond to public petitions</p>
+        </div>
+
+        {% if petition|length > 0 %}
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h3 style="color: #1e4e95; font-weight: 600; margin-bottom: 20px;">
+                    <i class="fa fa-clock-o"></i> Pending Replies
+                </h3>
+                <div class="row">
+                    {% for pet in petition %}
+                        {% if pet.reply == NULL %}
+                        <div class="col-lg-6 mb-4">
+                            <div class="petition-card" style="background: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); height: 100%;">
+                                <div class="card-header" style="background: #1e4e95; color: white; padding: 15px; border-radius: 15px 15px 0 0;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-weight: 500;">From: {{ pet.user.fullname }}</span>
+                                        <span class="badge" style="background: #dc3545; padding: 5px 10px; border-radius: 20px;">Pending</span>
+                                    </div>
+                                </div>
+                                <div class="card-body" style="padding: 20px;">
+                                    <div class="petition-content" style="margin-bottom: 15px;">
+                                        <h6 style="color: #666; margin-bottom: 8px;">Petition Text:</h6>
+                                        <p style="color: #333;">{{ pet.petition_text }}</p>
+                                    </div>
+                                    <div class="contact-info" style="margin-bottom: 20px;">
+                                        <h6 style="color: #666; margin-bottom: 8px;">Contact:</h6>
+                                        <p style="color: #333;">{{ pet.user.contact }}</p>
+                                    </div>
+                                    <div class="actions" style="display: flex; justify-content: flex-end; gap: 10px;">
+                                        <a href="{% url 'reply_to_petition' pet.id %}" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 8px 20px; border-radius: 5px; color: white; text-decoration: none;">
+                                            <i class="fa fa-reply"></i> Reply
+                                        </a>
+                                        {% if pet.fir_number == NULL %}
+                                        <a href="{% url 'fir_registration' pet.id %}" class="btn btn-warning" style="background: #ffc107; border: none; padding: 8px 20px; border-radius: 5px; color: #000; text-decoration: none;">
+                                            <i class="fa fa-file-text"></i> Register FIR
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-12">
+                <h3 style="color: #1e4e95; font-weight: 600; margin-bottom: 20px;">
+                    <i class="fa fa-check-circle"></i> Replied Petitions
+                </h3>
+                <div class="row">
+                    {% for pet in petition %}
+                        {% if pet.reply %}
+                        <div class="col-lg-6 mb-4">
+                            <div class="petition-card" style="background: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); height: 100%;">
+                                <div class="card-header" style="background: #28a745; color: white; padding: 15px; border-radius: 15px 15px 0 0;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-weight: 500;">From: {{ pet.user.fullname }}</span>
+                                        <span class="badge" style="background: #198754; padding: 5px 10px; border-radius: 20px;">Replied</span>
+                                    </div>
+                                </div>
+                                <div class="card-body" style="padding: 20px;">
+                                    <div class="petition-content" style="margin-bottom: 15px;">
+                                        <h6 style="color: #666; margin-bottom: 8px;">Petition Text:</h6>
+                                        <p style="color: #333;">{{ pet.petition_text }}</p>
+                                    </div>
+                                    <div class="contact-info" style="margin-bottom: 20px;">
+                                        <h6 style="color: #666; margin-bottom: 8px;">Contact:</h6>
+                                        <p style="color: #333;">{{ pet.user.contact }}</p>
+                                    </div>
+                                    <div class="actions" style="display: flex; justify-content: flex-end; gap: 10px;">
+                                        <a href="{% url 'reply_to_petition' pet.id %}" class="btn btn-outline-primary" style="border: 1px solid #1e4e95; padding: 8px 20px; border-radius: 5px; color: #1e4e95; text-decoration: none;">
+                                            <i class="fa fa-paper-plane"></i> Send Another Message
+                                        </a>
+                                        {% if pet.fir_number == NULL %}
+                                        <a href="{% url 'fir_registration' pet.id %}" class="btn btn-warning" style="background: #ffc107; border: none; padding: 8px 20px; border-radius: 5px; color: #000; text-decoration: none;">
+                                            <i class="fa fa-file-text"></i> Register FIR
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-state text-center" style="padding: 50px 20px;">
+            <div style="background: #f8f9fa; border-radius: 15px; padding: 40px; display: inline-block;">
+                <i class="fa fa-file-text-o fa-3x" style="color: #dc3545; margin-bottom: 20px;"></i>
+                <h4 style="color: #666;">No Petitions Found</h4>
+                <p style="color: #999; margin: 0;">There are currently no petitions to display.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .petition-card {
+        transition: transform 0.3s ease;
+    }
+    .petition-card:hover {
+        transform: translateY(-5px);
+    }
+    .btn {
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .btn-outline-primary:hover {
+        background: #1e4e95 !important;
+        color: white !important;
+    }
+    @media (max-width: 768px) {
+        .actions {
+            flex-direction: column;
+        }
+        .btn {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+{% endblock %}
