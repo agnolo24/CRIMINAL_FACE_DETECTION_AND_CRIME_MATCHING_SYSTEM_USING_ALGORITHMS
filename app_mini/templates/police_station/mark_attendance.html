@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'police_station/header_footer.html' %}
+{% load static %}
+
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +11,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Tailwind's gray-100 */
+            background-color: #ffffff; /* Tailwind's gray-100 */
             margin: 0;
             padding: 20px;
         }
@@ -104,7 +106,7 @@
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <div class="staff-container">
+    <div class="staff-container" style="margin-top: 100px;">
         <header class="staff-header">
             <h1>Staff Data</h1>
             <p>Here is the information about our staff members.</p>
@@ -182,4 +184,4 @@
         </script>
 
 </body>
-</html>
+{% endblock %}
