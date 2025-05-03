@@ -1,15 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>duty</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save the Change</button>
-    </form>
-</body>
-</html>
+{% extends 'police_station/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 40px;">
+            <h2 style="color: #1e4e95; font-weight: 600;">Edit Duty Schedule</h2>
+            <p style="color: #666;">Modify duty assignment details</p>
+        </div>
+
+        <div class="card" style="background: white; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden; max-width: 600px; margin: 0 auto;">
+            <div class="card-body" style="padding: 30px;">
+                <form method="post" class="edit-duty-form">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="{{ field.id_for_label }}" style="display: block; color: #333; font-weight: 500; margin-bottom: 8px;">
+                                {{ field.label }}
+                            </label>
+                            <div class="field-wrapper">
+                                {{ field }}
+                            </div>
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <div class="error-message" style="color: #dc3545; font-size: 0.875rem; margin-top: 5px;">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <div class="form-actions" style="margin-top: 30px; text-align: center;">
+                        <button type="submit" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 12px 30px; border-radius: 5px; color: white; font-size: 1rem; transition: all 0.3s ease; margin-right: 10px;">
+                            <i class="fa fa-save"></i> Save Changes
+                        </button>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .edit-duty-form input[type="text"],
+    .edit-duty-form input[type="date"],
+    .edit-duty-form input[type="time"],
+    .edit-duty-form select,
+    .edit-duty-form textarea {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .edit-duty-form input:focus,
+    .edit-duty-form select:focus,
+    .edit-duty-form textarea:focus {
+        border-color: #1e4e95;
+        box-shadow: 0 0 0 2px rgba(30,78,149,0.1);
+        outline: none;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary:hover {
+        background: #163c75 !important;
+    }
+
+    .btn-secondary:hover {
+        background: #5a6268 !important;
+    }
+
+    @media (max-width: 768px) {
+        .form-actions {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn {
+            width: 100%;
+            margin: 5px 0;
+        }
+    }
+</style>
+{% endblock %}

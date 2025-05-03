@@ -52,7 +52,7 @@
 			<header class="header-one">
 				<div class="top-header">
 					<div class="container clearfix">
-						<div class="logo float-left"><a href="../"><img style="height: 130px; width: auto;" src="{% static 'charles/images/fav-icon/pc_logo.png' %}" alt="logo"></a></div>
+						<div class="logo float-left"><a href="{% url 'station_home' %}"><img style="height: 130px; width: auto;" src="{% static 'charles/images/fav-icon/pc_logo.png' %}" alt="logo"></a></div>
 						<div class="address-wrapper float-right">
 							<ul>
 								<li class="address">
@@ -65,7 +65,7 @@
 									<h6>Mail us:</h6>
 									<p>cyberops-sec.pol@kerala.gov.in</p>
 								</li>
-								<li class="quotes"><a href="../">Log Out</a></li>
+								<li class="quotes"><a href="{% url 'login_form' %}">Log Out</a></li>
 								<!-- <li class="quotes dropdown">
 									<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sign Up</a>
 									<ul class="dropdown-menu">
@@ -86,7 +86,7 @@
 					   		<div class="menu-wrapper float-left">
 					   			<nav id="mega-menu-holder" class="clearfix">
 								   <ul class="clearfix">
-									    <li class="active"><a href="../station_home/">Home</a>
+									    <li class="active"><a href="{% url 'station_home' %}">Home</a>
 									    	<!-- <ul class="dropdown">
 									        	<li><a href="index.html">Home version one</a></li>
 									        	<li><a href="index-2.html">Home version two</a></li>
@@ -110,23 +110,23 @@
 									    </li> -->
 									    <li><a href="#">Public</a>
 									    	<ul class="dropdown">
-									        	<li><a href="../view_enquiry/">Enquiry's</a></li>
-												<li><a href="../view_petition/">Petitions</a></li>
-												<li><a href="../view_fir/">View FIR</a></li>
+									        	<li><a href="{% url 'view_enquiry' %}">Enquiry's</a></li>
+												<li><a href="{% url 'view_petition' %}">Petitions</a></li>
+												<li><a href="{% url 'view_fir' %}">View FIR</a></li>
 									       </ul>
 									    </li>
 
                                         <li><a href="#">Staff</a>
 									    	<ul class="dropdown">
-									        	<li><a href="../view_staff/">Staff</a></li>
-												<li><a href="../mark_attendance/">Attendance</a></li>
+									        	<li><a href="{% url 'view_staff' %}">Staff</a></li>
+												<li><a href="{% url 'mark_attendance' %}">Attendance</a></li>
 									       </ul>
 									    </li>
 
                                         <li><a href="#">Criminal</a>
 									    	<ul class="dropdown">
-									        	<li><a href="../criminal_registration/">Register Most Wanted Criminal</a></li>
-												<li><a href="../view_criminals/">Most Wanted Criminals</a></li>
+									        	<li><a href="{% url 'criminal_registration' %}">Register Most Wanted Criminal</a></li>
+												<li><a href="{% url 'view_criminals' %}">Most Wanted Criminals</a></li>
 									       </ul>
 									    </li>
 									    <!-- <li><a href="#">Portfolio</a>

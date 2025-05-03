@@ -1,167 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Data</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; 
-            margin: 0;
-            padding: 20px;
-        }
+{% extends 'police_station/header_footer.html' %}
+{% load static %}
 
-        .staff-container {
-            max-width: 100%;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            overflow-x: auto;
-        }
+{% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 40px;">
+            <h2 style="color: #1e4e95; font-weight: 600;">Staff Management</h2>
+            <p style="color: #666;">View and manage staff information</p>
+        </div>
 
-        .staff-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .staff-header h1 {
-            font-size: 2.25rem; /* Tailwind's text-3xl */
-            font-weight: 700;  /* Tailwind's font-bold */
-            color: #1e293b; /* Tailwind's gray-900 */
-            margin-bottom: 10px;
-        }
-
-        .staff-header p {
-            color: #4b5563; /* Tailwind's gray-600 */
-            font-size: 1rem;
-        }
-
-        .staff-table {
-            min-width: 1000px;
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); /* Tailwind's shadow-sm */
-            border-radius: 0.5rem; /* Tailwind's rounded-md */
-            overflow: hidden; /* To contain the border-radius */
-        }
-
-        .staff-table th, .staff-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb; /* Tailwind's border-gray-200 */
-        }
-
-        .staff-table th {
-            background-color: #f7fafc; /* Tailwind's gray-50 */
-            font-weight: 600; /* Tailwind's font-semibold */
-            color: #4b5563; /* Tailwind's gray-600 */
-        }
-
-        .staff-table tr:nth-child(even) {
-            background-color: #f9fafb; /* Tailwind's gray-100 */
-        }
-
-        .staff-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .staff-table button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 8px 12px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            border-radius: 0.375rem; /* Tailwind's rounded-md */
-            cursor: pointer;
-            margin-right: 5px;
-        }
-
-        .staff-table button.reject {
-            background-color: #f44336; /* Red */
-        }
-
-        .staff-table button a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .no-staff-message {
-            background-color: #fef08a;  /* Tailwind's bg-yellow-100 */
-            color: #1e293b;    /* Tailwind's text-gray-900 */
-            padding: 1rem;
-            border-radius: 0.375rem;  /* Tailwind's rounded-md */
-            text-align: center;
-            margin-top: 20px;
-            border: 1px solid #fde047; /* Tailwind's border-yellow-300 */
-        }
-    </style>
-</head>
-<body class="bg-gray-100 font-sans">
-    <div class="staff-container">
-        <header class="staff-header">
-            <h1>Staff Data</h1>
-            <p>Here is the information about our staff members.</p>
-        </header>
-        <main>
-            <div class="staff-list">
-                {% if staff_data %}
-                <table class="staff-table">
-                    <thead>
-                        <tr>
-                            <th>Full Name</th>
-                            <th>Designation</th>
-                            <th>Staff ID</th>
-                            <th>Address</th>
-                            <th>Contact</th>
-                            <th>Actions</th>
-                            <th>Attendens</th>
-                            <th>Promotion</th>
-                            <th>Duty</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for staff in staff_data %}
-                        <tr>
-                            <td>{{ staff.full_name }}</td>
-                            <td>{{ staff.designation }}</td>
-                            <td>{{ staff.staff_id }}</td>
-                            <td>{{ staff.address }}</td>
-                            <td>{{ staff.contact }}</td>
-                            <td>
-                                {% if staff.login_id.varification_status != "varified" %}
-                                    <button><a href="../accept_staff/{{ staff.login_id.id }}">Accept</a></button>
-                                {% else %}
-                                    <button class="reject"><a href="../reject_staff/{{staff.login_id.id}}">Reject</a></button>
-                                {% endif %}
-                            </td>
-                            <td>
-                                <button><a href="{% url 'view_attendance_of_a_staff' staff.staff_id %}">View Attendans</a></button>
-                            </td>
-                            <td>
-                                <button><a href="{% url 'promotion' staff.staff_id %}">Promotion</a></button>
-                            </td>
-                            <td>
-                                <button><a href="{% url 'shedule_duty' staff.staff_id %}">Shedule Duty</a></button>
-                                <hr>
-                                <button><a href="../view_duty/{{ staff.staff_id }}">View Duty's</a></button>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                {% else %}
-                <p class="no-staff-message">There Aren't Any Staff's</p>
-                {% endif %}
+        {% if staff_data %}
+        <div class="table-responsive">
+            <table class="table" style="background: white; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden;">
+                <thead>
+                    <tr style="background: #1e4e95; color: white;">
+                        <th style="padding: 15px; border: none;">Full Name</th>
+                        <th style="padding: 15px; border: none;">Designation</th>
+                        <th style="padding: 15px; border: none;">Staff ID</th>
+                        <th style="padding: 15px; border: none;">Address</th>
+                        <th style="padding: 15px; border: none;">Contact</th>
+                        <th style="padding: 15px; border: none;">Status</th>
+                        <th style="padding: 15px; border: none;" colspan="3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for staff in staff_data %}
+                    <tr style="transition: all 0.3s ease;">
+                        <td style="padding: 15px; vertical-align: middle;">{{ staff.full_name }}</td>
+                        <td style="padding: 15px; vertical-align: middle;">{{ staff.designation }}</td>
+                        <td style="padding: 15px; vertical-align: middle;">{{ staff.staff_id }}</td>
+                        <td style="padding: 15px; vertical-align: middle;">{{ staff.address }}</td>
+                        <td style="padding: 15px; vertical-align: middle;">{{ staff.contact }}</td>
+                        <td style="padding: 15px; vertical-align: middle;">
+                            {% if staff.login_id.varification_status != "varified" %}
+                                <a href="../accept_staff/{{ staff.login_id.id }}" class="btn btn-success btn-sm" style="background: #198754; border: none; padding: 6px 12px; border-radius: 5px; color: white; text-decoration: none;">
+                                    <i class="fa fa-check"></i> Accept
+                                </a>
+                            {% else %}
+                                <a href="../reject_staff/{{staff.login_id.id}}" class="btn btn-danger btn-sm" style="background: #dc3545; border: none; padding: 6px 12px; border-radius: 5px; color: white; text-decoration: none;">
+                                    <i class="fa fa-times"></i> Reject
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td style="padding: 15px; vertical-align: middle;">
+                            <div class="btn-group" style="display: flex; gap: 5px;">
+                                <a href="{% url 'view_attendance_of_a_staff' staff.staff_id %}" class="btn btn-info btn-sm" style="background: #0dcaf0; border: none; padding: 6px 12px; border-radius: 5px; color: white; text-decoration: none;">
+                                    <i class="fa fa-calendar"></i> Attendance
+                                </a>
+                                <a href="{% url 'promotion' staff.staff_id %}" class="btn btn-warning btn-sm" style="background: #ffc107; border: none; padding: 6px 12px; border-radius: 5px; color: #000; text-decoration: none;">
+                                    <i class="fa fa-arrow-up"></i> Promote
+                                </a>
+                                <a href="{% url 'shedule_duty' staff.staff_id %}" class="btn btn-primary btn-sm" style="background: #1e4e95; border: none; padding: 6px 12px; border-radius: 5px; color: white; text-decoration: none;">
+                                    <i class="fa fa-calendar-plus-o"></i> Schedule Duty
+                                </a>
+                                <a href="../view_duty/{{ staff.staff_id }}" class="btn btn-primary btn-sm" style="background: #1e4e95; border: none; padding: 6px 12px; border-radius: 5px; color: white; text-decoration: none;">
+                                    <i class="fa fa-list"></i> View Duty
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state text-center" style="padding: 50px 20px;">
+            <div style="background: #f8f9fa; border-radius: 15px; padding: 40px; display: inline-block;">
+                <i class="fa fa-users fa-3x" style="color: #dc3545; margin-bottom: 20px;"></i>
+                <h4 style="color: #666;">No Staff Members Found</h4>
+                <p style="color: #999; margin: 0;">There are currently no staff members to display.</p>
             </div>
-        </main>
+        </div>
+        {% endif %}
     </div>
-</body>
-</html>
+</div>
+
+<style>
+    tr:hover {
+        background-color: #f8f9fa;
+    }
+    .btn {
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .dropdown-menu {
+        margin-top: 5px;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .dropdown-item {
+        padding: 8px 15px;
+        transition: all 0.3s ease;
+    }
+    .dropdown-item:hover {
+        background: #f8f9fa;
+    }
+    @media (max-width: 768px) {
+        .btn-group {
+            flex-direction: column;
+        }
+        .btn {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+    }
+</style>
+{% endblock %}
