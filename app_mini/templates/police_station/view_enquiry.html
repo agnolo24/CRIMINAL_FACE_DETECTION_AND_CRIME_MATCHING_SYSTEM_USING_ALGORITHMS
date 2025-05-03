@@ -1,57 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enquiries</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-        }
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Enquiries</h1>
-        {% if enquirys %}
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Message</th>
-                            <th>From</th>
-                            <th>Contact</th>
-                            <th>Date</th>
-                            <th>Reply</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for enquiry in enquirys %}
-                            {% if enquiry.reply == NULL %}
-                            <tr>
-                                <td>{{ enquiry.enquiry_data }}</td>
-                                <td>{{ enquiry.user_id.fullname }}</td>
-                                <td>{{ enquiry.user_id.contact }}</td>
-                                <td>{{ enquiry.date }}</td>
-                                <td><button><a href="{% url 'reply_to_public' enquiry.id %}">Reply To {{enquiry.user_id.fullname}}</a></button></td>
-                            </tr>
-                            {% endif %}
+{% extends 'police_station/header_footer.html' %}
+{% load static %}
 
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+{% block content %}
+<div class="our-case section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 40px;">
+            <h2 style="color: #1e4e95; font-weight: 600;">Enquiries</h2>
+            <p style="color: #666;">Manage and respond to public enquiries</p>
+        </div>
+
+        {% if enquirys %}
+        <div class="row">
+            {% for enquiry in enquirys %}
+                {% if enquiry.reply == NULL %}
+                <div class="col-lg-6 mb-4">
+                    <div class="enquiry-card" style="background: #ffffff; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden;">
+                        <div class="card-header" style="background: #1e4e95; color: white; padding: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 500;">From: {{ enquiry.user_id.fullname }}</span>
+                                <span style="font-size: 0.9rem;">{{ enquiry.date|date:"M d, Y" }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body" style="padding: 20px;">
+                            <div class="message" style="margin-bottom: 15px;">
+                                <h6 style="color: #666; margin-bottom: 8px; font-size: 0.9rem;">Message:</h6>
+                                <p style="color: #333; margin: 0;">{{ enquiry.enquiry_data }}</p>
+                            </div>
+                            <div class="contact-info" style="margin-bottom: 20px;">
+                                <h6 style="color: #666; margin-bottom: 8px; font-size: 0.9rem;">Contact:</h6>
+                                <p style="color: #333; margin: 0;">{{ enquiry.user_id.contact }}</p>
+                            </div>
+                            <div class="action" style="text-align: right;">
+                                <a href="{% url 'reply_to_public' enquiry.id %}" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 8px 20px; border-radius: 5px; color: white; text-decoration: none; transition: all 0.3s ease;">
+                                    <i class="fa fa-reply"></i> Reply
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
         {% else %}
-            <p>No enquiries found.</p>
+        <div class="empty-state text-center" style="padding: 50px 20px;">
+            <div style="background: #f8f9fa; border-radius: 15px; padding: 40px; display: inline-block;">
+                <i class="fa fa-inbox fa-3x" style="color: #dc3545; margin-bottom: 20px;"></i>
+                <h4 style="color: #666;">No Enquiries Found</h4>
+                <p style="color: #999; margin: 0;">There are currently no pending enquiries to display.</p>
+            </div>
+        </div>
         {% endif %}
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+<style>
+    .enquiry-card {
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+    .enquiry-card:hover {
+        transform: translateY(-5px);
+    }
+    .btn-primary:hover {
+        background: #163c75 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 768px) {
+        .enquiry-card {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+{% endblock %}
