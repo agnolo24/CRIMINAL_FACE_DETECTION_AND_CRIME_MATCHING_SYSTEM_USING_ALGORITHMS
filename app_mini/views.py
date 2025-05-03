@@ -434,6 +434,7 @@ def search_station(request):
                     messages.error(request, 'police station is not varified')
             except police_station_registration.DoesNotExist:
                 messages.error(request, 'Police station does not exist')
+                return redirect('search_station')
     else:
         station_data = police_station_registration.objects.all()
         form = search_station_form()
