@@ -1,15 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>criminal registration</title>
-</head>
-<body>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Save Changes</button>
-    </form>
-</body>
-</html>
+{% extends 'police_station/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="edit-criminal section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 40px;">
+            <h2 style="color: #1e4e95; font-weight: 600;">Edit Criminal Record</h2>
+            <p style="color: #666;">Update information for the criminal database</p>
+        </div>
+
+        <div class="edit-card" style="background: white; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); padding: 40px; max-width: 800px; margin: 0 auto;">
+            <form method="post" enctype="multipart/form-data" class="edit-form">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label for="{{ field.id_for_label }}" style="display: block; color: #333; font-weight: 500; margin-bottom: 8px;">
+                            {{ field.label }}
+                            {% if field.field.required %}
+                                <span style="color: #dc3545;">*</span>
+                            {% endif %}
+                        </label>
+                        <div class="field-wrapper">
+                            {{ field }}
+                        </div>
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <div class="error-message" style="color: #dc3545; font-size: 0.875rem; margin-top: 5px;">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="form-actions" style="margin-top: 40px; display: flex; gap: 15px; justify-content: center;">
+                    <button type="submit" class="btn-save" style="background: #dc3545; border: none; padding: 12px 35px; border-radius: 5px; color: white; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fa fa-save"></i> Save Changes
+                    </button>
+                    <a href="{% url 'view_criminals' %}" class="btn-cancel" style="background: #6c757d; border: none; padding: 12px 35px; border-radius: 5px; color: white; font-size: 1rem; font-weight: 500; text-decoration: none; transition: all 0.3s ease;">
+                        <i class="fa fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .edit-form input[type="text"],
+    .edit-form input[type="number"],
+    .edit-form input[type="file"],
+    .edit-form textarea,
+    .edit-form select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .edit-form input:focus,
+    .edit-form textarea:focus,
+    .edit-form select:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 2px rgba(220,53,69,0.1);
+        outline: none;
+    }
+
+    .edit-form textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .btn-save:hover {
+        background: #bb2d3b !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(220,53,69,0.2);
+    }
+
+    .btn-cancel:hover {
+        background: #5c636a !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(108,117,125,0.2);
+    }
+
+    @media (max-width: 768px) {
+        .edit-card {
+            padding: 20px;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+        }
+        
+        .btn-save,
+        .btn-cancel {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,40 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-    
-    {% if criminal_data %}
+{% extends 'police_station/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="criminals-view section-spacing" style="margin-top: 100px;">
+    <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 40px;">
+            <h2 style="color: #1e4e95; font-weight: 600;">Most Wanted Criminals</h2>
+            <p style="color: #666;">View and manage criminal records</p>
+        </div>
+
+        {% if criminal_data %}
+        <div class="criminals-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
             {% for i in criminal_data %}
-            
+            <div class="criminal-card" style="background: white; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.3s ease;">
+                <div class="criminal-photo" style="position: relative; height: 300px; background: #f8f9fa;">
                     {% if i.photo %}
-                        <img src="{{ i.photo.url }}" alt="Criminal Photo" style="height: 300px;">
+                    <img src="{{ i.photo.url }}" alt="Criminal Photo" style="width: 100%; height: 100%; object-fit: cover;">
                     {% else %}
-                            No Photo Available
-                        
+                    <div class="no-photo" style="height: 100%; display: flex; align-items: center; justify-content: center; color: #666;">
+                        <i class="fa fa-user-secret fa-4x"></i>
+                    </div>
                     {% endif %}
+                </div>
                 
-                        <h5>{{ i.full_name }}</h5>
-                        
-                            DOB: {{ i.dob }}<br>
-                            Gender: {{ i.get_gender_display }}<br>
-                            Height: {{ i.height }} cm<br>
-                            Weight: {{ i.weight }} kg<br>
-                            case: {{i.case}}
-                        
-                        <br>
-                        <br>
+                <div class="criminal-info" style="padding: 20px;">
+                    <h3 style="color: #dc3545; font-weight: 600; margin-bottom: 15px;">{{ i.full_name }}</h3>
                     
-                        <a href="{% url 'edit_criminal_data' i.id %}" class="btn btn-primary">Edit</a>
-                        <a href="{% url 'delete_criminal_data' i.id %}" class="btn btn-danger">Delete</a>
-                        <br>
-                        <hr><hr>
-            
+                    <div class="info-grid" style="display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-bottom: 20px;">
+                        <div style="color: #666; font-weight: 500;">DOB:</div>
+                        <div>{{ i.dob }}</div>
+                        <div style="color: #666; font-weight: 500;">Gender:</div>
+                        <div>{{ i.get_gender_display }}</div>
+                        <div style="color: #666; font-weight: 500;">Height:</div>
+                        <div>{{ i.height }} cm</div>
+                        <div style="color: #666; font-weight: 500;">Weight:</div>
+                        <div>{{ i.weight }} kg</div>
+                        <div style="color: #666; font-weight: 500;">Case:</div>
+                        <div>{{ i.case }}</div>
+                    </div>
+
+                    <div class="actions" style="display: flex; gap: 10px;">
+                        <a href="{% url 'edit_criminal_data' i.id %}" class="btn-edit" style="flex: 1; padding: 8px 15px; background: #1e4e95; color: white; text-decoration: none; border-radius: 5px; text-align: center; transition: all 0.3s ease;">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+                        <a href="{% url 'delete_criminal_data' i.id %}" class="btn-delete" style="flex: 1; padding: 8px 15px; background: #dc3545; color: white; text-decoration: none; border-radius: 5px; text-align: center; transition: all 0.3s ease;">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
-    {% else %}
-        <h3>No Criminals Registred</h3>
-    {% endif %}
+        </div>
+        {% else %}
+        <div class="empty-state text-center" style="padding: 50px 20px;">
+            <div style="background: #f8f9fa; border-radius: 15px; padding: 40px; display: inline-block;">
+                <i class="fa fa-user-secret fa-3x" style="color: #dc3545; margin-bottom: 20px;"></i>
+                <h4 style="color: #666;">No Criminals Registered</h4>
+                <p style="color: #999; margin: 0;">There are currently no criminal records in the database.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .criminal-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .btn-edit:hover {
+        background: #163c75;
+        transform: translateY(-2px);
+    }
+
+    .btn-delete:hover {
+        background: #bb2d3b;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .criminals-grid {
+            grid-template-columns: 1fr;
+        }
         
-</body>
-</html>
+        .criminal-card {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    }
+</style>
+{% endblock %}
