@@ -56,6 +56,13 @@
   
 <script data-cfasync="false" nonce="937ae66b-9974-48f1-a03b-b50bc02a13bd">try{(function(w,d){!function(j,k,l,m){if(j.zaraz)console.error("zaraz is loaded twice");else{j[l]=j[l]||{};j[l].executed=[];j.zaraz={deferred:[],listeners:[]};j.zaraz._v="5838";j.zaraz._n="937ae66b-9974-48f1-a03b-b50bc02a13bd";j.zaraz.q=[];j.zaraz._f=function(n){return async function(){var o=Array.prototype.slice.call(arguments);j.zaraz.q.push({m:n,a:o})}};for(const p of["track","set","debug"])j.zaraz[p]=j.zaraz._f(p);j.zaraz.init=()=>{var q=k.getElementsByTagName(m)[0],r=k.createElement(m),s=k.getElementsByTagName("title")[0];s&&(j[l].t=k.getElementsByTagName("title")[0].text);j[l].x=Math.random();j[l].w=j.screen.width;j[l].h=j.screen.height;j[l].j=j.innerHeight;j[l].e=j.innerWidth;j[l].l=j.location.href;j[l].r=k.referrer;j[l].k=j.screen.colorDepth;j[l].n=k.characterSet;j[l].o=(new Date).getTimezoneOffset();if(j.dataLayer)for(const t of Object.entries(Object.entries(dataLayer).reduce(((u,v)=>({...u[1],...v[1]})),{})))zaraz.set(t[0],t[1],{scope:"page"});j[l].q=[];for(;j.zaraz.q.length;){const w=j.zaraz.q.shift();j[l].q.push(w)}r.defer=!0;for(const x of[localStorage,sessionStorage])Object.keys(x||{}).filter((z=>z.startsWith("_zaraz_"))).forEach((y=>{try{j[l]["z_"+y.slice(7)]=JSON.parse(x.getItem(y))}catch{j[l]["z_"+y.slice(7)]=x.getItem(y)}}));r.referrerPolicy="origin";r.src="../../cdn-cgi/zaraz/sd0d9.js?z="+btoa(encodeURIComponent(JSON.stringify(j[l])));q.parentNode.insertBefore(r,q)};["complete","interactive"].includes(k.readyState)?zaraz.init():j.addEventListener("DOMContentLoaded",zaraz.init)}}(w,d,"zarazData","script");window.zaraz._p=async bs=>new Promise((bt=>{if(bs){bs.e&&bs.e.forEach((bu=>{try{const bv=d.querySelector("script[nonce]"),bw=bv?.nonce||bv?.getAttribute("nonce"),bx=d.createElement("script");bw&&(bx.nonce=bw);bx.innerHTML=bu;bx.onload=()=>{d.head.removeChild(bx)};d.head.appendChild(bx)}catch(by){console.error(`Error executing script: ${bu}\n`,by)}}));Promise.allSettled((bs.f||[]).map((bz=>fetch(bz[0],bz[1]))))}bt()}));zaraz._p({"e":["(function(w,d){})(window,document)"]});})(window,document)}catch(e){throw fetch("/cdn-cgi/zaraz/t"),e;};</script></head>
 <body class="hold-transition skin-blue sidebar-mini">
+
+
+  <div id="loader-wrapper">
+				<div id="loader"></div>
+			</div>
+
+
 <div class="wrapper">
 
   <header class="main-header">
@@ -81,25 +88,79 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>>
         <li>
-          <a href="{% url 'p_data_table' %}">
-            <i class="fa fa-th"></i> <span>Registerd Station</span>
-          </a>
-        </li>
-        <li>
-          <a href="{% url 's_data_table' %}">
-            <i class="fa fa-th"></i> <span>Registerd Staff</span>
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'manage_salary' %}">
-            <i class="fa fa-th"></i> <span>Manage Salary</span>
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'view_complaints_from_user' %}">
-            <i class="fa fa-th"></i> <span>View Complaints</span>
-          </a>
-        </li>
+    <a href="{% url 'p_data_table' %}" style="
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #b8c7ce;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+    ">
+        <i class="fa fa-building" style="font-size: 16px; width: 20px;"></i> 
+        <span>Registered Stations</span>
+    </a>
+</li>
+<li>
+    <a href="{% url 's_data_table' %}" style="
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #b8c7ce;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+    ">
+        <i class="fa fa-users" style="font-size: 16px; width: 20px;"></i> 
+        <span>Registered Staff</span>
+    </a>
+</li>
+<li>
+    <a href="{% url 'manage_salary' %}" style="
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #b8c7ce;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+    ">
+        <i class="fa fa-money" style="font-size: 16px; width: 20px;"></i> 
+        <span>Manage Salary</span>
+    </a>
+</li>
+<li>
+    <a href="{% url 'view_complaints_from_user' %}" style="
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #b8c7ce;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+    ">
+        <i class="fa fa-file-text" style="font-size: 16px; width: 20px;"></i> 
+        <span>View Complaints</span>
+    </a>
+</li>
+    <li class="logout-item" style="
+    margin-top: 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+">
+    <a href="{% url 'login_form' %}" style="
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+    ">
+        <i class="fa fa-sign-out" style="font-size: 18px;"></i>
+        <span>Log Out</span>
+    </a>
+</li>
     <!-- /.sidebar -->
   </aside>
 
@@ -117,3 +178,71 @@
     <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io/">AdminLTE</a>.</strong> All rights
     reserved.
 </footer>
+
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script data-cfasync="false" src="{% static 'AdminLTE/../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{% static 'AdminLTE/bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static 'AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- Morris.js charts -->
+<script src="{% static 'AdminLTE/bower_components/raphael/raphael.min.js' %}"></script>
+<script src="{% static 'AdminLTE/bower_components/morris.js/morris.min.js' %}"></script>
+<!-- Sparkline -->
+<script src="{% static 'AdminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js' %}"></script>
+<!-- jvectormap -->
+<script src="{% static 'AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{% static 'AdminLTE/bower_components/jquery-knob/dist/jquery.knob.min.js' %}"></script>
+<!-- daterangepicker -->
+<script src="{% static 'AdminLTE/bower_components/moment/min/moment.min.js' %}"></script>
+<script src="{% static 'AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+<!-- datepicker -->
+<script src="{% static 'AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{% static 'AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js' %}"></script>
+<!-- Slimscroll -->
+<script src="{% static 'AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'AdminLTE/bower_components/fastclick/lib/fastclick.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'AdminLTE/dist/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{% static 'AdminLTE/dist/js/pages/dashboard.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'AdminLTE/dist/js/demo.js' %}"></script>
+<script src="{% static 'AdminLTE/ad.js' %}"></script>
+<script src="{% static 'charles/vendor/jquery.2.2.3.min.js' %}"></script>
+		<!-- Popper js -->
+		<script src="{% static 'charles/vendor/popper.js/popper.min.js' %}"></script>
+		<!-- Bootstrap JS -->
+		<script src="{% static 'charles/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+		<!-- Camera Slider -->
+		<script src="{% static 'charles/vendor/Camera-master/scripts/jquery.mobile.customized.min.js' %}"></script>
+	    <script src="{% static 'charles/vendor/Camera-master/scripts/jquery.easing.1.3.js' %}"></script> 
+	    <script src="{% static 'charles/vendor/Camera-master/scripts/camera.min.js' %}"></script>
+	    <!-- menu  -->
+		<script src="{% static 'charles/vendor/menu/src/js/jquery.slimmenu.js' %}"></script>
+		<!-- WOW js -->
+		<script src="{% static 'charles/vendor/WOW-master/dist/wow.min.js' %}"></script>
+		<!-- owl.carousel -->
+		<script src="{% static 'charles/vendor/owl-carousel/owl.carousel.min.js' %}"></script>
+		<!-- js count to -->
+		<script src="{% static 'charles/vendor/jquery.appear.js' %}"></script>
+		<script src="{% static 'charles/vendor/jquery.countTo.js' %}"></script>
+		<!-- Fancybox -->
+		<script src="{% static 'charles/vendor/fancybox/dist/jquery.fancybox.min.js' %}"></script>
+
+		<!-- Theme js -->
+		<script src="{% static 'charles/js/theme.js' %}"></script>
+</body>
+
+<!-- Mirrored from adminlte.io/themes/AdminLTE/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Dec 2024 09:31:58 GMT -->
+</html>
