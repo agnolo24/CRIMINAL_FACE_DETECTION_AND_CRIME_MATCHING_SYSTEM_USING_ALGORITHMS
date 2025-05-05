@@ -1,15 +1,167 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>salary</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-</body>
-</html>
+{% extends 'web_admin/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Edit Salary Structure
+            <small>Update Salary Details</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'admin_home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{% url 'manage_salary' %}">Manage Salary</a></li>
+            <li class="active">Edit Salary</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Edit Salary Details</h3>
+            </div>
+            <div class="box-body">
+                <form method="post" class="edit-form">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                                {% if field.field.required %}
+                                    <span class="required">*</span>
+                                {% endif %}
+                            </label>
+                            {{ field }}
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <span class="error-message">{{ error }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-save"></i> Save Changes
+                        </button>
+                        <a href="{% url 'manage_salary' %}" class="btn btn-default">
+                            <i class="fa fa-times"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+.box {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #1e4e95;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.edit-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1e4e95;
+    box-shadow: 0 0 0 2px rgba(30,78,149,0.1);
+    outline: none;
+}
+
+.required {
+    color: #dc3545;
+    margin-left: 4px;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.form-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-primary {
+    background: #1e4e95;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #163c75;
+}
+
+.btn-default {
+    background: #f4f4f4;
+    color: #444;
+    border: 1px solid #ddd;
+    text-decoration: none;
+}
+
+.btn-default:hover {
+    background: #e7e7e7;
+}
+
+@media (max-width: 768px) {
+    .box {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .edit-form {
+        padding: 10px;
+    }
+
+    .form-actions {
+        text-align: center;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+</style>
+{% endblock %}

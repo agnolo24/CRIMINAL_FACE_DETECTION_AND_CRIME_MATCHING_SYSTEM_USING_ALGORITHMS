@@ -1,77 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>complaints</title>
-</head>
-<body>
-    <div id="cointainer">
+{% extends 'web_admin/header_footer.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            User Complaints
+            <small>Complaint Management</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'admin_home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">View Complaints</li>
+        </ol>
+    </section>
+
+    <section class="content">
         {% for i in comp %}
-            <div>
-                <h3>Send From</h3>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>From : </td>
-                            <td>{{i.user.fullname}}</td>
-                        </tr>
-                        <tr>
-                            <td>Contact details : </td>
-                            <td>{{i.user.contact}}</td>
-                        </tr>
-                        <td>
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Complaint #{{forloop.counter}}</h3>
+            </div>
+            <div class="box-body">
+                <div class="complaint-section">
+                    <h4><i class="fa fa-user"></i> Complainant Details</h4>
+                    <table class="table table-bordered">
+                        <tbody>
                             <tr>
-                                <td>Email : </td>
+                                <th width="200">Name</th>
+                                <td>{{i.user.fullname}}</td>
+                            </tr>
+                            <tr>
+                                <th>Contact</th>
+                                <td>{{i.user.contact}}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
                                 <td>{{i.user.login_id.email}}</td>
                             </tr>
-                        </td>
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
 
-            <br>
-            <div>
-                <h3>complaint</h3>
-                <p>{{i.msg}}</p>
-            </div>
-            <br>
+                <div class="complaint-section">
+                    <h4><i class="fa fa-exclamation-circle"></i> Complaint Message</h4>
+                    <div class="complaint-message">
+                        {{i.msg}}
+                    </div>
+                </div>
 
-            <div>
-                <h3>Petition Details</h3>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Submited On :</td>
-                            <td>{{i.pet.date}}</td>
-                        </tr>
-                        <tr>
-                            <td>Submited To :</td>
-                            <td>{{i.pet.station}}</td>
-                        </tr>
-                        <tr>
-                            <td>FIR Status : </td>
-                            <td>
-                                {% if i.pet.fir_number %}
-                                    <h4>FIR Registres</h4>
-                                {% else %}
-                                    <h4>FIR Not Registres</h4>
-                                {% endif %}
-                            </td>
-                        </tr> 
-                        <tr>
-                            <td>Petition Details : </td>
-                            <td>{{i.pet.petition_text}}</td>
-                        </tr>
-                        <tr>
-                            <td>Station Replay on Petition : </td>
-                            <td>{{i.pet.reply}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="complaint-section">
+                    <h4><i class="fa fa-file-text"></i> Petition Details</h4>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th width="200">Submitted On</th>
+                                <td>{{i.pet.date}}</td>
+                            </tr>
+                            <tr>
+                                <th>Submitted To</th>
+                                <td>{{i.pet.station}}</td>
+                            </tr>
+                            <tr>
+                                <th>FIR Status</th>
+                                <td>
+                                    {% if i.pet.fir_number %}
+                                        <span class="label label-success">FIR Registered</span>
+                                    {% else %}
+                                        <span class="label label-warning">FIR Not Registered</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Petition Details</th>
+                                <td>{{i.pet.petition_text}}</td>
+                            </tr>
+                            <tr>
+                                <th>Station Reply</th>
+                                <td>{{i.pet.reply|default:"No reply yet"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <hr>
+        </div>
         {% endfor %}
-    </div>
-</body>
-</html>
+    </section>
+</div>
+
+<style>
+.box {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #1e4e95;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.complaint-section {
+    margin-bottom: 30px;
+}
+
+.complaint-section h4 {
+    color: #1e4e95;
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.complaint-section h4 i {
+    margin-right: 10px;
+}
+
+.table {
+    width: 100%;
+    font-size: 14px;
+}
+
+.table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #333;
+}
+
+.table th, 
+.table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+.complaint-message {
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.label {
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.label-success {
+    background: #00a65a;
+    color: white;
+}
+
+.label-warning {
+    background: #f39c12;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .box {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .table th, 
+    .table td {
+        padding: 8px 10px;
+    }
+}
+</style>
+{% endblock %}
