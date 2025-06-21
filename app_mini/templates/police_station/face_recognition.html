@@ -1,0 +1,85 @@
+{% extends 'police_station/header_footer.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <style>
+        .alert {
+          padding: 10px;
+          margin: 20px auto;
+          width: 80%;
+          border: 1px solid transparent;
+          border-radius: 4px;
+          text-align: center;
+        }
+      
+        .alert-success {
+          background-color: #d4edda;
+          border-color: #c3e6cb;
+          color: #155724;
+        }
+      
+        .alert-error, .alert-danger {
+          background-color: #f8d7da;
+          border-color: #f5c6cb;
+          color: #721c24;
+        }
+
+
+
+
+
+        .alert {
+    padding: 10px;
+    margin: 20px auto;
+    width: 80%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-error, .alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.btn-primary {
+    background-color: #060606;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #faa004;
+}
+      </style>
+</head>
+<body>
+    <center>
+    <!-- <h1>Face Recognition</h1><br> -->
+
+    <form method="post" action=''>
+        {% csrf_token %}
+       <b> Click the Button Below to Recognize The Criminal</b><br><br>
+        <button type="submit" name="start_recognition">Start Recognition</button>
+    </form>
+</center>
+</body>
+</html><br><br><br><br>
+{% endblock %}

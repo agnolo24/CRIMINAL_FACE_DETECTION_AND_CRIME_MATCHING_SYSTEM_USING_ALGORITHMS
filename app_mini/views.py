@@ -7,6 +7,26 @@ import datetime
             # Create your views here.
 
             # starting of the guest model section
+import nltk
+nltk.download('punkt')
+import nltk
+from nltk.data import find
+
+def ensure_punkt():
+    try:
+        # try the more standard path
+        find('tokenizers/punkt/english.pickle')
+    except LookupError:
+        nltk.download('punkt', quiet=True)
+
+    try:
+        # also ensure punkt_tab if your code uses it
+        find('tokenizers/punkt_tab/english.pickle')
+    except LookupError:
+        nltk.download('punkt_tab', quiet=True)
+
+# call this once at startup, before any tokenization
+ensure_punkt()
 
 
 def guest_page(request):
@@ -672,3 +692,173 @@ def view_complaints_from_user(request):
 
 
             # ending of webadmin model view
+import cv2,os
+import numpy as np
+
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+def load_criminals():
+    """Loads criminal data (images and encodings)"""
+    criminal_images = []
+    criminal_encodings = []
+    for criminal in CriminalRegistration.objects.all():
+        image_path = criminal.photo.path
+        try:
+            image = cv2.imread(image_path)
+            if image is not None:
+                rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                faces = face_cascade.detectMultiScale(rgb_image, scaleFactor=1.1, minNeighbors=7, minSize=(30, 30))
+                
+                if len(faces) == 1:
+                    x, y, w, h = faces[0]
+                    face_image = rgb_image[y:y+h, x:x+w]
+                    
+                    face_encoding = encode_face(face_image)
+                    
+                    if face_encoding is not None:
+                        criminal_images.append(face_image)
+                        criminal_encodings.append(face_encoding)
+        except Exception as e:
+            print(f"Error loading image: {image_path} - {e}")
+    return criminal_images, criminal_encodings
+
+def encode_face(face_image):
+    """Encodes a face image into a feature vector using a pre-trained model"""
+    model_path = os.path.join(os.path.dirname(__file__), 'openface.nn4.small2.v1.t7')
+    model = cv2.dnn.readNetFromTorch(model_path)
+
+    target_size = (96, 96)
+    resized_image = cv2.resize(face_image, target_size)
+    normalized_image = resized_image.astype(float) / 255.0
+
+    if normalized_image.dtype != np.float32:
+        normalized_image = normalized_image.astype(np.float32)
+
+    blob = cv2.dnn.blobFromImage(normalized_image, 1.0, target_size, (0, 0, 0), swapRB=True, crop=False)
+    model.setInput(blob)
+    face_encoding = model.forward()
+
+    return face_encoding.flatten() if face_encoding is not None else None
+
+def face_recognition_view(request):
+    criminal_images, criminal_encodings = load_criminals()
+    cv2.namedWindow('Criminal Detecting', cv2.WINDOW_NORMAL)
+    cv2.resizeWindow('Criminal Detecting', 1280, 720)
+
+    if request.method == 'POST':
+        threshold = 0.6
+        display_duration = 60
+        details_text = ""
+        display_details = False
+        frame_count = 0
+
+        cap = cv2.VideoCapture(0)
+
+        while True:
+            ret, frame = cap.read()
+
+            if not ret:
+                print("Error capturing frame")
+                break
+
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            faces = face_cascade.detectMultiScale(rgb_frame, scaleFactor=1.1, minNeighbors=7, minSize=(30, 30))
+
+            for (x, y, w, h) in faces:
+                face_image = rgb_frame[y:y+h, x:x+w]
+                face_encoding = encode_face(face_image)
+
+                if face_encoding is not None:
+                    distances = [np.linalg.norm(face_encoding - enc) for enc in criminal_encodings]
+                    min_distance = min(distances)
+                    
+                    if min_distance < threshold:
+                        min_index = distances.index(min_distance)
+                        criminal = CriminalRegistration.objects.all()[min_index]
+                        
+                        details_text = f"Name: {criminal.full_name}, Gender: {criminal.gender}, Crime Details: {criminal.case}"
+                        display_details = True
+                        frame_count = 0
+
+                        cv2.imshow("Criminal Image", criminal_images[min_index])
+
+            if display_details:
+                text_size, _ = cv2.getTextSize(details_text, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
+                text_width = text_size[0]
+                text_height = text_size[1]
+
+                max_text_width = frame.shape[1] - 20
+                max_text_height = frame.shape[0] - 20
+                text_position = (10, max_text_height - text_height) if max_text_height > text_height else (10, 30)
+
+                cv2.putText(frame, details_text, text_position, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+                frame_count += 1
+
+                if frame_count >= display_duration:
+                    display_details = False
+
+            cv2.imshow('Criminal Detecting', frame)
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
+    return render(request, 'police_station/face_recognition.html')
+
+
+from django.shortcuts import render
+
+from nltk.tokenize import word_tokenize
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+
+def preprocess_text(text):
+    tokens = word_tokenize(text)
+    tokens = [word.lower() for word in tokens if word.isalpha()]
+    return " ".join(tokens)
+
+def match_fir(request):
+    form = FirCheckForm()
+    matches = []
+    
+    if request.method == 'POST':
+        form = FirCheckForm(request.POST)
+        if form.is_valid():
+            description = form.cleaned_data['Case_description']
+            
+            # Preprocess the input description
+            cleaned_description = preprocess_text(description)
+            
+            # Get all FIR case descriptions from the database
+            all_firs = FIR.objects.all()
+            fir_descriptions = [preprocess_text(fir.description_of_incident) for fir in all_firs]
+            
+            # Add the new description to the list for comparison
+            fir_descriptions.append(cleaned_description)
+            
+            # Convert the descriptions to a matrix of token counts
+            vectorizer = CountVectorizer().fit_transform(fir_descriptions)
+            vectors = vectorizer.toarray()
+            
+            # Calculate cosine similarity between the vectors
+            cosine_sim = cosine_similarity(vectors)
+            
+            # Get similarity scores for the last description (input)
+            last_index = len(fir_descriptions) - 1
+            similarity_scores = cosine_sim[last_index]
+            
+            # Find similar FIRs (with a threshold)
+            threshold = 0.3  # Lowering the threshold to capture more similarities
+            for i, score in enumerate(similarity_scores[:-1]):
+                if score > threshold:
+                    matches.append(all_firs[i])
+    
+    context = {
+        'form': form,
+        'matches': matches
+    }
+    
+    return render(request, 'police_station/FIRcheck.html', context)

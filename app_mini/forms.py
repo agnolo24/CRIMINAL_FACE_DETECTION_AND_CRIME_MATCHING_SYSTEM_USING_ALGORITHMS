@@ -142,3 +142,6 @@ class ComplaintForm(forms.ModelForm):
         help_texts = {
             'msg': 'Provide specific details about your complaint regarding the petition response'
         }
+
+class FirCheckForm(forms.Form):
+    Case_description = forms.CharField(widget=forms.Textarea)
