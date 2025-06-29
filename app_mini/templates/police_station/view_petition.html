@@ -35,6 +35,14 @@
                                         <h6 style="color: #666; margin-bottom: 8px;">Contact:</h6>
                                         <p style="color: #333;">{{ pet.user.contact }}</p>
                                     </div>
+                                    <div class="contact-info" style="margin-bottom: 20px;">
+                                        <h6 style="color: #666; margin-bottom: 8px;">Address:</h6>
+                                        <p style="color: #333;">{{ pet.user.address }}</p>
+                                    </div>
+                                    <div class="contact-info" style="margin-bottom: 20px;">
+                                        <h6 style="color: #666; margin-bottom: 8px;">Adhar N.o:</h6>
+                                        <p style="color: #333;">{{ pet.user.adhar }}</p>
+                                    </div>
                                     <div class="actions" style="display: flex; justify-content: flex-end; gap: 10px;">
                                         <a href="{% url 'reply_to_petition' pet.id %}" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 8px 20px; border-radius: 5px; color: white; text-decoration: none;">
                                             <i class="fa fa-reply"></i> Reply

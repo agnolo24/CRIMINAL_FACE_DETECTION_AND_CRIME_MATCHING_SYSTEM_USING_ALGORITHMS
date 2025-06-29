@@ -227,11 +227,31 @@ def fir_registration(request, id):
             station_login_ins = get_object_or_404(login_table, id = station_login_id)
             station = get_object_or_404(police_station_registration, login_id = station_login_ins)
             ins.police_station = station
+
+            # Generate a unique FIR number.
+            # The format will be: <STATION_ID>-<YEAR>-<5_DIGIT_SEQUENCE>
+            # e.g., KRP-2023-00001
+            current_year = datetime.date.today().year
+
+            # This counting method can have race conditions under high load.
+            # For a more robust solution, you might consider using database transactions
+            # with select_for_update or a dedicated sequence model.
+            fir_count_for_year = FIR.objects.filter(
+                police_station=station,
+                created_at__year=current_year
+            ).count()
+
+            sequence_number = fir_count_for_year + 1
+
+            # Create the unique FIR number
+            fir_number = f"{station.station_id}-{current_year}-{sequence_number:05d}"
+            ins.fir_number = fir_number
+
             pet_ins = get_object_or_404(Petition, id = id)
             ins.petitionInfo = pet_ins
+            ins.save()  # Save the FIR instance first to commit the fir_number
             pet_ins.fir_number = ins.fir_number
             pet_ins.save()
-            ins.save()
             return redirect('view_petition')
     else:
         form = FirRegForm()
@@ -670,6 +690,17 @@ def reject_s(request, station_id):
 def manage_salary(request):
     salary_ins = Salary.objects.all()
     return render(request, 'web_admin/manage_salary.html', {'salary_ins':salary_ins})
+
+
+def view_mostwanted_criminal_admin(request):
+    try:
+        criminal_data = CriminalRegistration.objects.all()
+        return render(request, 'web_admin/view_mostwanted_criminal_admin.html', {'criminal_data' : criminal_data})
+    except CriminalRegistration.DoesNotExist:
+        messages.error(request, 'No Criminal Registred')
+        return redirect('admin_home')
+    
+    
 
 
 def edit_salary(request, id):

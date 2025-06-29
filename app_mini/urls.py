@@ -76,6 +76,7 @@ urlpatterns = [
     path('manage_salary/', views.manage_salary, name='manage_salary'),
     path('edit_salary/<int:id>', views.edit_salary, name='edit_salary'),
     path('view_complaints_from_user/', views.view_complaints_from_user, name='view_complaints_from_user'),
+    path('view_mostwanted_criminal_admin/', views.view_mostwanted_criminal_admin, name='view_mostwanted_criminal_admin'),
     path('load_criminals/',views.face_recognition_view, name='load_criminals'),
     path('match_fir', views.match_fir, name='match_fir'),
 

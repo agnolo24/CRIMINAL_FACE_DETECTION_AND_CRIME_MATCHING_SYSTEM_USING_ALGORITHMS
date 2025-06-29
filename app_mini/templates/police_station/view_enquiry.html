@@ -30,6 +30,10 @@
                                 <h6 style="color: #666; margin-bottom: 8px; font-size: 0.9rem;">Contact:</h6>
                                 <p style="color: #333; margin: 0;">{{ enquiry.user_id.contact }}</p>
                             </div>
+                            <div class="contact-info" style="margin-bottom: 20px;">
+                                <h6 style="color: #666; margin-bottom: 8px; font-size: 0.9rem;">Adhar N.O:</h6>
+                                <p style="color: #333; margin: 0;">{{ enquiry.user_id.adhar }}</p>
+                            </div>
                             <div class="action" style="text-align: right;">
                                 <a href="{% url 'reply_to_public' enquiry.id %}" class="btn btn-primary" style="background: #1e4e95; border: none; padding: 8px 20px; border-radius: 5px; color: white; text-decoration: none; transition: all 0.3s ease;">
                                     <i class="fa fa-reply"></i> Reply

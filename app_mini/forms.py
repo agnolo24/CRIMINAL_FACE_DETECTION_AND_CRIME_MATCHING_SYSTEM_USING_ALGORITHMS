@@ -35,7 +35,7 @@ class Reply(forms.Form):
 class user_registration_form(forms.ModelForm):
     class Meta:
         model = user_registration
-        fields = ['profile_picture','fullname', 'contact', 'address']
+        fields = ['profile_picture','fullname', 'contact', 'adhar', 'address']
 
 
 class search_station_form(forms.Form):
@@ -95,7 +95,7 @@ class FirRegForm(forms.ModelForm):
     class Meta:
         model = FIR
         fields = [
-            'fir_number', 'complainant_name', 'complainant_address',
+            'complainant_name', 'complainant_address',
             'complainant_contact', 'accused_name', 'accused_address', 'incident_date', 'incident_location',
             'description_of_incident', 'evidence', 'status', 
         ]
