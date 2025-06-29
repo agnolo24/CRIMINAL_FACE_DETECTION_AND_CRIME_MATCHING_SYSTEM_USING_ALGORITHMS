@@ -150,10 +150,10 @@ class Salary(models.Model):
         ('PC', 'Police Constable')
     ]
     designation = models.CharField(max_length=50, choices=DESIGNATION_CHOICE, unique=True)
-    bs = models.IntegerField()
-    da = models.IntegerField()
-    hr = models.IntegerField()
-    pf = models.IntegerField()
+    bs = models.IntegerField(null=True, blank=True)
+    da = models.IntegerField(null=True, blank=True)
+    hr = models.IntegerField(null=True, blank=True)
+    pf = models.IntegerField(null=True, blank=True)
     total_salaty = models.IntegerField(null=True, blank=True)
 
 
