@@ -7,6 +7,9 @@
         <div class="section-header text-center" style="margin-bottom: 50px;">
             <h2 style="color: #1e4e95; font-weight: 600;">Most Wanted Criminals</h2>
             <p style="color: #666;">List of currently wanted individuals</p>
+            <a href="{% url 'load_criminals' %}" class="btn btn-success" style="margin-top: 20px; border-radius: 5px; padding: 10px 22px; font-weight: 600;">
+                <i class="fa fa-random"></i> Run Criminal Face Matching Algorithm
+            </a>
         </div>
 
         {% if criminal_data %}

@@ -836,7 +836,7 @@ def face_recognition_view(request):
         cap.release()
         cv2.destroyAllWindows()
 
-    return render(request, 'police_station/face_recognition.html')
+    return render(request, 'staff/face_recognition.html')
 
 
 from django.shortcuts import render
