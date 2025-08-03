@@ -5,7 +5,7 @@ from django.db import models
 
 class login(models.Model):
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=20)
     user_type = models.CharField(max_length =50)
     varification_status = models.CharField(default='pending', max_length=20)
 
@@ -16,7 +16,7 @@ class police_station_registration(models.Model):
     address_line_2 = models.CharField(max_length=100)
     district = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    contact = models.CharField(max_length=50)
+    contact = models.CharField(max_length=13)
 
     def __str__(self):
         return (self.station_id)
@@ -26,7 +26,7 @@ class user_registration(models.Model):
     profile_picture = models.ImageField(upload_to='profile/', null=True)
     login_id = models.ForeignKey(login, on_delete=models.CASCADE, null=True, blank=True)
     fullname = models.CharField(max_length=30)
-    contact = models.CharField(max_length=20)
+    contact = models.CharField(max_length=13)
     adhar = models.IntegerField()
     address = models.TextField(null=True)
 
@@ -57,7 +57,7 @@ class staff(models.Model):
     login_id = models.ForeignKey(login, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    contact = models.CharField(max_length=50)
+    contact = models.CharField(max_length=13)
     designation = models.CharField(max_length=50, choices=DESIGNATION_CHOICE)
     gender = models.CharField(max_length=20)
     date_of_birth = models.CharField(max_length=20)
@@ -96,7 +96,7 @@ class FIR(models.Model):
     petitionInfo = models.ForeignKey(Petition, on_delete=models.SET_NULL, null=True)
     complainant_name = models.CharField(max_length=100)
     complainant_address = models.TextField()
-    complainant_contact = models.CharField(max_length=15)
+    complainant_contact = models.CharField(max_length=13)
     accused_name = models.CharField(max_length=100, blank=True, null=True)
     accused_address = models.TextField(blank=True, null=True)
     incident_date = models.DateTimeField()

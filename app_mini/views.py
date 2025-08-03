@@ -892,4 +892,4 @@ def match_fir(request):
         'matches': matches
     }
     
-    return render(request, 'police_station/FIRcheck.html', context)
+    return render(request, 'staff/FIRcheck.html', context)

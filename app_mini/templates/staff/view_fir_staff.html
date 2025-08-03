@@ -7,6 +7,9 @@
         <div class="theme-title-one">
             <h2>FIR Records</h2>
             <p>View all registered FIR details</p>
+            <a href="{% url 'match_fir' %}" class="btn btn-success" style="margin-top: 20px; border-radius: 5px; padding: 10px 22px; font-weight: 600;">
+                <i class="fa fa-random"></i> Run FIR Matching Algorithm
+            </a>
         </div>
 
         {% if fir %}
