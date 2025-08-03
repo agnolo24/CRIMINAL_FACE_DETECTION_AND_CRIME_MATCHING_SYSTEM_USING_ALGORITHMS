@@ -123,6 +123,16 @@
               'Password must be at least 8 characters, include uppercase, lowercase, a number, and a special character'
             );
           }
+
+          const adharInput = document.querySelector('input[name="adhar"]');
+          if (adharInput) {
+            handleValidation(
+              adharInput,
+              /^\d{12}$/,
+              'Valid Aadhaar number',
+              'Aadhaar number must be 12 digit'
+            );
+          }
         
           // Real-time "This field is required" for other fields
           const requiredFields = ['District', 'City', 'Village', 'Panchayat', 'Register_no', 'address'];
