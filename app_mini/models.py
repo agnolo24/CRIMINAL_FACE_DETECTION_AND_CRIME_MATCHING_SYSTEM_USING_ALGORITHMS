@@ -52,6 +52,11 @@ class staff(models.Model):
         ('HC', 'Head Constable'),
         ('PC', 'Police Constable')
     ]
+    GENDER = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other')
+    ]
     profile_picture = models.ImageField(upload_to='profile_staff/', null=True)
     staff_id = models.CharField(max_length=50, primary_key=True)
     login_id = models.ForeignKey(login, on_delete=models.CASCADE, null=True, blank=True)
@@ -59,8 +64,8 @@ class staff(models.Model):
     address = models.CharField(max_length=100)
     contact = models.CharField(max_length=13)
     designation = models.CharField(max_length=50, choices=DESIGNATION_CHOICE)
-    gender = models.CharField(max_length=20)
-    date_of_birth = models.CharField(max_length=20)
+    gender = models.CharField(max_length=6, choices=GENDER)
+    date_of_birth = models.DateField()
     station = models.ForeignKey(police_station_registration, on_delete=models.SET_NULL, null=True)
 
 

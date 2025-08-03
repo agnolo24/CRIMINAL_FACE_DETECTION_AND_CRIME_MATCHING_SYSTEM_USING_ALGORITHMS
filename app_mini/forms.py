@@ -58,6 +58,10 @@ class staff_registration_form(forms.ModelForm):
                 'rows': 3,
                 'placeholder': 'Enter address here'
             }),
+            'date_of_birth': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'form-control'
+            }),
         }
         
 
@@ -71,7 +75,7 @@ class staff_edit_form(forms.ModelForm):
                    'address' : forms.Textarea(attrs={'class' : 'form-control'}),
                    'contact' : forms.TextInput(attrs={'class' : 'form-control'}),
                    'designation' : forms.TextInput(attrs={'class' : 'form-control'}),
-                   'gender' : forms.TextInput(attrs={'class' : 'form-control'}),
+                   'gender': forms.Select(attrs={'class': 'form-select'}),  
                    'date_of_birth' : forms.DateInput(attrs={'class' : 'form-control', 'type': 'date'})
                    }
 
