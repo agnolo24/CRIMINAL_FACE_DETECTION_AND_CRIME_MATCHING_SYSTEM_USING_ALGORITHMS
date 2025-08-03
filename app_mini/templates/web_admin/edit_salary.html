@@ -164,4 +164,45 @@
     }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('.edit-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+        let valid = true;
+
+        // Remove previous error messages
+        form.querySelectorAll('.error-message.js-error').forEach(el => el.remove());
+
+        // Validate each input
+        ['bs', 'da', 'hr', 'pf'].forEach(fieldName => {
+            const input = form.querySelector(`[name="${fieldName}"]`);
+            if (input) {
+                let value = input.value.trim();
+                let errorMsg = '';
+                if (!value) {
+                    errorMsg = 'This field is required';
+                } else if (isNaN(value)) {
+                    errorMsg = 'Please enter a valid number';
+                }
+                if (errorMsg) {
+                    valid = false;
+                    const error = document.createElement('span');
+                    error.className = 'error-message js-error';
+                    error.style.color = '#dc3545';
+                    error.style.fontSize = '12px';
+                    error.textContent = errorMsg;
+                    input.parentNode.appendChild(error);
+                }
+            }
+        });
+
+        if (!valid) {
+            e.preventDefault();
+        }
+    });
+});
+</script>
 {% endblock %}
