@@ -99,4 +99,104 @@
         }
     }
 </style>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const validators = [];
+        
+          // Reusable validation function
+          function handleValidation(input, pattern, validMsg, invalidMsg) {
+            const feedback = document.createElement('small');
+            feedback.style.display = 'block';
+            input.parentNode.appendChild(feedback);
+        
+            function validate() {
+              const value = input.value.trim();
+              if (!value) {
+                feedback.textContent = '❌ This field is required';
+                feedback.style.color = 'red';
+                return false;
+              } else if (!pattern.test(value)) {
+                feedback.textContent = '❌ ' + invalidMsg;
+                feedback.style.color = 'red';
+                return false;
+              } else {
+                feedback.textContent = '✅ ' + validMsg;
+                feedback.style.color = 'green';
+                return true;
+              }
+            }
+        
+            input.addEventListener('input', validate);
+            validators.push(validate);
+          }
+        
+          // ✅ Name validation (letters and spaces only)
+          const nameInput = document.querySelector('input[name="complainant_name"]');
+          if (nameInput) {
+            handleValidation(
+              nameInput,
+              /^[A-Za-z ]+$/,  // No limit on characters
+              'Valid name',
+              'Name must contain only letters and spaces'
+            );
+          }
+
+           const nameInput2 = document.querySelector('input[name="accused_name"]');
+          if (nameInput2) {
+            handleValidation(
+              nameInput2,
+              /^[A-Za-z ]+$/,  // No limit on characters
+              'Valid name',
+              'Name must contain only letters and spaces'
+            );
+          }
+        
+          // ✅ Contact validation (10 digits)
+          const contactInput = document.querySelector('input[name="complainant_contact"]');
+          if (contactInput) {
+            handleValidation(
+              contactInput,
+              /^\d{10}$/,
+              'Valid phone number',
+              'Enter a valid 10-digit phone number'
+            );
+          }
+
+        
+          // Real-time "This field is required" for other fields
+          const requiredFields = ['accused_address', 'complainant_address', 'status', 'description_of_incident', 'incident_location', 'incident_date'];
+          requiredFields.forEach(fieldName => {
+            const input = document.querySelector(`[name="${fieldName}"]`);
+            if (input) {
+              const feedback = document.createElement('small');
+              feedback.style.display = 'block';
+              input.parentNode.appendChild(feedback);
+        
+              input.addEventListener('input', function () {
+                if (input.value.trim() === '') {
+                  feedback.textContent = '❌ This field is required';
+                  feedback.style.color = 'red';
+                } else {
+                  feedback.textContent = '';
+                }
+              });
+            }
+          });
+        
+          // Prevent form submission if any validation fails
+          const form = document.querySelector('form');
+          if (form) {
+            form.addEventListener('submit', function (e) {
+              let isValid = true;
+              validators.forEach(validateFn => {
+                if (!validateFn()) isValid = false;
+              });
+              if (!isValid) {
+                e.preventDefault();
+                alert("❌ Please fill all required fields and fix validation errors.");
+              }
+            });
+          }
+        });
+        </script>
 {% endblock %}

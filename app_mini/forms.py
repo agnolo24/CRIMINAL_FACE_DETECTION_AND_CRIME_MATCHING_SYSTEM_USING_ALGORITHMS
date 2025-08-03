@@ -93,6 +93,9 @@ class CriminalRegistrationForm(forms.ModelForm):
     class Meta:
         model = CriminalRegistration
         fields = ['full_name', 'dob', 'case', 'height', 'weight', 'gender', 'photo']
+        widgets = {
+            'dob': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        }
 
 
 class FirRegForm(forms.ModelForm):
@@ -103,6 +106,9 @@ class FirRegForm(forms.ModelForm):
             'complainant_contact', 'accused_name', 'accused_address', 'incident_date', 'incident_location',
             'description_of_incident', 'evidence', 'status', 
         ]
+        widgets = {
+            'incident_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        }
 
 
 class SheduleDutyForm(forms.ModelForm):
