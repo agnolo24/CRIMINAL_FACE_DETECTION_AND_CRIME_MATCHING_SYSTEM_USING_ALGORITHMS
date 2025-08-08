@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from.models import police_station_registration, staff, user_registration, Enquiry, login as login_table, Petition, FIR, SheduleDuty, Attendance, Salary, Complaint
 import datetime
+from django.http import Http404
 
             # Create your views here.
 
@@ -65,7 +66,7 @@ def login_check(request):
                         return redirect('admin_home')
                 else:
                     messages.error(request, 'Invalid password')
-            except login_form.DoesNotExist:
+            except Http404:
                 messages.error(request, 'User does not exist')
     else:
         form = Login_check_form()

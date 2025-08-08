@@ -439,11 +439,11 @@ RIGHT SIDEBAR TOGGLE SECTION
 			</div>
       
       {% if messages %}
-      <ul>
-          {% for message in messages %}
-              <li>{{ message }}</li>
-          {% endfor %}
-      </ul>
+        {% for message in messages %}
+          <div style="color: red;">
+            {{ message }}
+          </div>
+        {% endfor %}
       {% endif %}
       
 			<div class="submit-agileits">
