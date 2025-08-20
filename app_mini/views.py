@@ -153,8 +153,9 @@ def accept_staff(request, id):
 
 def reject_staff(request, id):
     login_data = get_object_or_404(login_table, id = id)
-    login_data.varification_status = 'reject'
-    login_data.save()
+    # login_data.varification_status = 'reject'
+    # login_data.save()
+    login_data.delete()
     return redirect('view_staff')
 
 def view_petition(request):
