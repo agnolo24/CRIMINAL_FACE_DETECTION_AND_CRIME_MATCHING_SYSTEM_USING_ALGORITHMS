@@ -898,4 +898,26 @@ def match_fir(request):
 
 
 def forgot_password(request):
-    return render(request, 'guest/forgot_password.html')
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        new_password = request.POST.get('password')
+        
+        try:
+            login_ins = login_table.objects.get(email = email)
+
+            if login_ins:
+                login_ins.password = new_password
+                login_ins.save()
+
+                return redirect('login_form')
+            else:
+                messages.error(request, 'Wrong Email')
+                return redirect('forgot_password')
+            
+        except login_table.DoesNotExist:
+            messages.error(request, '⚠️ We couldn’t find an account with that email. Please double-check or try a different one.')
+            return redirect('forgot_password')
+
+        return redirect('login_form')
+    else:
+        return render(request, 'guest/forgot_password.html')
