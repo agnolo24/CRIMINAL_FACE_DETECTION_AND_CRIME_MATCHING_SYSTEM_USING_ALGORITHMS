@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.guest_page, name='guest_page'),
     path('contact_us', views.contact_us, name='contact_us'),
     path('login_form/', views.login_check, name='login_form'),
+    path('forgot_password/', views.forgot_password, name='forgot_password'),
 
     #police station
     path('police_station_reg_form/', views.police_station_reg_form, name='police_station_reg_form'),

@@ -895,3 +895,7 @@ def match_fir(request):
     }
     
     return render(request, 'staff/FIRcheck.html', context)
+
+
+def forgot_password(request):
+    return render(request, 'guest/forgot_password.html')
