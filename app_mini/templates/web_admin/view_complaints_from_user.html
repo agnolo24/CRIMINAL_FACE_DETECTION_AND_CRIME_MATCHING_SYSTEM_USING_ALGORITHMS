@@ -71,6 +71,16 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>FIR Number</th>
+                                <td>
+                                    {% if i.pet.fir_number %}
+                                        <span class="label label-success">{{i.pet.fir_number}}</span>
+                                    {% else %}
+                                        <span class="label label-warning">FIR Not Registered</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>Petition Details</th>
                                 <td>{{i.pet.petition_text}}</td>
                             </tr>
