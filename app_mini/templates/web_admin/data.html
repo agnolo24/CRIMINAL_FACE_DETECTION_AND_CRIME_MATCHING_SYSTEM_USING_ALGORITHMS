@@ -34,46 +34,47 @@
                           </div>
                       </div>
                   </div>
-            <div class="box-body">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Station ID</th>
-                            <th>Address Line 1</th>
-                            <th>Address Line 2</th>
-                            <th>District</th>
-                            <th>City</th>
-                            <th>Contact</th>
-                            <th>Email</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for data in data1 %}
-                        <tr>
-                            <td>{{data.station_id}}</td>
-                            <td>{{data.address_line_1}}</td>
-                            <td>{{data.address_line_2}}</td>
-                            <td>{{data.district}}</td>
-                            <td>{{data.city}}</td>
-                            <td>{{data.contact}}</td>
-                            <td>{{data.login_id.email}}</td>
-                            <td class="text-center">
-                                {% if data.login_id.varification_status != 'varified' %}
-                                <a href="../accept_s/{{data.login_id.id}}" class="btn btn-success btn-sm">
-                                    <i class="fa fa-check"></i> Accept
-                                </a>
-                                {% else %}
-                                <a href="../reject_s/{{data.login_id.id}}" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-times"></i> Reject
-                                </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+            <div class="table-responsive">
+    <table id="example1" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Station ID</th>
+                <th>Address Line 1</th>
+                <!-- <th>Address Line 2</th> -->
+                <!-- <th>District</th>
+                <th>City</th> -->
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data1 %}
+            <tr>
+                <td>{{data.station_id}}</td>
+                <td>{{data.address_line_1}}</td>
+                <!-- <td>{{data.address_line_2}}</td> -->
+                <!-- <td>{{data.district}}</td> -->
+                <!-- <td>{{data.city}}</td> -->
+                <td>{{data.contact}}</td>
+                <td>{{data.login_id.email}}</td>
+                <td class="text-center">
+                    {% if data.login_id.varification_status != 'varified' %}
+                    <a href="../accept_s/{{data.login_id.id}}" class="btn btn-success btn-sm">
+                        <i class="fa fa-check"></i> Accept
+                    </a>
+                    {% else %}
+                    <a href="../reject_s/{{data.login_id.id}}" class="btn btn-danger btn-sm">
+                        <i class="fa fa-times"></i> Reject
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
           </div>
         </section>
         </div>
